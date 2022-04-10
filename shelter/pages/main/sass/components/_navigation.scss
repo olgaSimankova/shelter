@@ -1,0 +1,19 @@
+.navigation {
+    display: flex;
+    margin: 0 -17.5px;
+  }
+  
+  .navigation__link {
+    font-size: 15px;
+    line-height: 24px;
+    list-style: none;
+    margin: 0 17.5px;
+    color: $color-light;
+    &:hover {
+        color: $color-light-s;
+        cursor: pointer;
+    }
+    &.active{
+        border-bottom: 3px solid $color-primary;
+    }
+  }

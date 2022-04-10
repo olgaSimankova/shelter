@@ -7,97 +7,98 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="wrapper">
-            <a href="#" class="logo"><span>Cozy House</span><br><span>Shelter for pets in Boston</span></a>
-            <nav class="header__navigation">
-                <ul class="navigation">
-                    <li>About the shelter</li>
-                    <li>Our pets</li>
-                    <li>Help the shelter</li>
-                    <li>Contacts</li>
-                </ul>
-            </nav>
-        </div>        
-    </header>
-    <main>
-        <section class="not-only">
-            <div class="wrapper">
-                <h1 class="not-only-title">Not only people need a house</h1>
-                <p class="">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</p>
-                <button class="button button_colored">Make a friend</button>
-            </div>
-        </section>
-        <section class="about">
-            <div class="wrapper">
-                <div class="about-pic"><img src="#" alt="our pets" class="about-pets"></div>
-                <h2 class="section-title">About the shelter “Cozy House”</h2>
-                <p class="about-content">Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.</p>
-                <p class="about-content">We feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</p>
-            </div>
-        </section>
-        <section class="pets">
-            <div class="wrapper">
-                <h2 class="section-title">Our friends who are looking for a house</h2>
-                <div class="pets_slider">
-                    <button class="button-arrow"></button>
-                    <div class="pets_card">
-                        <img src="/assets/images/pets-katrine.jpg" alt="your pet" class="pet-img">
-                        <h4 class="pet-name">Katrine</h4>
-                        <button class="button button-bordered">Learn more</button>
+    <div class="start-screen-bg">
+        <header class="header">
+            <div class="wrapper header__wrapper">
+                <a href="#" class="logo"><span class="logo__title">Cozy House</span><br><span class="logo__subtitle">Shelter for pets in Boston</span></a>
+                <nav class="header__navigation">
+                    <ul class="navigation">
+                        <li class="navigation__link active">About the shelter</li>
+                        <li class="navigation__link">Our pets</li>
+                        <li class="navigation__link"><a href="#help">Help the shelter</a></li>
+                        <li class="navigation__link"><a href="#contacts">Contacts</a></li>
+                    </ul>
+                </nav>
+            </div>        
+        </header>
+            <section class="not-only">
+                <div class="wrapper not-only__wrapper">
+                    <div class="not-only__content">
+                        <h1 class="not-only-title">Not only people need a house</h1>
+                        <p class="not-only-text">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</p>
+                        <a id="button__link__colored" href="#our-friends">Make a friend</a>
                     </div>
-                    <div class="pets_card">
-                        <img src="/assets/images/pets-jennifer.jpg" alt="your pet" class="pet-img">
-                        <h4 class="pet-name">Jennifer</h4>
-                        <button class="button button-bordered">Learn more</button>
-                    </div>
-                    <div class="pets_card">
-                        <img src="/assets/images/pets-woody.jpg" alt="your pet" class="pet-img">
-                        <h4 class="pet-name">Woody</h4>
-                        <button class="button button-bordered">Learn more</button>
-                    </div>
-                    <button class="button-arrow"></button>
+                    <img src="../../assets/images/start-screen-puppy.png" alt="puppy" class="not-only__puppy">
                 </div>
+            </section>
+    </div>
+    <main>
+        <section class="about">
+            <div class="wrapper about-wrapper">
+                <div class="about-pic"><img src="../../assets/images/about-pets.jpg" alt="our pets" class="about-pets"></div>
+                <div class="about-content">
+                    <h2 class="section-title">About the shelter “Cozy House”</h2>
+                    <p class="about-content">Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.</p>
+                    <p class="about-content">We feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</p>
+                </div> 
             </div>
         </section>
-        <section class="help">
+        <section class="pets" id="our-friends">
+            <div class="wrapper pets_wrapper">
+                <h2 class="section-title">Our friends who<br> are looking for a house</h2>
+                <div class="slider_wrapper">
+                    <button class="button-arrow"></button>
+                    <div class="pets_slider">
+                        <div class="pets_card">
+                            <img src="../../assets/images/pets-katrine.jpg" alt="your pet" class="pet-img">
+                            <h4 class="pet-name">Katrine</h4>
+                            <button class="button button-bordered">Learn more</button>
+                        </div>
+                        <div class="pets_card">
+                            <img src="../../assets/images/pets-jennifer.jpg" alt="your pet" class="pet-img">
+                            <h4 class="pet-name">Jennifer</h4>
+                            <button class="button button-bordered">Learn more</button>
+                        </div>
+                        <div class="pets_card">
+                            <img src="../../assets/images/pets-woody.jpg" alt="your pet" class="pet-img">
+                            <h4 class="pet-name">Woody</h4>
+                            <button class="button button-bordered">Learn more</button>
+                        </div>
+                    </div>
+                    <button class="button-arrow right"></button>
+                </div>
+                <button class="button button-colored">Get to know the rest</button>
+            </div>
+        </section>
+        <section class="help" id="help">
             <div class="wrapper">
-                <h2 class="section-title">How you can help our shelter</h2>
+                <h2 class="section-title">How you can help<br> our shelter</h2>
                 <div class="help__list">
                     <div class="help__item">
-                        <div class="help-ico"></div>
                         <h4 class="help_text">Pet food</h4>
                     </div>
                     <div class="help__item">
-                        <div class="help-ico"></div>
                         <h4 class="help_text">Transportation</h4>
                     </div>
                     <div class="help__item">
-                        <div class="help-ico"></div>
                         <h4 class="help_text">Toys</h4>
                     </div>
                     <div class="help__item">
-                        <div class="help-ico"></div>
                         <h4 class="help_text">Bowls and cups</h4>
                     </div>
                     <div class="help__item">
-                        <div class="help-ico"></div>
                         <h4 class="help_text">Shampoos</h4>
                     </div>
                     <div class="help__item">
-                        <div class="help-ico"></div>
                         <h4 class="help_text">Vitamins</h4>
                     </div>
                     <div class="help__item">
-                        <div class="help-ico"></div>
                         <h4 class="help_text">Medicines</h4>
                     </div>
                     <div class="help__item">
-                        <div class="help-ico"></div>
                         <h4 class="help_text">Collars / leashes</h4>
                     </div>
                     <div class="help__item">
-                        <div class="help-ico"></div>
                         <h4 class="help_text">Sleeping areas</h4>
                     </div>
                 </div>
@@ -121,16 +122,17 @@
         </section>
     </main>
     <footer class="footer">
+        <div class="wrapper">
         <div class="layout-3-column">
-            <div class="contacts">
+            <div class="contacts" id="contacts">
                 <h2 class="section-title">For questions and suggestions</h2>
                 <p class="email">
                     <a href="mailto:email@shelter.com"><span class="mail-ico"></span></a>
                     <a href="mailto:email@shelter.com">email@shelter.com</a>
                 </p>
                 <p class="phone">
-                    <a href="tel:+13 674 567 75 54"><span class="phone-ico"></span></a>
-                    <a href="tel:+13 674 567 75 54">+13 674 567 75 54</a>
+                    <a href="tel:+136745677554"><span class="phone-ico"></span></a>
+                    <a href="tel:+136745677554">+13 674 567 75 54</a>
                 </p>
             </div>
             <div class="address">
@@ -148,6 +150,7 @@
                 <img src="/assets/images/footer-puppy.jpg" alt="" class="footer-puppy-img">
             </div>
         </div>
+    </div>
     </footer>
 
 </body>
