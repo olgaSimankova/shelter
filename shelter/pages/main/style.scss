@@ -218,3 +218,74 @@ body {
     }
   }
 }
+
+.donation {
+  background-color: $color-light-1;
+  padding: 80px 183px 88px;
+  .legal-info {
+    @include font(12px, 18px, 0px, Arial, $color-dark-m);
+    font-style: italic;
+    margin-top: 20px;
+  }
+}
+.donation-wrapper {
+  display: flex;
+  align-items: center;
+  .donation-content {
+    .section-title {
+      margin: 0;
+    }
+    margin-left: 30px;
+    .bank-name {
+      margin: 20px 0;
+    }
+    & #button__link__colored{
+      width:auto;
+      background-image: url(../../assets/icons/credit-card.svg);
+      background-repeat: no-repeat;
+      padding: 10px 15px 10px 60px;
+      background-position: 15px center;
+      border-radius: 9px;;
+      .card-number{
+        display: inline-block;
+        font-size: 20px;
+        letter-spacing: 0.06em;
+      }
+    }
+  } 
+}
+
+.footer {
+  background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  width:auto;
+  padding: 40px 40px 0;
+  .footer-wrapper {
+    padding: 40px auto 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 140px;
+    & *.section-title {
+      color: #FFFFFF;
+      margin-top: 0.5em;
+      margin-bottom: 0.65em;
+    }
+    .contacts, .address {
+      max-width: 302px;
+      display: flex;
+      flex-direction: column;
+      @include font(20px, 23px, 0.06em, Georgia, $color-primary);
+      .email, .phone, .map-address {
+        .contacts-ico, .address-ico{
+          vertical-align: middle;
+          margin-right: 15px;
+        }
+      }
+      .map-address {
+        margin: 10px 0 15px 0;
+      }
+    }
+    .address {
+      margin-left: -20px;
+    }
+  }
+}

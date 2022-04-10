@@ -12,4 +12,7 @@ h3 {
 h4 {
     @include font(20px, 23px, 0.06em);
 }
+h5 {
+    @include font(15px, 17px, 0.06em)
+}
 

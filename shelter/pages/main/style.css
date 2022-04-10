@@ -496,6 +496,16 @@ h4 {
   text-align: left;
 }
 
+h5 {
+  font-size: 15px;
+  font-weight: 400;
+  color: #545454;
+  line-height: 17px;
+  letter-spacing: 0.06em;
+  font-family: Georgia;
+  text-align: left;
+}
+
 .button {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -545,9 +555,6 @@ h4 {
   width: 50px;
   height: 52px;
   border-radius: 100px;
-  background-image: url("../../assets/icons/Arrow.png");
-  background-repeat: no-repeat;
-  background-position: center;
   margin: auto 0;
   border: 2px solid #F1CDB3;
   background-color: white;
@@ -888,5 +895,112 @@ body {
 .help .help__list .help_text {
   margin: 90px auto 0;
   text-align: center;
+}
+
+.donation {
+  background-color: #F6F6F6;
+  padding: 80px 183px 88px;
+}
+
+.donation .legal-info {
+  font-size: 12px;
+  font-weight: 400;
+  color: #B2B2B2;
+  line-height: 18px;
+  letter-spacing: 0px;
+  font-family: Arial;
+  text-align: left;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.donation-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.donation-wrapper .donation-content {
+  margin-left: 30px;
+}
+
+.donation-wrapper .donation-content .section-title {
+  margin: 0;
+}
+
+.donation-wrapper .donation-content .bank-name {
+  margin: 20px 0;
+}
+
+.donation-wrapper .donation-content #button__link__colored {
+  width: auto;
+  background-image: url(../../assets/icons/credit-card.svg);
+  background-repeat: no-repeat;
+  padding: 10px 15px 10px 60px;
+  background-position: 15px center;
+  border-radius: 9px;
+}
+
+.donation-wrapper .donation-content #button__link__colored .card-number {
+  display: inline-block;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+}
+
+.footer {
+  background: url("../../assets/images/noise_transparent@2x.png"), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  width: auto;
+  padding: 40px 40px 0;
+}
+
+.footer .footer-wrapper {
+  padding: 40px auto 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 140px;
+}
+
+.footer .footer-wrapper *.section-title {
+  color: #FFFFFF;
+  margin-top: 0.5em;
+  margin-bottom: 0.65em;
+}
+
+.footer .footer-wrapper .contacts, .footer .footer-wrapper .address {
+  max-width: 302px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 20px;
+  font-weight: 400;
+  color: #F1CDB3;
+  line-height: 23px;
+  letter-spacing: 0.06em;
+  font-family: Georgia;
+  text-align: left;
+}
+
+.footer .footer-wrapper .contacts .email .contacts-ico, .footer .footer-wrapper .contacts .email .address-ico, .footer .footer-wrapper .contacts .phone .contacts-ico, .footer .footer-wrapper .contacts .phone .address-ico, .footer .footer-wrapper .contacts .map-address .contacts-ico, .footer .footer-wrapper .contacts .map-address .address-ico, .footer .footer-wrapper .address .email .contacts-ico, .footer .footer-wrapper .address .email .address-ico, .footer .footer-wrapper .address .phone .contacts-ico, .footer .footer-wrapper .address .phone .address-ico, .footer .footer-wrapper .address .map-address .contacts-ico, .footer .footer-wrapper .address .map-address .address-ico {
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+.footer .footer-wrapper .contacts .map-address, .footer .footer-wrapper .address .map-address {
+  margin: 10px 0 15px 0;
+}
+
+.footer .footer-wrapper .address {
+  margin-left: -20px;
 }
 /*# sourceMappingURL=style.css.map */
