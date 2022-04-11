@@ -20,6 +20,13 @@ body {
     margin: 0 auto;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  width: 1280px;
+  background-color: #FFFFFF;
+}
+
 .header__wrapper {
     height: auto;
     padding: 30px 40px 30px;
@@ -75,6 +82,9 @@ body {
       }
     }
 
+.pets {
+  padding-top: 120px;
+}
 .pets__content {
     background-color: $color-light-1;
     display: flex;

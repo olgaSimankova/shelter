@@ -209,6 +209,13 @@ body {
   margin: 0 auto;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  width: 1280px;
+  background-color: #FFFFFF;
+}
+
 .header__wrapper {
   height: auto;
   padding: 30px 40px 30px;
@@ -275,6 +282,10 @@ body {
 
 .navigation .navigation__link.active {
   border-bottom: 3px solid #F1CDB3;
+}
+
+.pets {
+  padding-top: 120px;
 }
 
 .pets__content {
