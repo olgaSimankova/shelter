@@ -565,12 +565,6 @@ h5 {
   cursor: pointer;
 }
 
-.button-arrow .right {
-  background-image: url("../../assets/icons/Arrow.png");
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-}
-
 #button__link__colored {
   display: inline-block;
   width: 207px;
@@ -621,6 +615,7 @@ a {
 
 html {
   font-size: 10px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -815,8 +810,9 @@ body {
   background-color: #F1CDB3;
 }
 
-.pets_wrapper .button-colored {
+.pets_wrapper #button__link__colored {
   width: 261px;
+  display: block;
   margin: 60px auto 0;
 }
 

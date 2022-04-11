@@ -13,7 +13,9 @@ a {
   text-decoration: none;
 }
 
-html {font-size: 10px;}
+html {font-size: 10px;
+  scroll-behavior: smooth;
+}
 
 body {
  font-size: 1.5rem;
@@ -152,8 +154,9 @@ body {
 }
 
 .pets_wrapper {
-  .button-colored {
+  #button__link__colored {
     width: 261px;
+    display: block;
     margin: 60px auto 0;
   }
 }
