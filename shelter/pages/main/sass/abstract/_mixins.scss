@@ -1,0 +1,19 @@
+@mixin font ($size, $height, $letter: 0em, $family: Georgia, $color: $color-dark-header) {
+    font-size: $size;
+    font-weight: 400;
+    color: $color;
+    line-height: $height;
+    letter-spacing: $letter;
+    font-family: $family;
+    text-align: left;
+}
+
+@mixin columns ($width) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    >* {
+        flex-basis: $width;
+    }
+}
+

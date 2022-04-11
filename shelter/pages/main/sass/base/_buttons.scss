@@ -1,0 +1,62 @@
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 52px;
+    width: 187px;
+    border-radius: 100px;
+    padding: 13px 40px;
+    @include font (17px, 22px, 0.06em, Georgia, $color-dark-3xl);    
+    text-align: left;
+}
+
+.button-bordered {
+    border: 2px solid $color-primary;
+    background-color: white;
+    &:hover {
+        background-color: $color-primary;
+        cursor: pointer;
+      }
+}
+
+.button-colored {
+    background-color: $color-primary;
+    border: none;
+    &:hover {
+        background-color: $color-primary-light;
+        cursor: pointer;
+      }
+}
+
+
+  
+  .button-arrow {
+      width: 50px;
+      height: 52px;
+      border-radius: 100px;
+      margin: auto 0;
+      border: 2px solid $color-primary;
+      background-color: white;
+      &:hover {
+        background-color: $color-primary;
+        cursor: pointer;
+      }
+  }
+
+  #button__link__colored {
+    display: inline-block;
+    width: 207px;
+    border-radius: 100px;
+    background-color: $color-primary;
+    font-family: Georgia;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    padding: 14px 0;
+    &:hover {
+        background-color: $color-primary-light;
+        cursor: pointer;
+      }
+  }
