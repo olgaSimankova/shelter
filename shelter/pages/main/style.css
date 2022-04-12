@@ -826,6 +826,8 @@ body {
 .pets .pets_slider .pets_card {
   height: 435px;
   padding: 0 auto 30px;
+  border-radius: 9px;
+  overflow: hidden;
 }
 
 .pets .pets_slider .pets_card .button {

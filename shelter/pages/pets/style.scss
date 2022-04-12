@@ -91,6 +91,8 @@ body {
     background-color: $color-light-s;
     padding: 0 0 30px;
     margin-bottom: 30px;
+    border-radius: 9px;
+    overflow: hidden;
     & .button {
       margin: 0 auto;
     }
