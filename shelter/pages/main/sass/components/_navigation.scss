@@ -1,19 +1,28 @@
+.header__navigation {
+    padding-bottom: 3px;
+    align-self: inherit;
+    @include font(15px, 160%, 0, Arial);
+    text-decoration: none;
+}
+
 .navigation {
     display: flex;
-    margin: 0 -17.5px;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 36px;
   }
   
   .navigation__link {
     font-size: 15px;
     line-height: 24px;
     list-style: none;
-    margin: 0 17.5px;
     color: $color-light;
     &:hover {
         color: $color-light-s;
         cursor: pointer;
     }
     &.active{
-        border-bottom: 3px solid $color-primary;
+      border-bottom: 3px solid $color-primary;
     }
   }
