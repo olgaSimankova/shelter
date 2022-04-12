@@ -1,4 +1,3 @@
-//------------------------------normalize------------------------------
 @import '../../node_modules/normalize-scss/sass/normalize';
 @include normalize();
 @import 'sass/abstract/constants';
@@ -6,7 +5,6 @@
 @import 'sass/base/base';
 @import 'sass/base/buttons';
 @import 'sass/components/navigation';
-
 
 a {
   color: inherit;
@@ -47,25 +45,17 @@ body {
 
 .logo {
   text-decoration: none;
+  height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   &__title {
-    display: inline-block;
-    margin: 0px 0 8px;
-    color: $color-primary;
-    font-family: Georgia;
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 35px;
-    letter-spacing: 0.06em;
-    text-align: left;
+    @include font(32px, 35px, 0.06em, Georgia, $color-primary);
   }
 
   &__subtitle {
-    color: $color-light;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 15px;
-    letter-spacing: 0.1em;
-    display: inline-block;
+    @include font(13px, 15px, 0.1em, Arial, $color-light);
     }
 }
 
@@ -266,29 +256,30 @@ body {
     padding: 40px auto 0;
     display: flex;
     justify-content: space-between;
-    gap: 140px;
-    & *.section-title {
+    align-items: flex-end;
+    .section-title {
       color: #FFFFFF;
-      margin-top: 0.5em;
-      margin-bottom: 0.65em;
+      margin: 0;
     }
     .contacts, .address {
-      max-width: 302px;
+      height: 234px;
+      @include font(20px, 23px, 0.06em, Georgia, $color-primary);
       display: flex;
       flex-direction: column;
-      @include font(20px, 23px, 0.06em, Georgia, $color-primary);
-      .email, .phone, .map-address {
-        .contacts-ico, .address-ico{
-          vertical-align: middle;
-          margin-right: 15px;
-        }
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 60px;
+      .link-ico {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
       }
-      .map-address {
-        margin: 10px 0 15px 0;
+      .link-ico h4 {
+        color: $color-primary;
+        margin: 0;
       }
-    }
-    .address {
-      margin-left: -20px;
     }
   }
 }

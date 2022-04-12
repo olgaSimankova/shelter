@@ -3,6 +3,7 @@
 @import '../main/sass/abstract/mixins';
 @import '../main/sass/base/base';
 @import 'sass/base/buttons';
+@import '../../pages/main/sass/components/navigation';
 
 a {
     color: inherit;
@@ -37,50 +38,29 @@ body {
   
   .logo {
     text-decoration: none;
+    height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
     &__title {
-      display: inline-block;
-      margin: 1px 0 8px;
-      color: $color-dark-header;
-      font-family: Georgia;
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 35px;
-      letter-spacing: 0.06em;
-      text-align: left;
+      @include font(32px, 35px, 0.06em, Georgia, $color-dark-header);
     }
   
     &__subtitle {
-      color: $color-dark-3xl;
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 15px;
-      letter-spacing: 0.1em;
-      display: inline-block;
-      padding-left: 5px;
-    }
-}
-
-.navigation {
-        display: flex;
-        margin: 0 -17.5px;
-    .navigation__link {
-        font-size: 15px;
-        line-height: 24px;
-        list-style: none;
-        margin: 0 1.19em;
-        color: $color-dark-header;
-        a {
-            color: inherit;
-        }
-        &:hover {
-            color: $color-dark-3xl;
-            cursor: pointer;
-        }
-        &.active{
-            border-bottom: 3px solid $color-primary;
-        }
+      @include font(13px, 15px, 0.1em, Arial, $color-dark-3xl);
       }
+  }
+
+  .navigation__link{
+    color: $color-dark-header;
+    &:hover{
+      color: $color-dark-3xl;
     }
+    &.active{
+      text-decoration-color: $color-primary!important;
+    }
+  }
 
 .pets {
   padding-top: 120px;
@@ -134,54 +114,37 @@ body {
 }
 
 .footer {
-    background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
-    width:auto;
-    padding: 40px 40px 0;
-    .footer-wrapper {
-      padding: 40px auto 0;
-      display: flex;
-      justify-content: space-between;
-      gap: 159px;
-      .section-title {
-        color: #FFFFFF;
-        margin-top: 0.5em;
-      }
-
-      .contacts {
-        height: 29.4rem;
-        width: 30rem;
-        @include font(20px, 23px, 0.06em, Georgia, $color-primary);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 40px;
-        padding-bottom: 43px;
-        .contacts-ico {
-            vertical-align: middle;
-            margin-right: 15px;
-        }
-      }
-
-      .address {
-        width: 32rem;
-        height: 29.4rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 35px;
-        padding-bottom: 43px;
-        @include font(20px, 23px, 0.06em, Georgia, $color-primary);
-        .map-address {
-            display: flex;
-            flex-direction: row;
-        }
-        .address-ico{
-            margin-right: 15px;
-          }
-        .address-ico, .address-link {
-            display: inline-block;
-            vertical-align: middle;
-        }
+  background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  width:auto;
+  padding: 40px 40px 0;
+  .footer-wrapper {
+    padding: 40px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .section-title {
+      color: #FFFFFF;
+      margin: 0;
     }
+    .contacts, .address {
+      height: 234px;
+      @include font(20px, 23px, 0.06em, Georgia, $color-primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 60px;
+      .link-ico {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+      }
+      .link-ico h4 {
+        color: $color-primary;
+        margin: 0;
+      }
     }
   }
+}

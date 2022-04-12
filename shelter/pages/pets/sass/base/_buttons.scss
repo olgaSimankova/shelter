@@ -29,6 +29,8 @@
 }
 
 .button-arrow {
+    font-size: 20px;
+    font-family: Georgia;
     width: 50px;
     height: 52px;
     border-radius: 100px;
@@ -45,6 +47,8 @@
 }
 
 .page {
+    cursor: not-allowed;
+    pointer-events: none;
     color: $color-dark-3xl;
     border: 2px solid $color-primary;
     background-color: $color-primary; 
@@ -53,4 +57,8 @@
 .nav-active {
     color: $color-dark-3xl;
     border: 2px solid $color-primary;
+}
+.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
 }
