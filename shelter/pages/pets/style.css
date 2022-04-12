@@ -392,6 +392,8 @@ body {
   background-color: #FAFAFA;
   padding: 0 0 30px;
   margin-bottom: 30px;
+  border-radius: 9px;
+  overflow: hidden;
 }
 
 .pets_card .button {
