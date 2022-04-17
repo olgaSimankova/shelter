@@ -5,139 +5,148 @@
 @import 'sass/base/base';
 @import 'sass/base/buttons';
 @import 'sass/components/navigation';
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-html {font-size: 10px;
-  scroll-behavior: smooth;
-}
+@import '../pets/sass/reset';
 
 body {
- font-size: 1.5rem;
  font-family: Arial, Helvetica, sans-serif;
- max-width: 1280px;
- margin: 0 auto;
 }
 
-.start-screen-bg {
-  background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
-  width: 1200px;
-  height: 848px;
-  overflow: hidden;
-  margin: 0 auto;
-  padding: 60px 40px 0;
+.main-wrapper {
+    max-width: 1280px;
+    padding-top: 60px;
+    display: block;
+    margin: auto;
+    background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 }
 
-.wrapper {
-  max-width: $content-width;
-  margin: 0 auto;
-}
-
-.header__wrapper {
-  height: 60px;
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row;
+  padding: 0 40px;
 }
 
 .logo {
-  text-decoration: none;
   height: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  &__title {
-    @include font(32px, 35px, 0.06em, Georgia, $color-primary);
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
-  &__subtitle {
-    @include font(13px, 15px, 0.1em, Arial, $color-light);
+  .logo__title {
+    @include font(32px, 35.2px, 0.06em, Georgia, $color-primary);
+  }
+  .logo__subtitle {
+    @include font(13px, 14.95px, 0.1em, Arial, $color-light);
     }
 }
 
 .not-only {
-  height: 780px;
-  .not-only__wrapper {
-    height: 728px;
-    margin-top: 60px;
-    display: flex;
-    .not-only__content {
-      width: 460px;
-      margin: 135px 42px auto 0;
-    }
-  }
+  padding-top: 60px;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 
-  .not-only-title {
-    width: 310px;
-  }
+    .not-only__content {
+      align-self: center;
+      margin-bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: 322px;
+      color: #ffffff;
+      flex-basis: 460px;
+    }
+
+    .not-only__title {
+      @include font(44px, 130%, 0, Georgia, #ffffff)
+    }
 
   .not-only-text {
     @include font(15px, 24px, 0em, Arial, $color-light);
-    margin: 42px 0;
     }
-
-  .not-only__puppy{
-    display: block;
-    right: 0;
-    bottom: 0;
-  }
 }
 
-.about-wrapper {
+.section-title {
+  @include font(35px, 130%, 0.06em, Georgia, $color-dark-header);
+}
+
+.about {
+  background-color: #ffffff;
   display: flex;
-  margin: 80px auto 100px;
-  .about-pic {
-    margin: 0 120px 0 175px;
-  }
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  flex-wrap: wrap;
+
   .about-content{
-    width: 430px;
-    justify-content: center;
-    .section-title{
-      margin: 14px 0 25px;
-      width: 370px;
-    }
+    color: $color-dark-header;
+    flex-basis: 430px;
     p {
-      @include font(15px, 24px, 0em, Arial, $color-dark-grey);
-      margin-top: 25px;
+        @include font(15px, 24px, 0em, Arial, $color-dark-grey);
+        padding-top: 25px;
     }
   }
 }
 
 .pets {
   background: $color-light-1;
-  padding: 79px 40px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+
   & .section-title{
-    width: 400px;
     text-align: center;
-    margin: 0 auto 58px;
   }
-  .slider_wrapper {
+
+  .slider__wrapper {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
-  .pets_slider {
-    @include columns(27%);
-    width: 990px;
+
+  .button-arrow {
+    justify-self: center;
+    align-self: center;
+  }
+
+  .pets__slider {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 90px;
+    
     .pets_card {
       height: 435px;
-      padding: 0 auto 30px;
+      width: 270px;
       border-radius: 9px;
       overflow: hidden;
-      & .button {
-        margin: 0 auto;
-      }
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30px;
       & .pet-name {
-        margin: 27px auto 29px;
-        text-align: center;
-      }     
-    }
+      text-align: center;
+    }     
   }
 }
+}
 .pets_card:hover {
+  transition: 0.3s;
   box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   cursor: pointer;
   .button {
@@ -145,29 +154,34 @@ body {
   }
 }
 
-.pets_wrapper {
-  #button__link__colored {
-    width: 261px;
-    display: block;
-    margin: 60px auto 0;
-  }
-}
-
 .help {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  text-align: center;
+
   .section-title {
     text-align: center;
-    margin: 80px auto 60px;
   }
+
   .help__list{
-    display:flex;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 55px 119px;
-    margin-bottom: 100px;
+    align-content: center;
+    row-gap: 55px;
+    column-gap: 120px;
 
     .help__item {
       height: 113px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       background-position: center top;
       &:nth-child(1){
         background-image: url(../../assets/icons/food.svg);
@@ -216,21 +230,26 @@ body {
 
 .donation {
   background-color: $color-light-1;
-  padding: 80px 183px 88px;
-  .legal-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  .donation-content {
+    height: 282px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-basis: 380px;
+
+    .legal-info {
     @include font(12px, 18px, 0px, Arial, $color-dark-m);
     font-style: italic;
     margin-top: 20px;
   }
-}
-.donation-wrapper {
-  display: flex;
-  align-items: center;
-  .donation-content {
-    .section-title {
-      margin: 0;
-    }
-    margin-left: 30px;
     .bank-name {
       margin: 20px 0;
     }
@@ -251,37 +270,38 @@ body {
 }
 
 .footer {
-  background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
-  width:auto;
   padding: 40px 40px 0;
-  .footer-wrapper {
-    padding: 40px auto 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  .contacts, .address {
+    height: 234px;
+    @include font(20px, 130%, 0.06em, Georgia, $color-primary);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: flex-end;
-    .section-title {
-      color: #FFFFFF;
-      margin: 0;
-    }
-    .contacts, .address {
-      height: 234px;
-      @include font(20px, 23px, 0.06em, Georgia, $color-primary);
+    align-items: flex-start;
+    margin-bottom: 60px;
+    .section-title{
+        color: #ffffff;
+      }
+    .link-ico {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 60px;
-      .link-ico {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 20px;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 20px;
       }
       .link-ico h4 {
         color: $color-primary;
-        margin: 0;
       }
     }
   }
-}
+
+// @media ((min-width: 768px) and (max-width: 1279px)) {
+  // .start-screen-bg {
+  //     padding: 30px 60px 0;
+  //   }
+  // }

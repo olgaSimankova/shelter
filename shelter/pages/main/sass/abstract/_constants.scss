@@ -10,6 +10,6 @@ $color-dark-m: #B2B2B2;
 
 
 
-$content-width: 1200px;
+$content-width: calc(1200 / 1280 * 100%);
 $tablet-width:768px;
 $mobile-width: 320px;

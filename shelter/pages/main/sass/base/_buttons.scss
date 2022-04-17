@@ -27,16 +27,15 @@
         cursor: pointer;
       }
 }
-
-
   
   .button-arrow {
-      width: 50px;
+      width: 52px;
       height: 52px;
       border-radius: 100px;
       margin: auto 0;
       border: 2px solid $color-primary;
       background-color: white;
+
       &:hover {
         background-color: $color-primary;
         cursor: pointer;
@@ -45,18 +44,14 @@
 
   #button__link__colored {
     display: inline-block;
-    width: 207px;
     border-radius: 100px;
     background-color: $color-primary;
-    font-family: Georgia;
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 22px;
-    letter-spacing: 0.06em;
+    @include font(17px, 130%, 0.06em, Georgia, $color-dark-grey);
     text-align: center;
-    padding: 14px 0;
+    padding: 14px 45px;
     &:hover {
         background-color: $color-primary-light;
         cursor: pointer;
+        transition: 0.3s;
       }
   }

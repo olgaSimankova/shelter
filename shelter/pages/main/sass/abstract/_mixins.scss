@@ -7,13 +7,3 @@
     font-family: $family;
     text-align: left;
 }
-
-@mixin columns ($width) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    >* {
-        flex-basis: $width;
-    }
-}
-
