@@ -12,6 +12,11 @@
     align-items: center;
     gap: 36px;
   }
+  @media (max-width: 767px) {
+    .navigation {
+      display: none;
+    }
+  }
   
   .navigation__link {
     font-size: 15px;
