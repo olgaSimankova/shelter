@@ -23,7 +23,7 @@
     left:0;
     bottom: 0;
 }
-    @include media-tablet {
+@media (max-width: 767px) {
         display: inline-block;
     }
 }

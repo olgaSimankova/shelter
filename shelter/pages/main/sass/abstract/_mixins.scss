@@ -17,5 +17,5 @@
 }
 
 @mixin media-mobile {
-    @media (max-width: $mobile-width) { @content; }
+    @media (min-width: $mobile-width) { @content; }
 }
