@@ -69,9 +69,6 @@ body {
   @include media-tablet {
     justify-content: center;
   }
-  @media (max-width: 767px) {
-    padding: 46px 10px 0 10px;
-  }
   @include media-mobile {
     padding-top: 30px;
 }
@@ -86,16 +83,16 @@ body {
       height: 322px;
       color: #ffffff;
       flex-basis: 460px;
+      @include media-mobile {
+        height: 295px;
+        align-items: center;
+        margin-bottom: 105px;
+      }
       @include media-tablet {
         margin-bottom: 100px;
         #button__link__colored {
           align-self: center;
         }
-      }
-      @include media-mobile {
-        height: 295px;
-        align-items: center;
-        margin-bottom: 105px;
       }
     }
 
@@ -119,11 +116,11 @@ body {
       @include media-tablet {
         width: 569px;
         margin-left: 130px;
-    }
-    @include media-mobile {
-      width: 260px;
-      margin-left: 40px;
-    }
+    };
+      @include media-mobile {
+        width: 260px;
+        margin-left: 40px;
+      };
   }
 }
 
@@ -326,9 +323,6 @@ body {
       &:nth-child(1){
         background-image: url(../../assets/icons/food.svg);
         background-repeat: no-repeat;
-        @include media-mobile{
-          width: 63px;
-        }
       }
       &:nth-child(2){
       background-image: url(../../assets/icons/transportation.svg);
@@ -338,9 +332,6 @@ body {
       background-image: url(../../assets/icons/toys.svg);
       background-repeat: no-repeat;
       width: 60px;
-      @include media-mobile{
-        width: 52px;
-      }
       }
       &:nth-child(4){
       background-image: url(../../assets/icons/bowls-and-cups.svg);
@@ -393,7 +384,8 @@ body {
       }
   }
   @include media-mobile{
-    padding: 43px 10px;
+    padding: 41px 10px;
+    gap: 43px;
   } 
   .donation-img{
     @include media-tablet {
@@ -412,16 +404,25 @@ body {
     align-items: flex-start;
     flex-basis: 380px;
     @include media-mobile {
-        align-items: flex-start;
+      align-items: center;
+      gap: 22px;
     }
 
     .legal-info {
     @include font(12px, 18px, 0px, Arial, $color-dark-m);
     font-style: italic;
     margin-top: 20px;
+    @include media-mobile{
+      margin: 0px 10px;
+      text-align: justify;
+    }
   }
     .bank-name {
       margin: 20px 0;
+      @include media-mobile{
+        letter-spacing: 0;
+        margin: 0;
+      }
     }
     & #button__link__colored{
       width:auto;
@@ -434,6 +435,9 @@ body {
         display: inline-block;
         font-size: 20px;
         letter-spacing: 0.06em;
+        @include media-mobile{
+          font-size: 15px;
+        }
       }
     }
   } 
@@ -453,6 +457,10 @@ body {
     padding: 30px 30px 0;
     justify-content: space-around;
   }
+  @include media-mobile{
+    padding: 30px 10px 0;
+    align-items: center;
+  }
   .contacts, .address {
     height: 234px;
     @include font(20px, 130%, 0.06em, Georgia, $color-primary);
@@ -461,8 +469,17 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 60px;
+    @include media-mobile {
+      margin-bottom: 40px;
+    }
     .section-title{
         color: #ffffff;
+        @include media-laptop{width: 297px;}
+        @include media-mobile{
+          padding: 0 15px;
+          @include font(25px, 130%, 0.06em, Georgia, #ffffff);
+          text-align: center;
+        }
       }
     .link-ico {
       display: flex;
@@ -473,6 +490,24 @@ body {
       }
       .link-ico h4 {
         color: $color-primary;
+      }
+    }
+    .contacts{
+      @include media-mobile{
+        height: 208px;
+        align-items: center;
+      }
+    }
+    .address{
+      @include media-mobile{
+      height: 222px;
+      align-items: flex-start;
+      }
+    }
+    .footer-puppy-img {
+      @include media-mobile{
+        width: calc(260 / 300 * 100%);
+        margin-left: 20px;
       }
     }
   }
