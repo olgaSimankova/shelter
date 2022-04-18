@@ -1,3 +1,7 @@
+h1 {
+    @include font(32px, 35.2px, 0.06em, Georgia, $color-primary);
+}
+
 h2 {
     @include font(35px, 45px, 0.06em);
     }
