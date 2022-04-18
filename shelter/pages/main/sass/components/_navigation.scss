@@ -12,6 +12,11 @@
     align-items: center;
     gap: 36px;
   }
+  @include media-tablet {
+    .navigation {
+      display: none;
+    }
+  }
   
   .navigation__link {
     font-size: 15px;

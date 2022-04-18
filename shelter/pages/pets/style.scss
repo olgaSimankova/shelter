@@ -4,6 +4,7 @@
 @import '../main/sass/base/base';
 @import 'sass/base/buttons';
 @import '../../pages/main/sass/components/navigation';
+@import '../../pages/main/sass/components/hamburger';
 
 a {
     color: inherit;
@@ -35,6 +36,12 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  @include media-tablet {
+    padding: 30px;
+  }
+  @include media-mobile {
+    padding: 30px 53px 30px 10px;
+  }
   .logo {
     text-decoration: none;
     height: 60px;
@@ -75,9 +82,25 @@ body {
   align-items: center;
   gap: 60px;
 
+  @include media-tablet{
+    gap: 30px;
+    padding-bottom: 75px;
+  }
+  @include media-mobile {
+    padding-top: 42px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 42px;
+    gap: 42px;
+  }
+
   .pets-title {
       @include font(35px, 130%, 0.06em, Georgia, $color-dark-header);
       text-align: center;
+      @include media-mobile {
+        @include font(25px, 130%, 0.06em, Georgia, $color-dark-header);
+        text-align: center;
+      }
   }
 
   .cards-container {
@@ -87,6 +110,12 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 30px 40px;
+    @include media-tablet {
+      margin-bottom: 10px;
+    }
+    @include media-mobile {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -102,7 +131,26 @@ body {
     & .pet-name {
       margin: 31px auto 29px;
       text-align: center;
-    }     
+    }
+    @include media-laptop {
+      &:nth-child(7) {
+        display: none;
+    } 
+      &:nth-child(8) {
+        display: none;
+    } 
+  }
+  @include media-mobile {
+    &:nth-child(4) {
+      display: none;
+  } 
+    &:nth-child(5) {
+      display: none;
+  } 
+    &:nth-child(6) {
+      display: none;
+  }
+  }
 }
 .pets_card:hover {
     box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
@@ -119,6 +167,9 @@ body {
   align-items: center;
   gap: 20px;
   height: 52px;
+  @include media-mobile {
+    gap: 10px;
+  }
 }
 
 .footer {
@@ -129,6 +180,14 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   flex-wrap: wrap;
+  @include media-tablet {
+    padding: 30px 30px 0;
+    justify-content: space-around;
+  }
+  @include media-mobile{
+    padding: 30px 10px 0;
+    align-items: center;
+  }
   .contacts, .address {
     height: 234px;
     @include font(20px, 130%, 0.06em, Georgia, $color-primary);
@@ -137,8 +196,18 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 60px;
+    
+    @include media-mobile {
+      margin-bottom: 40px;
+    }
     .section-title{
         color: #ffffff;
+       @include media-laptop{width: 279px;}
+        @include media-mobile{
+          padding: 0 15px;
+          @include font(25px, 130%, 0.06em, Georgia, #ffffff);
+          text-align: center;
+        }
       }
     .link-ico {
       display: flex;
@@ -149,6 +218,23 @@ body {
       }
       .link-ico h4 {
         color: $color-primary;
+      }
+    }
+    .contacts{
+      @include media-mobile{
+        height: 208px;
+        align-items: center;
+      }
+    }
+    .address{
+      @include media-mobile{
+      height: 222px;
+      align-items: flex-start;
+      }
+    }
+    .footer-puppy-img {
+      @include media-mobile{
+        width: calc(260 / 300 * 100%)
       }
     }
   }
