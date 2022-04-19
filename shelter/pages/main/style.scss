@@ -473,6 +473,7 @@ body {
       margin-bottom: 40px;
     }
     .section-title{
+      width: 279px;
         color: #ffffff;
         @include media-laptop{width: 297px;}
         @include media-mobile{

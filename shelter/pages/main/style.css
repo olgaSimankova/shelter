@@ -1605,6 +1605,7 @@ body {
 }
 
 .footer .contacts .section-title, .footer .address .section-title {
+  width: 279px;
   color: #ffffff;
 }
 
