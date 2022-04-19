@@ -645,6 +645,7 @@ body {
 
 .footer .contacts .section-title, .footer .address .section-title {
   color: #ffffff;
+  width: 279px;
 }
 
 @media (max-width: 1237px) {
