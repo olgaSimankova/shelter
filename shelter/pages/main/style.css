@@ -629,7 +629,36 @@ section {
 
 @media (max-width: 767px) {
   .navigation {
-    display: none;
+    position: fixed;
+    padding-top: 247px;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    background-color: #292929;
+    z-index: 2;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  .navigation .navigation__link {
+    font-size: 32px;
+    line-height: 1.71em;
+  }
+  .navigation.open {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -663,6 +692,10 @@ section {
   display: none;
   width: 30px;
   height: 22px;
+  cursor: pointer;
+  z-index: 4;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .hamburger::before {
@@ -683,6 +716,13 @@ section {
 
 .hamburger__line {
   top: calc(50% - 1px);
+}
+
+.hamburger.open {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
 * {
@@ -711,6 +751,7 @@ nav, footer, header, aside {
 html, body {
   height: 100%;
   width: 100%;
+  min-width: 320px;
   font-size: 100%;
   line-height: 1.15;
   font-size: 14px;
@@ -763,6 +804,7 @@ a {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  overflow: scroll;
 }
 
 .main-wrapper {
@@ -777,6 +819,19 @@ body {
   .main-wrapper {
     padding-top: 30px;
   }
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(41, 41, 41, 0.6);
+  z-index: 1;
+}
+
+.overlay.hidden {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .header {
@@ -798,7 +853,11 @@ body {
 
 @media (max-width: 768px) {
   .header {
+    position: absolute;
     padding: 0 30px;
+    width: 100%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
   }
 }
 
@@ -808,8 +867,18 @@ body {
   }
 }
 
-.header .hamburger__line, .header .hamburger::before, .header .hamburger::after {
+.header .hamburger__line,
+.header .hamburger::before,
+.header .hamburger::after {
   background-color: #F1CDB3;
+}
+
+.header.open {
+  position: absolute;
+  left: calc(100% - 320px);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  width: 320px;
 }
 
 .logo {
@@ -827,6 +896,9 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  z-index: 5;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .logo .logo__title {
@@ -867,6 +939,8 @@ body {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  position: relative;
+  padding-top: 120px;
 }
 
 @media (max-width: 1237px) {
@@ -887,7 +961,7 @@ body {
 
 @media (max-width: 767px) {
   .not-only {
-    padding: 30px 10px 0 10px;
+    padding: 120px 10px 0 10px;
   }
 }
 
@@ -1573,7 +1647,8 @@ body {
   }
 }
 
-.footer .contacts, .footer .address {
+.footer .contacts,
+.footer .address {
   height: 234px;
   font-size: 20px;
   font-weight: 400;
@@ -1599,24 +1674,28 @@ body {
 }
 
 @media (max-width: 767px) {
-  .footer .contacts, .footer .address {
+  .footer .contacts,
+  .footer .address {
     margin-bottom: 40px;
   }
 }
 
-.footer .contacts .section-title, .footer .address .section-title {
+.footer .contacts .section-title,
+.footer .address .section-title {
   width: 279px;
   color: #ffffff;
 }
 
 @media (max-width: 1237px) {
-  .footer .contacts .section-title, .footer .address .section-title {
+  .footer .contacts .section-title,
+  .footer .address .section-title {
     width: 297px;
   }
 }
 
 @media (max-width: 767px) {
-  .footer .contacts .section-title, .footer .address .section-title {
+  .footer .contacts .section-title,
+  .footer .address .section-title {
     padding: 0 15px;
     font-size: 25px;
     font-weight: 400;
@@ -1629,7 +1708,8 @@ body {
   }
 }
 
-.footer .contacts .link-ico, .footer .address .link-ico {
+.footer .contacts .link-ico,
+.footer .address .link-ico {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1646,7 +1726,8 @@ body {
   gap: 20px;
 }
 
-.footer .contacts .link-ico h4, .footer .address .link-ico h4 {
+.footer .contacts .link-ico h4,
+.footer .address .link-ico h4 {
   color: #F1CDB3;
 }
 
