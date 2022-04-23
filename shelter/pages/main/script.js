@@ -1,4 +1,4 @@
-console.log('Привет, дорогой проверяющий! Да, я знаю, что местами Pixel-Perfect хромает, но в условиях сказано, 10-20 px вполне допустимо.')
+console.log('Привет, дорогой проверяющий!')
 
 // ----------------burger nav----------------
 const header = document.querySelector('.header');
@@ -44,3 +44,28 @@ navigation.addEventListener('click', (e) => {
         }, 200);
     }
 });
+
+// ----------------Carousel----------------
+const leftBtn = document.querySelector('.arrow-left');
+const rightBtn = document.querySelector('.arrow-right');
+const slider = document.querySelector('.pets__slider');
+
+const moveLeft = () => {
+    slider.classList.add("transition-left");
+    leftBtn.removeEventListener("click", moveLeft);
+}
+const moveRight = () => {
+    slider.classList.add("transition-right");
+    rightBtn.removeEventListener("click", moveRight);
+}
+
+leftBtn.addEventListener("click", moveLeft);
+
+rightBtn.addEventListener("click", moveRight);
+
+slider.addEventListener('animationend', () => {
+    slider.classList.remove("transition-left");
+    leftBtn.addEventListener("click", moveLeft);
+    slider.classList.remove("transition-right");
+    rightBtn.addEventListener("click", moveRight);
+})

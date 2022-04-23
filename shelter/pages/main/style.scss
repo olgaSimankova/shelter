@@ -6,23 +6,12 @@
 @import 'sass/base/buttons';
 @import 'sass/components/navigation';
 @import 'sass/components/hamburger';
+@import 'sass/components/slider';
 @import '../pets/sass/reset';
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   overflow: scroll;
-}
-
-.main-wrapper {
-  max-width: 1280px;
-  padding-top: 60px;
-  display: block;
-  margin: auto;
-  background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
-
-  @include media-tablet {
-    padding-top: 30px;
-  }
 }
 
 .overlay {
@@ -38,586 +27,538 @@ body {
   opacity: 0;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  padding: 0 40px;
-
-  @include media-tablet {
-    position: absolute;
-    padding: 0 30px;
-    width: 100%;
-    transition: 0.5s;
-  }
-
-  @include media-mobile {
-    padding: 0px 53px 30px 10px;
-  }
-
-  .hamburger__line,
-  .hamburger::before,
-  .hamburger::after {
-    background-color: $color-primary;
-  }
-}
-
-.header.open {
-  position: absolute;
-  left: calc(100% - 320px);
-  transition: 0.5s;
-  width: 320px;
-}
-
-.logo {
-  height: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 5;
-  transition: 0.5s;
-
-
-  .logo__title {
-    @include font(32px, 35.2px, 0.06em, Georgia, $color-primary);
-  }
-
-  .logo__subtitle {
-    @include font(13px, 14.95px, 0.1em, Arial, $color-light);
-  }
-}
-
-.not-only {
+.main-wrapper {
+  max-width: 1280px;
   padding-top: 60px;
-  padding-bottom: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  position: relative;
-  padding-top: 120px;
-
-  @include media-laptop {
-    justify-content: center;
-  }
+  display: block;
+  margin: auto;
+  background: url('../../assets/images/noise_transparent@2x.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 
   @include media-tablet {
-    justify-content: center;
+    padding-top: 30px;
   }
 
-  @include media-mobile {
-    padding: 120px 10px 0 10px;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0 40px;
+
+    @include media-tablet {
+      position: absolute;
+      padding: 0 30px;
+      width: 100%;
+      transition: 0.5s;
+    }
+
+    @include media-mobile {
+      padding: 0px 53px 30px 10px;
+    }
+
+    .hamburger__line,
+    .hamburger::before,
+    .hamburger::after {
+      background-color: $color-primary;
+    }
   }
 
-  .not-only__content {
-    align-self: center;
-    margin-bottom: 80px;
+  .header.open {
+    position: absolute;
+    left: calc(100% - 320px);
+    transition: 0.5s;
+    width: 320px;
+  }
+
+  .logo {
+    height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
-    height: 322px;
-    color: #ffffff;
-    flex-basis: 460px;
+    align-items: center;
+    z-index: 5;
+    transition: 0.5s;
+
+
+    .logo__title {
+      @include font(32px, 35.2px, 0.06em, Georgia, $color-primary);
+    }
+
+    .logo__subtitle {
+      @include font(13px, 14.95px, 0.1em, Arial, $color-light);
+    }
+  }
+
+  .not-only {
+    padding-top: 60px;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    padding-top: 120px;
+
+    @include media-laptop {
+      justify-content: center;
+    }
 
     @include media-tablet {
-      margin-bottom: 100px;
+      justify-content: center;
+    }
 
-      #button__link__colored {
-        align-self: center;
+    @include media-mobile {
+      padding: 120px 10px 0 10px;
+    }
+
+    .not-only__content {
+      align-self: center;
+      margin-bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: 322px;
+      color: #ffffff;
+      flex-basis: 460px;
+
+      @include media-tablet {
+        margin-bottom: 100px;
+
+        #button__link__colored {
+          align-self: center;
+        }
+
+        @include media-mobile {
+          height: 295px;
+          align-items: center;
+          margin-bottom: 108px;
+        }
+      }
+    }
+
+    .not-only__title {
+      @include font(44px, 130%, 0, Georgia, #ffffff);
+
+      @media (max-width: 767px) {
+        font-size: 25px;
+        letter-spacing: 0.06em;
+        text-align: center;
+      }
+    }
+
+    .not-only-text {
+      @include font(15px, 24px, 0em, Arial, $color-light);
+
+      @include media-mobile {
+        text-align: center;
+      }
+    }
+
+    .not-only__puppy {
+      @include media-tablet {
+        width: 569px;
+        margin-left: 130px;
+      }
+
+      ;
+
+      @include media-mobile {
+        width: 260px;
+        margin-left: 40px;
+      }
+
+      ;
+    }
+  }
+
+  .section-title {
+    @include font(35px, 130%, 0.06em, Georgia, $color-dark-header);
+
+    @include media-mobile {
+      font-size: 25px;
+      text-align: center;
+    }
+  }
+
+  .about {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+    flex-wrap: wrap;
+
+    @include media-tablet {
+      gap: 80px;
+    }
+
+    @include media-mobile {
+      padding: 43px 25px 43px 25px;
+      gap: 40px;
+    }
+
+
+    .about-pic {
+      @include media-tablet {
+        order: 2;
+      }
+
+      .about-pets {
+        @include media-mobile {
+          width: 260px;
+        }
+      }
+    }
+
+    .about-content {
+      color: $color-dark-header;
+      flex-basis: 430px;
+
+      @include media-tablet {
+        order: 1;
+      }
+
+      p {
+        @include font(15px, 24px, 0em, Arial, $color-dark-grey);
+        padding-top: 24px;
+
+        @include media-mobile {
+          text-align: justify;
+        }
+      }
+    }
+  }
+
+  .pets {
+    background: $color-light-1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+
+    @include media-tablet {
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+
+    @include media-mobile {
+      padding: 42px 10px 42px 10px;
+      gap: 41px;
+    }
+
+    & .section-title {
+      text-align: center;
+    }
+
+    .slider__wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      @include media-mobile {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+    }
+
+    .button-arrow {
+      justify-self: center;
+      align-self: center;
+
+      @media (max-width: 767px) {
+        order: 2;
+      }
+    }
+  }
+
+  .help {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    text-align: center;
+
+    @include media-mobile {
+      padding: 44px 10px;
+      gap: 40px;
+    }
+
+    .section-title {
+      text-align: center;
+    }
+
+    .help__list {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      align-content: center;
+      row-gap: 55px;
+      column-gap: 120px;
+
+      @include media-laptop {
+        display: grid;
+        grid-template-columns: 170px 170px 170px;
+        column-gap: 60px;
+        justify-items: center;
       }
 
       @include media-mobile {
-        height: 295px;
-        align-items: center;
-        margin-bottom: 108px;
+        grid-template-columns: 130px 130px;
+        column-gap: 30px;
+        row-gap: 30px;
+      }
+
+      .help__item {
+        height: 113px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-position: center top;
+
+        @include media-mobile {
+          height: 87px;
+          background-size: unset;
+        }
+
+        &:nth-child(1) {
+          background-image: url(../../assets/icons/food.svg);
+          background-repeat: no-repeat;
+        }
+
+        &:nth-child(2) {
+          background-image: url(../../assets/icons/transportation.svg);
+          background-repeat: no-repeat;
+        }
+
+        &:nth-child(3) {
+          background-image: url(../../assets/icons/toys.svg);
+          background-repeat: no-repeat;
+          width: 60px;
+        }
+
+        &:nth-child(4) {
+          background-image: url(../../assets/icons/bowls-and-cups.svg);
+          background-repeat: no-repeat;
+        }
+
+        &:nth-child(5) {
+          background-image: url(../../assets/icons/shampoos.svg);
+          background-repeat: no-repeat;
+        }
+
+        &:nth-child(6) {
+          background-image: url(../../assets/icons/vitamins.svg);
+          background-repeat: no-repeat;
+        }
+
+        &:nth-child(7) {
+          background-image: url(../../assets/icons/medicines.svg);
+          background-repeat: no-repeat;
+        }
+
+        &:nth-child(8) {
+          background-image: url(../../assets/icons/collars-or-leashes.svg);
+          background-repeat: no-repeat;
+        }
+
+        &:nth-child(9) {
+          background-image: url(../../assets/icons/sleeping-area.svg);
+          background-repeat: no-repeat;
+        }
+      }
+
+      .help_text {
+        margin: 90px auto 0;
+        text-align: center;
+
+        @include media-mobile {
+          font-size: 15px;
+          margin-top: 71px;
+        }
       }
     }
   }
 
-  .not-only__title {
-    @include font(44px, 130%, 0, Georgia, #ffffff);
+  .donation {
+    background-color: $color-light-1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
 
-    @media (max-width: 767px) {
-      font-size: 25px;
-      letter-spacing: 0.06em;
-      text-align: center;
+    @include media-tablet {
+      gap: 60px;
+
+      .donation-img {
+        order: 2;
+      }
     }
-  }
-
-  .not-only-text {
-    @include font(15px, 24px, 0em, Arial, $color-light);
 
     @include media-mobile {
-      text-align: center;
-    }
-  }
-
-  .not-only__puppy {
-    @include media-tablet {
-      width: 569px;
-      margin-left: 130px;
+      padding: 41px 10px;
+      gap: 43px;
     }
 
-    ;
+    .donation-img {
+      @include media-tablet {
+        order: 2;
+      }
 
-    @include media-mobile {
-      width: 260px;
-      margin-left: 40px;
-    }
-
-    ;
-  }
-}
-
-.section-title {
-  @include font(35px, 130%, 0.06em, Georgia, $color-dark-header);
-
-  @include media-mobile {
-    font-size: 25px;
-    text-align: center;
-  }
-}
-
-.about {
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 120px;
-  flex-wrap: wrap;
-
-  @include media-tablet {
-    gap: 80px;
-  }
-
-  @include media-mobile {
-    padding: 43px 25px 43px 25px;
-    gap: 40px;
-  }
-
-
-  .about-pic {
-    @include media-tablet {
-      order: 2;
-    }
-
-    .about-pets {
       @include media-mobile {
         width: 260px;
       }
     }
-  }
 
-  .about-content {
-    color: $color-dark-header;
-    flex-basis: 430px;
-
-    @include media-tablet {
-      order: 1;
-    }
-
-    p {
-      @include font(15px, 24px, 0em, Arial, $color-dark-grey);
-      padding-top: 24px;
-
-      @include media-mobile {
-        text-align: justify;
-      }
-    }
-  }
-}
-
-.pets {
-  background: $color-light-1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-
-  @include media-tablet {
-    padding-right: 30px;
-    padding-left: 30px;
-  }
-
-  @include media-mobile {
-    padding: 42px 10px 42px 10px;
-    gap: 41px;
-  }
-
-  & .section-title {
-    text-align: center;
-  }
-
-  .slider__wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-
-    @include media-mobile {
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-    }
-  }
-
-  .button-arrow {
-    justify-self: center;
-    align-self: center;
-
-    @media (max-width: 767px) {
-      order: 2;
-    }
-  }
-
-  .pets__slider {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 90px;
-
-    @include media-laptop {
-      gap: 30px;
-    }
-
-    @include media-tablet {
-      gap: 40px;
-    }
-
-    @include media-mobile {
-      padding-bottom: 21px;
-    }
-
-    .pets_card {
-      height: 435px;
-      width: 270px;
-      border-radius: 9px;
-      overflow: hidden;
-      background-color: #fafafa;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 30px;
-
-      & .pet-name {
-        text-align: center;
-      }
-
-      &:nth-child(3) {
-        @include media-laptop {
-          display: none;
-        }
-      }
-
-      &:nth-child(2) {
-        @media (max-width: 767px) {
-          display: none;
-        }
-      }
-    }
-  }
-}
-
-.pets_card:hover {
-  transition: 0.3s;
-  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
-  cursor: pointer;
-
-  .button {
-    background-color: $color-primary;
-  }
-}
-
-.help {
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  text-align: center;
-
-  @include media-mobile {
-    padding: 44px 10px;
-    gap: 40px;
-  }
-
-  .section-title {
-    text-align: center;
-  }
-
-  .help__list {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    align-content: center;
-    row-gap: 55px;
-    column-gap: 120px;
-
-    @include media-laptop {
-      display: grid;
-      grid-template-columns: 170px 170px 170px;
-      column-gap: 60px;
-      justify-items: center;
-    }
-
-    @include media-mobile {
-      grid-template-columns: 130px 130px;
-      column-gap: 30px;
-      row-gap: 30px;
-    }
-
-    .help__item {
-      height: 113px;
+    .donation-content {
+      height: 282px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-position: center top;
+      align-items: flex-start;
+      flex-basis: 380px;
 
       @include media-mobile {
-        height: 87px;
-        background-size: unset;
+        align-items: center;
+        gap: 22px;
       }
 
-      &:nth-child(1) {
-        background-image: url(../../assets/icons/food.svg);
-        background-repeat: no-repeat;
-      }
-
-      &:nth-child(2) {
-        background-image: url(../../assets/icons/transportation.svg);
-        background-repeat: no-repeat;
-      }
-
-      &:nth-child(3) {
-        background-image: url(../../assets/icons/toys.svg);
-        background-repeat: no-repeat;
-        width: 60px;
-      }
-
-      &:nth-child(4) {
-        background-image: url(../../assets/icons/bowls-and-cups.svg);
-        background-repeat: no-repeat;
-      }
-
-      &:nth-child(5) {
-        background-image: url(../../assets/icons/shampoos.svg);
-        background-repeat: no-repeat;
-      }
-
-      &:nth-child(6) {
-        background-image: url(../../assets/icons/vitamins.svg);
-        background-repeat: no-repeat;
-      }
-
-      &:nth-child(7) {
-        background-image: url(../../assets/icons/medicines.svg);
-        background-repeat: no-repeat;
-      }
-
-      &:nth-child(8) {
-        background-image: url(../../assets/icons/collars-or-leashes.svg);
-        background-repeat: no-repeat;
-      }
-
-      &:nth-child(9) {
-        background-image: url(../../assets/icons/sleeping-area.svg);
-        background-repeat: no-repeat;
-      }
-    }
-
-    .help_text {
-      margin: 90px auto 0;
-      text-align: center;
-
-      @include media-mobile {
-        font-size: 15px;
-        margin-top: 71px;
-      }
-    }
-  }
-}
-
-.donation {
-  background-color: $color-light-1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 30px;
-
-  @include media-tablet {
-    gap: 60px;
-
-    .donation-img {
-      order: 2;
-    }
-  }
-
-  @include media-mobile {
-    padding: 41px 10px;
-    gap: 43px;
-  }
-
-  .donation-img {
-    @include media-tablet {
-      order: 2;
-    }
-
-    @include media-mobile {
-      width: 260px;
-    }
-  }
-
-  .donation-content {
-    height: 282px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-basis: 380px;
-
-    @include media-mobile {
-      align-items: center;
-      gap: 22px;
-    }
-
-    .legal-info {
-      @include font(12px, 18px, 0px, Arial, $color-dark-m);
-      font-style: italic;
-      margin-top: 20px;
-
-      @include media-mobile {
-        margin: 0px 10px;
-        text-align: justify;
-      }
-    }
-
-    .bank-name {
-      margin: 20px 0;
-
-      @include media-mobile {
-        letter-spacing: 0;
-        margin: 0;
-      }
-    }
-
-    & #button__link__colored {
-      width: auto;
-      background-image: url(../../assets/icons/credit-card.svg);
-      background-repeat: no-repeat;
-      padding: 10px 15px 10px 60px;
-      background-position: 15px center;
-      border-radius: 9px;
-      ;
-
-      .card-number {
-        display: inline-block;
-        font-size: 20px;
-        letter-spacing: 0.06em;
+      .legal-info {
+        @include font(12px, 18px, 0px, Arial, $color-dark-m);
+        font-style: italic;
+        margin-top: 20px;
 
         @include media-mobile {
-          font-size: 15px;
+          margin: 0px 10px;
+          text-align: justify;
+        }
+      }
+
+      .bank-name {
+        margin: 20px 0;
+
+        @include media-mobile {
+          letter-spacing: 0;
+          margin: 0;
+        }
+      }
+
+      & #button__link__colored {
+        width: auto;
+        background-image: url(../../assets/icons/credit-card.svg);
+        background-repeat: no-repeat;
+        padding: 10px 15px 10px 60px;
+        background-position: 15px center;
+        border-radius: 9px;
+        ;
+
+        .card-number {
+          display: inline-block;
+          font-size: 20px;
+          letter-spacing: 0.06em;
+
+          @include media-mobile {
+            font-size: 15px;
+          }
         }
       }
     }
   }
-}
 
-.footer {
-  padding: 40px 40px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-
-  @media (max-width: 1000px) {
-    justify-content: space-around;
-  }
-
-  @include media-tablet {
-    padding: 30px 30px 0;
-    justify-content: space-around;
-  }
-
-  @include media-mobile {
-    padding: 30px 10px 0;
-    align-items: center;
-  }
-
-  .contacts,
-  .address {
-    height: 234px;
-    @include font(20px, 130%, 0.06em, Georgia, $color-primary);
+  .footer {
+    padding: 40px 40px 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 60px;
+    align-items: flex-end;
+    flex-wrap: wrap;
 
-    @include media-mobile {
-      margin-bottom: 40px;
+    @media (max-width: 1000px) {
+      justify-content: space-around;
     }
 
-    .section-title {
-      width: 279px;
-      color: #ffffff;
+    @include media-tablet {
+      padding: 30px 30px 0;
+      justify-content: space-around;
+    }
 
-      @include media-laptop {
-        width: 297px;
-      }
+    @include media-mobile {
+      padding: 30px 10px 0;
+      align-items: center;
+    }
+
+    .contacts,
+    .address {
+      height: 234px;
+      @include font(20px, 130%, 0.06em, Georgia, $color-primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 60px;
 
       @include media-mobile {
-        padding: 0 15px;
-        @include font(25px, 130%, 0.06em, Georgia, #ffffff);
-        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        width: 279px;
+        color: #ffffff;
+
+        @include media-laptop {
+          width: 297px;
+        }
+
+        @include media-mobile {
+          padding: 0 15px;
+          @include font(25px, 130%, 0.06em, Georgia, #ffffff);
+          text-align: center;
+        }
+      }
+
+      .link-ico {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .link-ico h4 {
+        color: $color-primary;
       }
     }
 
-    .link-ico {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 20px;
+    .contacts {
+      @include media-mobile {
+        height: 208px;
+        align-items: center;
+      }
     }
 
-    .link-ico h4 {
-      color: $color-primary;
+    .address {
+      @include media-mobile {
+        height: 222px;
+        align-items: flex-start;
+      }
     }
-  }
 
-  .contacts {
-    @include media-mobile {
-      height: 208px;
-      align-items: center;
-    }
-  }
-
-  .address {
-    @include media-mobile {
-      height: 222px;
-      align-items: flex-start;
-    }
-  }
-
-  .footer-puppy-img {
-    @include media-mobile {
-      width: calc(260 / 300 * 100%);
-      margin-left: 20px;
+    .footer-puppy-img {
+      @include media-mobile {
+        width: calc(260 / 300 * 100%);
+        margin-left: 20px;
+      }
     }
   }
 }
