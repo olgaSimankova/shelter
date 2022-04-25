@@ -1,0 +1,99 @@
+.modal-window {
+    // opacity: 0;
+    transition: all 0.3s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    width: 900px;
+    height: 500px;
+    background-color: #fafafa;
+    border-radius: 11px;
+    z-index: 2;
+}
+
+.modal-btn {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    right: -41px;
+    top: -52px;
+    font-size: 30px;
+    border-radius: 50%;
+    border: 2px solid #f1cdb3;
+    background-color: transparent;
+    z-index: 2;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.modal-btn:hover {
+    cursor: pointer;
+    background-color: #fddcc4;
+}
+
+.popup {
+    display: flex;
+
+    .popup-image {
+        width: 500px;
+
+        .popup-img {
+            border-radius: 9px 0 0 9px;
+            width: 500px;
+        }
+    }
+
+    .popup-content {
+        width: 400px;
+        padding: 50px 20px 88px 29px;
+
+        .popup-content__title {
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .popup-content__pet-type {
+            display: flex;
+            margin-bottom: 40px;
+            @include font(20px, 115%, 0.06em, Georgia, black);
+
+            .popup-content__pet {
+                margin-right: 4px;
+            }
+
+            .popup-content__breed {
+                margin-left: 4px;
+            }
+        }
+
+        .popup-content__text {
+            @include font(15px, 114%, 0.06em, Georgia, black);
+            margin-bottom: 40px;
+        }
+
+        .popup-content-list {
+            list-style: disc;
+            padding-left: 15px;
+
+            .popup-content__list-item {
+                position: relative;
+                display: flex;
+                @include font(15px, 113%, 0.06em, Georgia, black);
+                font-weight: 700;
+                margin-bottom: 11px;
+                display: list-item;
+                list-style: disc;
+            }
+
+            .popup-content__list-item::marker {
+                color: $color-primary;
+            }
+
+            .popup-content__list-item span {
+                letter-spacing: 0em;
+                font-weight: 400;
+            }
+        }
+    }
+}
