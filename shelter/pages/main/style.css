@@ -943,6 +943,14 @@ section {
           animation-duration: 1s;
 }
 
+.modal-window__wrapper {
+  display: none;
+}
+
+.modal-window__wrapper.active {
+  display: block;
+}
+
 .modal-window {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
