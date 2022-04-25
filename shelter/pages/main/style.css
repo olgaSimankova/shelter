@@ -573,6 +573,27 @@ section {
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .button-arrow {
+    position: absolute;
+    top: 100%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media (max-width: 767px) {
+  .arrow-left {
+    left: 15%;
+  }
+}
+
+@media (max-width: 767px) {
+  .arrow-right {
+    right: 15%;
+  }
+}
+
 #button__link__colored {
   display: inline-block;
   border-radius: 100px;
@@ -593,6 +614,12 @@ section {
   cursor: pointer;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+@media (max-width: 767px) {
+  #button__link__colored {
+    margin-top: 40px;
+  }
 }
 
 .header__navigation {
@@ -731,6 +758,18 @@ section {
   overflow: hidden;
 }
 
+@media (max-width: 1237px) {
+  .pets__slider__wrapper {
+    width: 580px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pets__slider__wrapper {
+    width: 270px;
+  }
+}
+
 .pets__slider {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -765,14 +804,30 @@ section {
 }
 
 @media (max-width: 1237px) {
-  .pets__slider {
-    gap: 30px;
+  .pets__slider .slide {
+    gap: 40px;
   }
 }
 
 @media (max-width: 768px) {
+  .pets__slider .slide {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 1237px) {
+  .pets__slider {
+    gap: 30px;
+    width: 580px;
+    left: -610px;
+  }
+}
+
+@media (max-width: 767px) {
   .pets__slider {
     gap: 40px;
+    width: 270px;
+    left: -310px;
   }
 }
 
@@ -834,19 +889,23 @@ section {
 
 @-webkit-keyframes move-right {
   from {
-    left: -990px;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
   to {
-    left: -1980px;
+    -webkit-transform: translateX(-115%);
+            transform: translateX(-115%);
   }
 }
 
 @keyframes move-right {
   from {
-    left: -990px;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
   to {
-    left: -1980px;
+    -webkit-transform: translateX(-115%);
+            transform: translateX(-115%);
   }
 }
 
@@ -859,19 +918,23 @@ section {
 
 @-webkit-keyframes move-left {
   from {
-    left: -990px;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
   to {
-    left: 0px;
+    -webkit-transform: translateX(115%);
+            transform: translateX(115%);
   }
 }
 
 @keyframes move-left {
   from {
-    left: -990px;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
   to {
-    left: 0px;
+    -webkit-transform: translateX(115%);
+            transform: translateX(115%);
   }
 }
 
@@ -1360,6 +1423,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
+  position: relative;
 }
 
 @media (max-width: 767px) {

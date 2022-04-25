@@ -139,11 +139,13 @@ const setSlideCards = (arrActiveCards = []) => {
         //cardDisplaying = 2;
         slideCardsSet.push(randomArr.splice(0, 2));
         slideCardsSet.push(randomArr.splice(0, 2));
+        currentCards = slideCardsSet[1]
 
     } else if (width < 768) {
         //cardDisplaying = 1;
         slideCardsSet.push(randomArr.splice(0, 1));
         slideCardsSet.push(randomArr.splice(0, 1));
+        currentCards = slideCardsSet[1]
     }
     console.log(slideCardsSet)
     return slideCardsSet
@@ -179,7 +181,7 @@ slider.addEventListener('animationend', () => {
     document.querySelector(".slide-active").innerHTML = newSlide
 
     const newCards = setSlideCards(currentCards)[0]
-    console.log("Номера новых 3х карточек " + newCards)
+    console.log("Номера новых карточек, сколько их там " + newCards)
 
     currentCards = newCards
 
