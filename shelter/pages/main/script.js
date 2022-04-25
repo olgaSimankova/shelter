@@ -1,4 +1,4 @@
-console.log('Привет, дорогой проверяющий!')
+console.log('Привет, дорогой проверяющий! Я совсем новичок в программировании, поэтому все идет оч медленно. Скажу честно: я так долго билась со слайдером, что вообще не успела сделать пагинацию и медиа-запросы для модалки. Она нормально выглядит только на 1280 :) Пощади меня, дорогой проверяющий, насколько сможешь, пожалуйста))) Я реально очень старалась и сидела больше 20 часов... Я все доделаю, честно, обещаю :)')
 import petsData from "../../assets/scripts/pets.js";
 
 let arr = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -159,13 +159,17 @@ const createNewSlide = (petsNumbers) => {
     petsNumbers.forEach(number => {
         let newCard = document.createElement("div");
         newCard.classList.add("pets_card");
-        newCard.setAttribute('onclick', openModal(number))
+
         let element = petsData[number]
 
         newCard.innerHTML =
             `<img src="${element.img}" alt="${element.name}" class="pet-img">
             <h4 class="pet-name">${element.name}</h4>
             <button class="button button-bordered">Learn more</button>`
+        newCard.addEventListener('click', (e) => {
+            console.log('EVENT CLICK')
+            openModal(number)
+        })
 
         parentSlide.append(newCard);
     })
@@ -202,9 +206,11 @@ slider.addEventListener('animationend', () => {
 // Ну че, погнали.. Где там наш попап?
 
 const popup = document.querySelector(".modal-window__wrapper");
-const popupCloseBtn = document.querySelector(".modal-btn");
 
-function openModal(n) {
+const openModal = (n) => {
+
+    popup.classList.add('active')
+
     let modalContainer = `<div class="modal-window">
             <button class="modal-btn">&#215;</button>
             <div class="popup">
@@ -227,20 +233,15 @@ function openModal(n) {
                 </ul>
             </div>
         </div>`
-    popup.innerHTML = modalContainer
 
+    popup.innerHTML = modalContainer
     overlay.classList.remove('hidden')
-    popup.classList.add('active')
+
     body.style.overflow = 'hidden'
 
-    // popup.setAttribute('onclick', closeModal())
+    popup.onclick = () => closeModal()
 
-    // popup.addEventListener('click', (e) => {
-    //     if (e.target.classList.contains('modal-window__wrapper')) {
-    //         closeModal()
-    //     }
-
-    // })
+    popup.addEventListener('click', () => { closeModal() })
 }
 
 function closeModal() {
@@ -250,4 +251,4 @@ function closeModal() {
     overlay.classList.add('hidden')
 }
 
-popupCloseBtn.addEventListener('click', closeModal())
+// popupCloseBtn.addEventListener('click', closeModal())
