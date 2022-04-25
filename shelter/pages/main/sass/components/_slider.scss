@@ -2,6 +2,14 @@
     height: 435px;
     width: 990px;
     overflow: hidden;
+
+    @include media-laptop {
+        width: 580px;
+    }
+
+    @include media-tablet {
+        width: 270px;
+    }
 }
 
 .pets__slider {
@@ -19,16 +27,28 @@
         justify-content: space-between;
         align-items: center;
         gap: 90px;
+
+        @include media-laptop {
+            gap: 40px;
+        }
+
+        @include media-tablet {
+            gap: 40px;
+        }
     }
 }
 
 .pets__slider {
     @include media-laptop {
-        gap: 30px;
+        //cardDisplaying = 2;
+        width: 580px;
+        left: -580px;
     }
 
-    @include media-tablet {
-        gap: 40px;
+    @include media-mobile {
+        //cardDisplaying = 1;
+        width: 270px;
+        left: -270px;
     }
 
     @include media-mobile {
@@ -77,11 +97,11 @@
 
 @keyframes move-right {
     from {
-        left: -990px;
+        transform: translateX(0)
     }
 
     to {
-        left: -1980px;
+        transform: translateX(-100%)
     }
 }
 
@@ -92,11 +112,11 @@
 
 @keyframes move-left {
     from {
-        left: -990px;
+        transform: translateX(0)
     }
 
     to {
-        left: 0px;
+        transform: translateX(100%)
     }
 }
 

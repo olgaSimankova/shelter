@@ -7,6 +7,7 @@
 @import 'sass/components/navigation';
 @import 'sass/components/hamburger';
 @import 'sass/components/slider';
+@import 'sass/components/popup';
 @import '../pets/sass/reset';
 
 body {
@@ -260,6 +261,7 @@ body {
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      position: relative;
 
       @include media-mobile {
         flex-wrap: wrap;
