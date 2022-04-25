@@ -41,16 +41,14 @@
 .pets__slider {
     @include media-laptop {
         //cardDisplaying = 2;
-        gap: 30px;
         width: 580px;
-        left: -610px;
+        left: -580px;
     }
 
     @include media-mobile {
         //cardDisplaying = 1;
-        gap: 40px;
         width: 270px;
-        left: -310px;
+        left: -270px;
     }
 
     @include media-mobile {
@@ -103,7 +101,7 @@
     }
 
     to {
-        transform: translateX(-115%)
+        transform: translateX(-100%)
     }
 }
 
@@ -118,7 +116,7 @@
     }
 
     to {
-        transform: translateX(115%)
+        transform: translateX(100%)
     }
 }
 

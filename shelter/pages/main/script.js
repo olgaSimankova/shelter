@@ -196,3 +196,5 @@ slider.addEventListener('animationend', () => {
     leftBtn.addEventListener("click", moveLeft);
     rightBtn.addEventListener("click", moveRight);
 })
+
+// ----------------OMG Modal----------------
