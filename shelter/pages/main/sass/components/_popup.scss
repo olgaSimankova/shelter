@@ -51,7 +51,6 @@
 
 .popup {
     display: flex;
-    height: auto;
     overflow: scroll;
 
     .popup-image {
@@ -59,7 +58,7 @@
 
         @include media-laptop {
             width: 25rem;
-            height: auto;
+            // height: auto;
         }
 
         @include media-tablet {
@@ -68,10 +67,11 @@
 
         .popup-img {
             border-radius: 9px 0 0 9px;
+            width: 500px;
 
             @include media-laptop {
                 width: 25rem;
-                height: auto;
+                // height: auto;
             }
         }
     }
