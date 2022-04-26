@@ -1,6 +1,9 @@
-console.log('Привет, дорогой проверяющий! Я совсем новичок в программировании, поэтому все идет оч медленно. Скажу честно: я так долго билась со слайдером, что вообще не успела сделать пагинацию и медиа-запросы для модалки. Она нормально выглядит только на 1280 :) Пощади меня, дорогой проверяющий, насколько сможешь, пожалуйста))) Я реально очень старалась и сидела больше 20 часов... Я все доделаю, честно, обещаю :)')
-alert("Дорогой коллега и друг по несчастью, пожалуйста, проверь мою работу в последний день, умоляю тебя :)")
+console.log('Привет, дорогой проверяющий! Я совсем новичок в программировании, пощади меня, насколько сможешь, пожалуйста)))')
+
 import petsData from "../../assets/scripts/pets.js";
+
+const overlay = document.querySelector('.overlay');
+const body = document.querySelector('.body');
 
 let arr = [0, 1, 2, 3, 4, 5, 6, 7];
 let currentCards
@@ -14,54 +17,6 @@ function shuffle(array) {
     }
     return array;
 }
-function getRandomNum(a, b) {
-    return Math.floor(Math.random() * (b - a + 1) + a);
-}
-
-// ----------------burger nav----------------
-const header = document.querySelector('.header');
-const burgerBtn = document.querySelector('.hamburger');
-const navigation = document.querySelector('.navigation');
-const overlay = document.querySelector('.overlay');
-const body = document.querySelector('.body')
-
-const openNav = () => {
-    header.classList.add('open');
-    burgerBtn.classList.add('open');
-    navigation.classList.add('open');
-    overlay.classList.remove('hidden');
-    body.style.overflow = 'hidden';
-};
-
-const closeNav = () => {
-    header.classList.remove('open');
-    burgerBtn.classList.remove('open');
-    navigation.classList.remove('open');
-    overlay.classList.add('hidden');
-    body.style.overflow = 'scroll';
-};
-
-burgerBtn.addEventListener('click', (e) => {
-    if (e.target.classList.contains('open')) {
-        closeNav();
-    } else {
-        openNav();
-    }
-});
-
-overlay.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('hidden')) {
-        closeNav();
-    }
-});
-
-navigation.addEventListener('click', (e) => {
-    if (e.target.closest('.navigation__link')) {
-        setTimeout(() => {
-            closeNav();
-        }, 200);
-    }
-});
 
 // ----------------Carousel----------------
 
@@ -208,7 +163,7 @@ slider.addEventListener('animationend', () => {
 
 const popup = document.querySelector(".modal-window__wrapper");
 
-const openModal = (n) => {
+function openModal(n) {
 
     popup.classList.add('active')
 
@@ -248,11 +203,10 @@ const openModal = (n) => {
 }
 overlay.addEventListener('click', () => { closeModal() })
 
-function closeModal() {
+export function closeModal() {
     popup.innerHTML = ''
     body.style.overflow = 'scroll'
     popup.classList.remove('active')
     overlay.classList.add('hidden')
 }
 
-// popupCloseBtn.addEventListener('click', closeModal())
