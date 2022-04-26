@@ -16,7 +16,7 @@
     height: 500px;
     background-color: #fafafa;
     border-radius: 11px;
-    z-index: 2;
+    z-index: 10;
 
     @include media-laptop {
         width: 630px;
