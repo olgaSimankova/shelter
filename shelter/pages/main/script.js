@@ -242,7 +242,10 @@ const openModal = (n) => {
     popup.onclick = () => closeModal()
 
     popup.addEventListener('click', () => { closeModal() })
+
+
 }
+overlay.addEventListener('click', () => { closeModal() })
 
 function closeModal() {
     popup.innerHTML = ''
