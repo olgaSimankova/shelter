@@ -1,6 +1,8 @@
 console.log('Привет, дорогой проверяющий! Я совсем новичок в программировании, поэтому все идет оч медленно. Скажу честно: я так долго билась со слайдером, что вообще не успела сделать пагинацию и медиа-запросы для модалки. Она нормально выглядит только на 1280 :) Пощади меня, дорогой проверяющий, насколько сможешь, пожалуйста))) Я реально очень старалась и сидела больше 20 часов... Я все доделаю, честно, обещаю :)')
-alert("Дорогой коллега и друг по несчастью, пожалуйста, проверь мою работу в последний день, умоляю тебя :)")
+// alert("Дорогой коллега и друг по несчастью, пожалуйста, проверь мою работу в последний день, умоляю тебя :)")
 import petsData from "../../assets/scripts/pets.js";
+
+const overlay = document.querySelector('.overlay');
 
 let arr = [0, 1, 2, 3, 4, 5, 6, 7];
 let currentCards
@@ -14,54 +16,6 @@ function shuffle(array) {
     }
     return array;
 }
-function getRandomNum(a, b) {
-    return Math.floor(Math.random() * (b - a + 1) + a);
-}
-
-// ----------------burger nav----------------
-const header = document.querySelector('.header');
-const burgerBtn = document.querySelector('.hamburger');
-const navigation = document.querySelector('.navigation');
-const overlay = document.querySelector('.overlay');
-const body = document.querySelector('.body')
-
-const openNav = () => {
-    header.classList.add('open');
-    burgerBtn.classList.add('open');
-    navigation.classList.add('open');
-    overlay.classList.remove('hidden');
-    body.style.overflow = 'hidden';
-};
-
-const closeNav = () => {
-    header.classList.remove('open');
-    burgerBtn.classList.remove('open');
-    navigation.classList.remove('open');
-    overlay.classList.add('hidden');
-    body.style.overflow = 'scroll';
-};
-
-burgerBtn.addEventListener('click', (e) => {
-    if (e.target.classList.contains('open')) {
-        closeNav();
-    } else {
-        openNav();
-    }
-});
-
-overlay.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('hidden')) {
-        closeNav();
-    }
-});
-
-navigation.addEventListener('click', (e) => {
-    if (e.target.closest('.navigation__link')) {
-        setTimeout(() => {
-            closeNav();
-        }, 200);
-    }
-});
 
 // ----------------Carousel----------------
 
@@ -203,56 +157,3 @@ slider.addEventListener('animationend', () => {
     rightBtn.addEventListener("click", moveRight);
 })
 
-// ----------------OMG Modal----------------
-// Ну че, погнали.. Где там наш попап?
-
-const popup = document.querySelector(".modal-window__wrapper");
-
-const openModal = (n) => {
-
-    popup.classList.add('active')
-
-    let modalContainer = `<div class="modal-window">
-            <button class="modal-btn">&#215;</button>
-            <div class="popup">
-              <div class="popup-image">
-                <img src="${petsData[n].img}" alt="pet img here" class="popup-img">
-              </div>
-              <div class="popup-content">
-                <h3 class="popup-content__title">${petsData[n].name}</h3>
-                <div class="popup-content__pet-type">
-                  <span class="popup-content__pet">${petsData[n].type}</span>
-                   - 
-                  <span class="popup-content__breed">${petsData[n].breed}</span>
-                </div>
-                <p class="popup-content__text">${petsData[n].description}</p>
-                <ul class="popup-content-list">
-                  <li class="popup-content__list-item">Age:<span class="list-item__age">${petsData[n].age}</span></li>
-                  <li class="popup-content__list-item">Inoculations:<span class="list-item__inoculations">${petsData[n].inoculations}</span></li>
-                  <li class="popup-content__list-item">Diseases:<span class="list-item__diseases">${petsData[n].diseases}</span></li>
-                  <li class="popup-content__list-item">Parasites:<span class="list-item__parasites">${petsData[n].parasites}</span></li>
-                </ul>
-            </div>
-        </div>`
-
-    popup.innerHTML = modalContainer
-    overlay.classList.remove('hidden')
-
-    body.style.overflow = 'hidden'
-
-    popup.onclick = () => closeModal()
-
-    popup.addEventListener('click', () => { closeModal() })
-
-
-}
-overlay.addEventListener('click', () => { closeModal() })
-
-function closeModal() {
-    popup.innerHTML = ''
-    body.style.overflow = 'scroll'
-    popup.classList.remove('active')
-    overlay.classList.add('hidden')
-}
-
-// popupCloseBtn.addEventListener('click', closeModal())

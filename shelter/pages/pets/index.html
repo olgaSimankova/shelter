@@ -28,53 +28,14 @@
         <section class="pets">
             <h1 class="pets-title">Our friends who<br>are looking for a house</h1>
             <div class="cards-container">
-                <div class="pets_card">
-                    <img src="../../assets/images/pets-katrine.jpg" alt="your pet" class="pet-img">
-                    <h4 class="pet-name">Katrine</h4>
-                    <button class="button button-bordered">Learn more</button>
-                </div>
-                <div class="pets_card">
-                    <img src="../../assets/images/pets-jennifer.jpg" alt="your pet" class="pet-img">
-                    <h4 class="pet-name">Jennifer</h4>
-                    <button class="button button-bordered">Learn more</button>
-                </div>
-                <div class="pets_card">
-                    <img src="../../assets/images/pets-woody.jpg" alt="your pet" class="pet-img">
-                    <h4 class="pet-name">Woody</h4>
-                    <button class="button button-bordered">Learn more</button>
-                </div>
-                <div class="pets_card">
-                    <img src="../../assets/images/pets-sophia.png" alt="your pet" class="pet-img">
-                    <h4 class="pet-name">Sophia</h4>
-                    <button class="button button-bordered">Learn more</button>
-                </div>
-                <div class="pets_card">
-                    <img src="../../assets/images/pets-timmy.png" alt="your pet" class="pet-img">
-                    <h4 class="pet-name">Timmy</h4>
-                    <button class="button button-bordered">Learn more</button>
-                </div>
-                <div class="pets_card">
-                    <img src="../../assets/images/pets-charly.png" alt="your pet" class="pet-img">
-                    <h4 class="pet-name">Charly</h4>
-                    <button class="button button-bordered">Learn more</button>
-                </div>
-                <div class="pets_card">
-                    <img src="../../assets/images/pets-scarlet.png" alt="your pet" class="pet-img">
-                    <h4 class="pet-name">Scarlett</h4>
-                    <button class="button button-bordered">Learn more</button>
-                </div>
-                <div class="pets_card">
-                    <img src="../../assets/images/pets-freddie.png" alt="your pet" class="pet-img">
-                    <h4 class="pet-name">Freddie</h4>
-                    <button class="button button-bordered">Learn more</button>
-                </div>
+                
             </div>
             <div class="pets__navigation">
-                <button class="button-arrow disabled"><<</button>
-                <button class="button-arrow disabled"><</button>
-                <button class="button-arrow page">1</button>
-                <button class="button-arrow nav-active">></button>
-                <button class="button-arrow nav-active">>></button>
+                <button class="button-arrow pagination disabled" id="double-left" disabled><<</button>
+                <button class="button-arrow pagination disabled" id="left" disabled><</button>
+                <button class="button-arrow pagination-page page">1</button>
+                <button class="button-arrow pagination nav-active" id="right">></button>
+                <button class="button-arrow pagination nav-active" id="double-right">>></button>
             </div>
         </section>
         <footer class="footer">
@@ -101,7 +62,10 @@
                     <img src="../../assets/images/footer-puppy.png" alt="puppy" class="footer-puppy-img">
         </footer>
     </div>
-    <script type="module" src="../../pages/main/script.js"></script></body>
+    <script type="module" src="../../pages/pets/script.js"></script>
+    <script type="module" src="../../assets/scripts/burger.js"></script>
+    <script type="module" src="../../assets/scripts/modal.js"></script>
+</body>
 </html>
 
     

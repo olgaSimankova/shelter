@@ -1003,7 +1003,7 @@ section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  overflow: scroll;
+  overflow: visible;
 }
 
 .popup .popup-image {
