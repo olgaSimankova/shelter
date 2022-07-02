@@ -10,7 +10,7 @@
 //   name: string;
 // }
 
-export interface Sources {
+export interface Articles {
     status: string;
     totalResults: number;
     articles: Article[];
@@ -28,4 +28,14 @@ export interface Article {
     urlToImage: string;
     publishedAt: string;
     content: string;
+}
+
+export interface Source {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+  language: string;
+  country: string;
 }
