@@ -15,7 +15,8 @@ class News {
             if (idx % 2) (newsClone.querySelector('.news__item') as HTMLElement).classList.add('alt');
 
             (newsClone.querySelector('.news__meta-photo') as HTMLElement).style.backgroundImage = `url(${
-                item.urlToImage || 'img/news_placeholder.jpg'
+                item.urlToImage ||
+                'https://ceramica21.ru/image/cache/catalog/obshyaya/Bella_Casa/eclips/noimg-800x800.png'
             })`;
             (newsClone.querySelector('.news__meta-author') as HTMLElement).textContent =
                 item.author || item.source.name;

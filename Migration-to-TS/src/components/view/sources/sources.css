@@ -1,12 +1,24 @@
 .sources {
     display: flex;
+    flex-direction: column;
     flex-wrap: nowrap;
-    width: 100%;
-    height: 120px;
+    width: 35%;
+    height: 70vh;
     overflow: auto;
     align-items: center;
+    justify-content: flex-start;
     font: 300 1em 'Fira Sans', sans-serif;
 }
+
+@media (max-width: 800px) {
+    .sources {
+        width: 100%;
+        height: 40vh;
+        flex-wrap: wrap;
+    }
+}
+
+.sources::-webkit-scrollbar { width: 0; }
 
 .source__item {
     background: none;
