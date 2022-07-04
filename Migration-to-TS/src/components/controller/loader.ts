@@ -1,3 +1,7 @@
+// import Sources from '../view/sources/sources';
+
+import { SourcesData } from '../../types/types';
+
 class Loader {
     baseLink: string;
     options: { apiKey: string };
@@ -5,11 +9,12 @@ class Loader {
     constructor(baseLink: string, options: { apiKey: string }) {
         this.baseLink = baseLink;
         this.options = options;
+        this.errorHandler.bind(this);
     }
 
     getResp(
         { endpoint, options }: { endpoint: string; options?: { sources: string } },
-        callback = () => {
+        callback: (data: SourcesData) => void = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -36,7 +41,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: <T>(data: T) => void, options = {}) {
+    load(method: string, endpoint: string, callback: (data: SourcesData) => void, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

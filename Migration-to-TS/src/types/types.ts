@@ -10,12 +10,6 @@
 //   name: string;
 // }
 
-export interface Articles {
-    status: string;
-    totalResults: number;
-    articles: Article[];
-}
-
 export interface Article {
     source: {
         id: string;
@@ -32,7 +26,9 @@ export interface Article {
 
 export interface SourcesData {
     status: string;
-    sources: Source[];
+    totalResults?: number;
+    sources?: Source[];
+    articles?: Article[];
 }
 
 export interface Source {
