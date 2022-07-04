@@ -44,3 +44,16 @@ export interface Source {
     language: string;
     country: string;
 }
+
+export interface LoaderResponce {
+    body: {
+        locked: boolean;
+    };
+    bodyUsed: boolean;
+    ok: boolean;
+    redirected: boolean;
+    status: number;
+    statusText: string;
+    type: string;
+    url: string;
+}
