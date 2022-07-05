@@ -1,0 +1,26 @@
+.alphabet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2% auto 2%;
+}
+.alphabet__char__button {
+    color: #70d6ff;
+    transition: 0.25s;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font: inherit;
+    font-size: 1.5rem;
+
+}
+
+.alphabet__char__button:hover,
+.alphabet__char__button:focus {
+    color: #69db7e;
+}
+
+.alphabet__char__button .active {
+    color: #69db7e;
+}

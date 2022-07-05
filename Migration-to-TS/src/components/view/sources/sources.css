@@ -1,12 +1,10 @@
 .sources {
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    width: 35%;
-    height: 70vh;
+    flex-wrap: wrap;
+    width: 95%;
     overflow: auto;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: space-around;
     font: 300 1em 'Fira Sans', sans-serif;
 }
 
