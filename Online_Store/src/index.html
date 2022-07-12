@@ -5,28 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book store</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body class="body">
-    <div class="main-wrapper">
+    <div id="main-wrapper">
         <header class="header">
             <h1 style="text-align: center;">Book store</h1>
         </header>
         <main>
             <div class="page">
-                <aside class=""></aside>
-                <section class="">
-                    <div class="products__container"></div>
+                <aside class="sidebar"></aside>
+                <section class="books">
+                    <div class="books__container"></div>
                 </section>
             </div>
         </main>
-        <footer>
-            <a class="footer__github" href="https://github.com/olgaSimankova?tab=repositories">Visit my GitHub</a>
-            <p class="copyright">
-                Copyright <a href="https://newsapi.org">Book Store 2022</a>
-            </p>
-            <a class="footer__rss" href="https://rs.school/js/"><img src="https://rollingscopes.com/images/logo_rs2.svg" alt="RSS"></a>
-        </footer>
     </div>
+    <footer class="footer">
+    </footer>
+
+    <template id="bookItemTemplate">
+        <div class="book__item">
+            <!-- <div class="book__cover"></div> -->
+            <div class="book__info">
+                <p class="book__info-price"></p>
+                <h2 class="book__info-title"></h2>
+                <h3 class="book__info-author"></h3>
+                <p class="book__info-description"></p>
+            </div>
+        </div>
+    </template>
 </body>
 </html>

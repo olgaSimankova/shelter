@@ -9,7 +9,46 @@ section {
   display: block;
 }
 
+.header {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(0, 159, 201);
+    margin-bottom: 20px;
+}
+
+.header img {
+    height: 100px;
+}
+
+.header_title {
+    display: inline-block;
+    text-align: center;
+    width: 40%;
+    color: whitesmoke;
+    font: small-caps bold 36px/1 sans-serif;
+}
+
 .main-wrapper {
+    max-width: 1280px;
     margin: 0 auto;
 }
 
+.footer {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(0, 159, 201);
+}
+
+footer a {
+    display: inline-block;
+    color:rgb(250, 239, 239);
+}
+
+footer a img {
+    height: 80px;
+    width: 80px;
+}

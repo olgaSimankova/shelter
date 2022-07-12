@@ -1,0 +1,22 @@
+.page{
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar{
+    width: 20%;
+    display: flex;
+    border: solid 2px;
+}
+
+.books {
+    display: flex;
+    width: 80%;
+}
+
+.books__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: space-around;
+}
