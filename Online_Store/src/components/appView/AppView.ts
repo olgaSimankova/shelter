@@ -15,7 +15,7 @@ function headerRender() {
         <div class="input"><input id="input" type="text" placeholder="search" autofocus autocomplete="off"></div>
         <span class="clear" onclick="document.getElementById('input').value=''"></span>
     </div>
-    <div class="chart" class="fa-shopping-basket"></div>`;
+    <div class="chart"><i class="fa fa-shopping-basket" aria-hidden="true"></i></div>`;
 }
 
 // function filtersRender() {

@@ -4,6 +4,7 @@ import { productsListRender } from './products/products';
 
 import productsData from '../assets/scripts/products_data.json';
 import { searchAndRerender } from './search/search';
+import { showChart, hideChart, chartRender, chart, addToChart } from './chart/chart';
 
 function appStart() {
     const header = document.querySelector('.header') as HTMLElement;
@@ -28,6 +29,28 @@ function appStart() {
     });
 
     //     !!!!!!!!!!!  Надо еще при клике по крестику сделать так, чтоб все возвращалось, как было
+
+    // Implement Chart
+    const chartIcon = document.querySelector('.chart') as HTMLElement;
+    chartIcon.onclick = () => showChart();
+
+    const chartContainer = document.querySelector('.chart__container') as HTMLElement;
+    chartContainer.append(chartRender(chart));
+
+    const closeChart = document.querySelector('.close') as HTMLElement;
+    closeChart.onclick = () => hideChart();
+
+    // Adding to chart
+    window.addEventListener('click', function (event: MouseEvent) {
+        // console.log(event.target.hasAttribute('add-to-chart'));
+        if ((event.target as Element).classList.contains('add-to-chart')) {
+            const card = (event.target as HTMLElement).closest('.book__item') as HTMLElement;
+
+            const cardInfo = productsData.find((object: BookData) => object.id === card.dataset.id) as BookData;
+
+            addToChart(cardInfo);
+        }
+    });
 }
 
 export { appStart };

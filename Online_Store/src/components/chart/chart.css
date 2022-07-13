@@ -1,0 +1,23 @@
+.chart {
+    position: absolute;
+    background: #fff;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    transition: 1s;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+}
+
+.chart .fa-shopping-basket {
+    position: absolute;
+    font-size: 15px;
+    color: #3c7ea3;
+}
+
