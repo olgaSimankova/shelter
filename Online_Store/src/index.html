@@ -14,7 +14,38 @@
         </header>
         <main>
             <div class="page">
-                <aside class="sidebar"></aside>
+                <aside class="sidebar">
+                    <div class="sorting_wrapper">
+                        <label>Sort: </label>
+                        <select id="sorting__select">
+                            <option value="name_a">name a-z</option>                        
+                            <option value="name_z">name z-a</option>                        
+                            <option value="price_min">price min</option>                        
+                            <option value="price_max">price max</option>
+                        </select>
+                    </div>
+                    <div class="filter_wrapper">
+                        <div class="checkbox_category_block">
+                            <!-- <ul class="category-filter-content" style="display: block;">
+                                <li>
+                                    <input class="filter" data-filter=".check1" type="checkbox" id="Self-help">
+                                    <label class="checkbox-label" for="Self-help">Self-Help</label>
+                                </li>
+        
+                                <li>
+                                    <input class="filter" data-filter=".check2" type="checkbox" id="Relationships">
+                                    <label class="checkbox-label" for="Relationships">Relationships</label>
+                                </li>
+        
+                                <li>
+                                    <input class="filter" data-filter=".check3" type="checkbox" id="Inspiration">
+                                    <label class="checkbox-label" for="Inspiration">Inspiration</label>
+                                </li>
+                            </ul> -->
+                        </div>
+                        <bitton class="reset_filters">reset all</bitton>
+                    </div>
+                </aside>
                 <section class="books">
                     <div class="books__container"></div>
                 </section>

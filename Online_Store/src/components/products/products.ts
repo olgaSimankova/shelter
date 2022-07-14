@@ -5,13 +5,10 @@ function productRender(item: BookData) {
     const bookItem: HTMLDivElement = document.createElement('div');
     bookItem.className = 'book__item';
     bookItem.dataset.id = item.id;
-    // require(`../../assets/img/${item.cover}`);
+    // require(`../../assets/img/${item.cover}`);     <------- Ну не работает импорт картинок, не смогла пофиксить
     const bookCover: HTMLImageElement = document.createElement('img');
     bookCover.className = 'book__cover';
-    bookCover.setAttribute(
-        'src',
-        `https://www.kindpng.com/picc/m/114-1145859_transparent-book-png-transparent-circle-icon-book-png.png`
-    );
+    bookCover.setAttribute('src', `${item.cover}`);
     const bookInfo: HTMLDivElement = document.createElement('div');
     bookInfo.dataset.id = item.id;
     bookInfo.className = 'book__info';

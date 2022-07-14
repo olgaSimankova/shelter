@@ -1,7 +1,7 @@
 .book__item {
     height: 300px;
     width: 170px;
-    padding: 10px;
+    /* padding: 10px; */
     border: #8d8d8d solid 1px ;
     border-radius: 4px;
     overflow: hidden;
