@@ -13,11 +13,12 @@ function productRender(item: BookData) {
         `https://www.kindpng.com/picc/m/114-1145859_transparent-book-png-transparent-circle-icon-book-png.png`
     );
     const bookInfo: HTMLDivElement = document.createElement('div');
+    bookInfo.dataset.id = item.id;
     bookInfo.className = 'book__info';
     bookInfo.innerHTML = `<p class="book__info-price">$${item.price}</p>
     <h2 class="book__info-title">${item.name}</h2>
     <h3 class="book__info-author">${item.author}</h3>
-    <button class="add-to-chart">Add to chart</button>`;
+    <button class="btn add-to-chart">add to chart</button>`;
 
     bookItem.append(bookCover, bookInfo);
     return bookItem;

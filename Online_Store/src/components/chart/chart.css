@@ -1,5 +1,12 @@
-.chart {
+/* .chart .fa-shopping-basket {
     position: absolute;
+    font-size: 15px;
+    color: #3c7ea3;
+} */
+
+
+.chart {
+    position: relative;
     background: #fff;
     cursor: pointer;
     top: 0;
@@ -12,12 +19,114 @@
     justify-content: center;
     align-items: center;
     z-index: 10;
-
+    box-shadow: 0 0 5px #3c7ea3;
+    border: 1px solid #3c7ea3;
 }
 
 .chart .fa-shopping-basket {
-    position: absolute;
+    position: relative;
     font-size: 15px;
     color: #3c7ea3;
 }
 
+.chart__wrapper.open {
+    right: 0;
+    transition: 0.8s;
+  }
+
+.chart__wrapper {
+    position: fixed;
+    z-index: 2;
+    max-width: 400px;
+    width: 100%;
+    right: -400px;
+    top: 100px;
+    height: 100%;
+    background-color: #fff;
+    transition: 0.8s;
+    overflow: scroll;
+}
+
+.close{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    right: 5px;
+    top: 15px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.close::before{
+    position: absolute;
+    content: '';
+    width: 1.5px;
+    height: 27px;
+    background: #999;
+    transform: rotate(45deg);
+}
+
+.close::after{
+    position: absolute;
+    content: '';
+    width: 1.5px;
+    height: 27px;
+    background: #999;
+    transform: rotate(-45deg);
+}
+
+.chart__container {
+    position: relative;
+}
+.product_in_chart {
+    display: flex;
+}
+.remove_from_chart {
+    position: relative;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.remove_from_chart .fa-trash {
+    position: relative;
+    font-size: 15px;
+    color: #3c7ea3;
+}
+
+.chart__summary {
+    display: flex;
+    width: 30%;
+    background-color:rgb(0, 159, 201);
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px 0 15px;
+}
+
+.sum__total {
+    font: small-caps bold 20px/1 sans-serif;
+    display: inline-block;
+}
+
+.btn.btn-mk-order {
+    color: rgb(0, 159, 201);
+    background-color: #fff;
+    width: 70px;
+}
+
+.btn.btn-mk-order:hover {
+    transform: scale(1.1,1.1);
+    transition: 0.3s;
+}

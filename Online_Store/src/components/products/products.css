@@ -45,3 +45,24 @@
     font-size: 13px;
     line-height: 20px;
 }
+
+
+.btn {
+    cursor: pointer;
+    width: 90px;
+    height: 30px;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px #3c7ea3;
+    border: 1px solid #3c7ea3;
+    background-color: rgb(0, 159, 201);
+    font: small-caps bold 12px/1 sans-serif;
+    color: #fff;
+}
+
+.btn__in_chart {
+    box-shadow: 0 0 5px #3ca363;
+    border: 1px solid #3ca363;
+    background-color: rgb(0, 201, 97);
+}

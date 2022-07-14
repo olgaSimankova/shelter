@@ -10,4 +10,6 @@ export interface BookData {
     publication_year: string;
     pages: number;
     category: string[];
+    inChart: boolean;
+    qtyInChart: number;
 }

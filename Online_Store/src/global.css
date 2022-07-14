@@ -11,6 +11,8 @@ section {
 
 .header {
     height: 100px;
+    position: sticky;
+    top: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -53,79 +55,4 @@ footer a {
 footer a img {
     height: 80px;
     width: 80px;
-}
-
-.chart {
-    position: relative;
-    background: #fff;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    transition: 1s;
-    width: 30px;
-    height: 30px;
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    box-shadow: 0 0 5px #3c7ea3;
-    border: 1px solid #3c7ea3;
-}
-
-.chart .fa-shopping-basket {
-    position: relative;
-    font-size: 15px;
-    color: #3c7ea3;
-}
-
-.chart__wrapper.open {
-    right: 0;
-    transition: 0.8s;
-  }
-
-.chart__wrapper {
-    position: fixed;
-    z-index: 2;
-    max-width: 400px;
-    width: 100%;
-    right: -400px;
-    top: 100px;
-    height: 100%;
-    background-color: whitesmoke;
-    transition: 0.8s;
-    overflow: scroll;
-}
-
-.close{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    right: 5px;
-    top: 15px;
-    background: #fff;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.close::before{
-    position: absolute;
-    content: '';
-    width: 1.5px;
-    height: 27px;
-    background: #999;
-    transform: rotate(45deg);
-}
-
-.close::after{
-    position: absolute;
-    content: '';
-    width: 1.5px;
-    height: 27px;
-    background: #999;
-    transform: rotate(-45deg);
 }

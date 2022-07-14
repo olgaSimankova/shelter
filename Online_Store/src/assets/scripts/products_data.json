@@ -12,7 +12,8 @@
         "pages": 208,
         "category": ["Self-Help", "Relationships"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "2",
@@ -27,7 +28,8 @@
         "pages": 215,
         "category": ["Self-Help", "Relationships"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "3",
@@ -42,7 +44,8 @@
         "pages": 218,
         "category": ["Self-Help", "Inspiration"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "4",
@@ -57,7 +60,8 @@
         "pages": 272,
         "category": ["Self-Help", "Friendship"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "5",
@@ -72,7 +76,8 @@
         "pages": 208,
         "category": ["Self-Help", "Relationships"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "6",
@@ -87,7 +92,8 @@
         "pages": 280,
         "category": ["Self-Help", "Relationships"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "7",
@@ -102,7 +108,8 @@
         "pages": 304,
         "category": ["Self-Help", "Humor", "Motivational"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "8",
@@ -117,7 +124,8 @@
         "pages": 640,
         "category": ["Self-Help", "Biography", "Motivational"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "9",
@@ -132,7 +140,8 @@
         "pages": 624,
         "category": ["Self-Help", "Motivational"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "10",
@@ -147,7 +156,8 @@
         "pages": 320,
         "category": ["Self-Help", "Motivational", "Money"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "11",
@@ -162,7 +172,8 @@
         "pages": 248,
         "category": ["Self-Help", "Motivational"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "12",
@@ -177,7 +188,8 @@
         "pages": 320,
         "category": ["Self-Help", "Motivational", "Biography"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "13",
@@ -192,7 +204,8 @@
         "pages": 320,
         "category": ["Self-Help", "Motivational", "Biography"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "14",
@@ -207,7 +220,8 @@
         "pages": 336,
         "category": ["Self-Help", "Motivational", "Biography", "Money"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "15",
@@ -222,7 +236,8 @@
         "pages": 272,
         "category": ["Self-Help", "Motivational", "Money"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "16",
@@ -237,7 +252,8 @@
         "pages": 320,
         "category": ["Self-Help", "Stress Management"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "17",
@@ -252,7 +268,8 @@
         "pages": 256,
         "category": ["Self-Help", "Stress Management"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       },
       {
         "id": "18",
@@ -266,8 +283,9 @@
         "publication_year": "2020",
         "pages": 352,
         "category": ["Self-Help", "Motivational", "Stress Management"],
+        "favorite": false,
         "inChart": false,
-        "favorite": false
+        "qtyInChart": 0
       },
       {
         "id": "16",
@@ -282,6 +300,7 @@
         "pages": 1,
         "category": ["Self-Help", "Motivational", "Money"],
         "inChart": false,
-        "favorite": false
+        "favorite": false,
+        "qtyInChart": 0
       }
     ]
