@@ -50,7 +50,7 @@ function appStart() {
             const cardInfo = productsData.find((object: BookData) => object.id === card.dataset.id) as BookData;
 
             addToChart(cardInfo);
-            updateCardBtn(cardInfo.id, btn);
+            updateCardBtn(btn);
         }
     });
 
@@ -60,9 +60,13 @@ function appStart() {
             const cardToRemoveId = ((event.target as HTMLElement).closest('.product_in_chart') as HTMLElement).dataset
                 .id as string;
             removeFromChart(cardToRemoveId);
-            document.querySelectorAll<HTMLButtonElement>('add-to-chart').forEach((btn: HTMLButtonElement) => updateCardBtn(cardToRemoveId, btn))
 
-            // const productToRemove = productsData.find((object: BookData) => object.id === cardToRemove.dataset.id) as BookData;
+            document.querySelectorAll<HTMLButtonElement>('.add-to-chart').forEach((btn: HTMLButtonElement) => {
+                if ((btn.parentNode as HTMLDivElement).dataset.id === cardToRemoveId) {
+                    btn.classList.remove('btn__in_chart');
+                    btn.innerText = 'add to chart';
+                }
+            });
         }
     });
 }

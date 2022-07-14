@@ -28,16 +28,9 @@ function updateChartIco() {
     }
 }
 
-function updateCardBtn(id: string, btn: HTMLElement) {
-    chart.forEach((elem) => {
-        if (elem.id === id) {
-            btn.classList.add('btn__in_chart');
-            btn.innerText = 'in chart';
-        } else {
-            btn.classList.remove('btn__in_chart');
-            btn.innerText = 'add to chart';
-        }
-    });
+function updateCardBtn(btn: HTMLElement) {
+    btn.classList.add('btn__in_chart');
+    btn.innerText = 'in chart';
 }
 
 function chartRender(chartData: BookData[]) {
@@ -115,14 +108,9 @@ function removeFromChart(id: string) {
     })
         .then((idx) => chart.splice(idx, 1))
         .then(() => updateChart(chart))
-        .then(updateChartIco)
-        .then(() => {
-            document.querySelectorAll<HTMLButtonElement>('add-to-chart').forEach((btn: HTMLButtonElement) => updateCardBtn(id, btn))
-        })
-        
-    //Полагаю, код работал бы и без промисов, но полезно было с ними разобраться
+        .then(updateChartIco);
 
-    
+    //Полагаю, код работал бы и без промисов, но полезно было с ними разобраться
 }
 
 export { showChart, hideChart, addToChart, chartRender, chart, updateCardBtn, removeFromChart };
