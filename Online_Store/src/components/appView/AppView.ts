@@ -8,6 +8,7 @@ import headerImg from '../../assets/icons/book_logo.png';
 const checkboxType = document.querySelector('.checkbox_type_block') as HTMLElement;
 const checkboxCategory = document.querySelector('.checkbox_category_block') as HTMLElement;
 const checkboxPublisher = document.querySelector('.checkbox_publisher_block') as HTMLElement;
+const sortingContainer = document.querySelector('.sorting_wrapper') as HTMLElement;
 
 function headerRender() {
     return `<img src="${headerImg}" alt="BookStore">
@@ -89,6 +90,19 @@ function typeCheckboxRender() {
 checkboxType.append(typeCheckboxRender());
 // -------------------------------------------- DRY принцип? -------------------------------------------------------
 // ------------------------------------------- не, не слышала ------------------------------------------------------
+
+function sortingSelectRender() {
+    return `<label>Sort by: </label>
+    <select id="sorting__select">
+        <option value="reset">Choose an option</option>
+        <option value="name_a">name a-z</option>                        
+        <option value="name_z">name z-a</option>                        
+        <option value="price_min">price min</option>                        
+        <option value="price_max">price max</option>
+    </select>`;
+}
+
+sortingContainer.innerHTML = sortingSelectRender();
 
 function footerRender() {
     return `<a class="footer__github" href="https://github.com/olgaSimankova?tab=repositories">Visit my GitHub</a>

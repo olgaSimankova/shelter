@@ -1,4 +1,5 @@
 import { BookData } from '../../types/types';
+import { sortBy } from '../sorting/sorting';
 // import productsData from '../../assets/scripts/products_data.json';
 import './filters.css';
 
@@ -76,6 +77,8 @@ function applyAllFilters(products: BookData[]) {
     let dataFiltered: BookData[] = filterType(products);
     dataFiltered = categoryFilter(dataFiltered);
     dataFiltered = filterPublisher(dataFiltered);
+    const sortingOption = (document.getElementById('sorting__select') as HTMLSelectElement).value;
+    sortBy(dataFiltered, sortingOption);
     return dataFiltered;
 }
 
