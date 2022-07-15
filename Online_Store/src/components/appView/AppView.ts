@@ -5,7 +5,9 @@ import './appView.css';
 import footerRssImg from '../../assets/icons/logo_rs2.svg';
 import headerImg from '../../assets/icons/book_logo.png';
 
-const checkbox = document.querySelector('.checkbox_category_block') as HTMLElement;
+const checkboxType = document.querySelector('.checkbox_type_block') as HTMLElement;
+const checkboxCategory = document.querySelector('.checkbox_category_block') as HTMLElement;
+const checkboxPublisher = document.querySelector('.checkbox_publisher_block') as HTMLElement;
 
 function headerRender() {
     return `<img src="${headerImg}" alt="BookStore">
@@ -20,8 +22,9 @@ function headerRender() {
     <div class="chart"><i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="goods_in_chart empty"></span></div>`;
 }
 
-// Наша база данных меняется, категории могут пояфиться новые, поэтому рендерим их динамически
+// Наша база данных меняется, категории могут появиться новые, поэтому рендерим их динамически
 
+// -------------------------------------------- DRY принцип? -------------------------------------------------------
 function getCategories() {
     const categoriesArr: string[][] = [];
     productsData.forEach((item) => {
@@ -37,22 +40,55 @@ function categoriesCheckboxRender() {
     ul.className = 'category-filter-content';
     categories.forEach((categ) => {
         const li: HTMLElement = document.createElement('li');
-        li.innerHTML = `<input class="filter" data-filter="${categ}" type="checkbox" id="${categ}">
-        <label class="checkbox-label" for="${categ}">${categ}</label>`;
+        li.innerHTML = `<input class="categ_checkbox__filter checkbox__filter" value="${categ}" type="checkbox" id="${categ}">
+        <label class="categ_checkbox__label checkbox__label" for="${categ}">${categ}</label>`;
         ul.append(li);
     });
     return ul;
 }
 
-checkbox.append(categoriesCheckboxRender());
+checkboxCategory.append(categoriesCheckboxRender());
 
-// function sortingBlockRender() {
-//     return '';
-// }
+function getPublishers() {
+    const publishersArr: string[] = [];
+    productsData.forEach((item) => {
+        publishersArr.push(item.publisher as string);
+    });
+    const publishers = new Set(publishersArr.flat());
+    return publishers;
+}
 
-// function filtersRender() {
+function publishersCheckboxRender() {
+    const publishers: Set<string> = getPublishers();
+    const ul: HTMLElement = document.createElement('ul');
+    ul.className = 'publisher-filter-content';
+    publishers.forEach((publisher) => {
+        const li: HTMLElement = document.createElement('li');
+        li.innerHTML = `<input class="publish_checkbox__filter checkbox__filter" value="${publisher}" type="checkbox" id="${publisher}">
+        <label class="publish_checkbox__label checkbox__label" for="${publisher}">${publisher}</label>`;
+        ul.append(li);
+    });
+    return ul;
+}
 
-// }
+checkboxPublisher.append(publishersCheckboxRender());
+
+function typeCheckboxRender() {
+    const types: string[] = ['Self-Help', 'Fiction', "Сhildren's book"];
+    const ul: HTMLElement = document.createElement('ul');
+    ul.className = 'publisher-filter-content';
+    types.forEach((type) => {
+        const li: HTMLElement = document.createElement('li');
+        li.innerHTML = `<input class="type_checkbox__filter checkbox__filter" value="${type}" type="checkbox" id="${type}">
+        <label class="type_checkbox__label checkbox__label" for="${type}">${type}</label>`;
+        ul.append(li);
+    });
+    return ul;
+}
+
+checkboxType.append(typeCheckboxRender());
+// -------------------------------------------- DRY принцип? -------------------------------------------------------
+// ------------------------------------------- не, не слышала ------------------------------------------------------
 
 function footerRender() {
     return `<a class="footer__github" href="https://github.com/olgaSimankova?tab=repositories">Visit my GitHub</a>

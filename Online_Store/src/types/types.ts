@@ -9,6 +9,7 @@ export interface BookData {
     publisher: string;
     publication_year: string;
     pages: number;
+    type: string,
     category: string[];
     inChart: boolean;
     qtyInChart: number;

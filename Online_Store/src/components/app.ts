@@ -5,6 +5,7 @@ import { productsListRender } from './products/products';
 import productsData from '../assets/scripts/products_data.json';
 import { searchAndRerender } from './search/search';
 import { showChart, hideChart, chartRender, chart, addToChart, updateCardBtn, removeFromChart } from './chart/chart';
+import { applyAllFilters, resetAllFilters } from './filters/filters';
 
 function appStart() {
     const header = document.querySelector('.header') as HTMLElement;
@@ -67,6 +68,30 @@ function appStart() {
                     btn.innerText = 'add to chart';
                 }
             });
+        }
+    });
+
+    // implement category checkbox filter (OMG, it wasn't easy)
+
+    window.addEventListener('click', (event: MouseEvent) => {
+        const productsOnPage: BookData[] = [...productsData];
+        if (
+            (event.target as HTMLElement).classList.contains('checkbox__label') ||
+            (event.target as HTMLElement).classList.contains('checkbox__filter')
+        ) {
+            const filteredProducts = applyAllFilters(productsOnPage);
+            main.innerHTML = '';
+            main.appendChild(productsListRender(filteredProducts));
+        }
+    });
+
+    window.addEventListener('click', function (event: MouseEvent) {
+        const productsOnPage: BookData[] = [...productsData];
+        if ((event.target as Element).classList.contains('reset_filters')) {
+            resetAllFilters();
+            const filteredProducts = applyAllFilters(productsOnPage);
+            main.innerHTML = '';
+            main.appendChild(productsListRender(filteredProducts));
         }
     });
 }

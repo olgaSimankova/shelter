@@ -10,7 +10,8 @@
         "publisher": "Northfield Publishing",
         "publication_year": "2015",
         "pages": 208,
-        "category": ["Self-Help", "Relationships"],
+        "type": "Self-Help",
+        "category": ["Relationships"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -26,7 +27,8 @@
         "publisher": "New Harbinger Publications",
         "publication_year": "2015",
         "pages": 215,
-        "category": ["Self-Help", "Relationships"],
+        "type": "Self-Help",
+        "category": ["Relationships"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -42,7 +44,8 @@
         "publisher": "Touchstone",
         "publication_year": "2003",
         "pages": 218,
-        "category": ["Self-Help", "Inspiration"],
+        "type": "Self-Help",
+        "category": ["Inspiration"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -58,7 +61,8 @@
         "publisher": "WaterBrook",
         "publication_year": "2022",
         "pages": 272,
-        "category": ["Self-Help", "Friendship"],
+        "type": "Self-Help",
+        "category": ["Friendship"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -74,7 +78,8 @@
         "publisher": "Running Press Adult",
         "publication_year": "2003",
         "pages": 208,
-        "category": ["Self-Help", "Relationships"],
+        "type": "Self-Help",
+        "category": ["Relationships"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -90,7 +95,8 @@
         "publisher": "TalentSmart",
         "publication_year": "2003",
         "pages": 280,
-        "category": ["Self-Help", "Relationships"],
+        "type": "Self-Help",
+        "category": ["Relationships"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -106,7 +112,8 @@
         "publisher": "Harper Paperbacks",
         "publication_year": "2022",
         "pages": 304,
-        "category": ["Self-Help", "Humor", "Motivational"],
+        "type": "Self-Help",
+        "category": ["Humor", "Motivational"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -122,7 +129,8 @@
         "publisher": "Harper Paperbacks",
         "publication_year": "2022",
         "pages": 640,
-        "category": ["Self-Help", "Biography", "Motivational"],
+        "type": "Self-Help",
+        "category": ["Biography", "Motivational"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -138,7 +146,8 @@
         "publisher": "Running Press Adult",
         "publication_year": "2019",
         "pages": 624,
-        "category": ["Self-Help", "Motivational"],
+        "type": "Self-Help",
+        "category": ["Motivational"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -154,7 +163,8 @@
         "publisher": "Northfield Publishing",
         "publication_year": "2019",
         "pages": 320,
-        "category": ["Self-Help", "Motivational", "Money"],
+        "type": "Self-Help",
+        "category": ["Motivational", "Money"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -170,7 +180,8 @@
         "publisher": "WaterBrook",
         "publication_year": "2020",
         "pages": 248,
-        "category": ["Self-Help", "Motivational"],
+        "type": "Self-Help",
+        "category": ["Motivational"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -186,7 +197,8 @@
         "publisher": "WaterBrook",
         "publication_year": "2018",
         "pages": 320,
-        "category": ["Self-Help", "Motivational", "Biography"],
+        "type": "Self-Help",
+        "category": ["Motivational", "Biography"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -202,7 +214,8 @@
         "publisher": "WaterBrook",
         "publication_year": "2020",
         "pages": 320,
-        "category": ["Self-Help", "Motivational", "Biography"],
+        "type": "Self-Help",
+        "category": ["Motivational", "Biography"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -218,7 +231,8 @@
         "publisher": "Northfield Publishing",
         "publication_year": "2022",
         "pages": 336,
-        "category": ["Self-Help", "Motivational", "Biography", "Money"],
+        "type": "Self-Help",
+        "category": ["Motivational", "Biography", "Money"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -234,7 +248,8 @@
         "publisher": "Northfield Publishing",
         "publication_year": "2022",
         "pages": 272,
-        "category": ["Self-Help", "Motivational", "Money"],
+        "type": "Self-Help",
+        "category": ["Motivational", "Money"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -250,7 +265,8 @@
         "publisher": "WaterBrook",
         "publication_year": "2021",
         "pages": 320,
-        "category": ["Self-Help", "Stress Management"],
+        "type": "Self-Help",
+        "category": ["Stress Management"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -266,7 +282,8 @@
         "publisher": "Northfield Publishing",
         "publication_year": "2021",
         "pages": 256,
-        "category": ["Self-Help", "Stress Management"],
+        "type": "Self-Help",
+        "category": ["Stress Management"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
@@ -282,7 +299,8 @@
         "publisher": "Northfield Publishing",
         "publication_year": "2020",
         "pages": 352,
-        "category": ["Self-Help", "Motivational", "Stress Management"],
+        "type": "Self-Help",
+        "category": ["Motivational", "Stress Management"],
         "favorite": false,
         "inChart": false,
         "qtyInChart": 0
@@ -298,7 +316,8 @@
         "publisher": "",
         "publication_year": "",
         "pages": 1,
-        "category": ["Self-Help", "Motivational", "Money"],
+        "type": "Self-Help",
+        "category": ["Motivational", "Money"],
         "inChart": false,
         "favorite": false,
         "qtyInChart": 0
