@@ -8,7 +8,7 @@ function productRender(item: BookData) {
     // require(`../../assets/img/${item.cover}`);     <------- Ну не работает импорт картинок, не смогла пофиксить
     const bookCover: HTMLImageElement = document.createElement('img');
     bookCover.className = 'book__cover';
-    bookCover.setAttribute('src', `#`);
+    bookCover.setAttribute('src', `${item.cover}`);
     const bookInfo: HTMLDivElement = document.createElement('div');
     bookInfo.dataset.id = item.id;
     bookInfo.className = 'book__info';

@@ -93,13 +93,15 @@ checkboxType.append(typeCheckboxRender());
 
 function sortingSelectRender() {
     return `<label>Sort by: </label>
+    <div class="select">
     <select id="sorting__select">
         <option value="reset">Choose an option</option>
         <option value="name_a">name a-z</option>                        
         <option value="name_z">name z-a</option>                        
         <option value="price_min">price min</option>                        
         <option value="price_max">price max</option>
-    </select>`;
+    </select>
+    </div>`;
 }
 
 sortingContainer.innerHTML = sortingSelectRender();

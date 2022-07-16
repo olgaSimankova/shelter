@@ -1,7 +1,7 @@
 .book__item {
     height: 300px;
     width: 170px;
-    /* padding: 10px; */
+    padding: 0 10px 10px;
     border: #8d8d8d solid 1px ;
     border-radius: 4px;
     overflow: hidden;
@@ -14,11 +14,6 @@
     cursor: pointer;
 }
 
-.book__item:hover {
-    transform: scale(1.03,1.03);
-    transition: 0.3s;
-}
-
 .book__cover {
     width: 100px;
 }
@@ -26,26 +21,25 @@
 .book__info {
     display: flex;
     flex-direction: column;
-    height: 35%;
+    height: 43%;
     width: 100%;
     gap: 3px;
 }
 
 .book__info-price {
-    font: small-caps bold 17px sans-serif;
+    font: small-caps bold 15px sans-serif;
     color: #0F1111;
 }
 
 .book__info-title {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 15px;
+    line-height: 16px;
 }
 
 .book__info-author {
     font-size: 13px;
     line-height: 20px;
 }
-
 
 .btn {
     cursor: pointer;
@@ -65,4 +59,8 @@
     box-shadow: 0 0 5px #3ca363;
     border: 1px solid #3ca363;
     background-color: rgb(0, 201, 97);
+}
+
+.add-to-chart {
+    align-self: center;
 }

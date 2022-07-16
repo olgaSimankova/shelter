@@ -11,6 +11,7 @@ export interface BookData {
     pages: number;
     type: string;
     category: string[];
+    favorite: boolean;
     inChart: boolean;
     qtyInChart: number;
 }

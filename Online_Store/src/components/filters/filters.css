@@ -1,3 +1,18 @@
 ul {
     list-style: none;
 }
+
+.filter_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter_type {
+    font: small-caps bold 15px sans-serif;
+}
+
+.checkbox__label {
+    font: arial 13px sans-serif;
+}
+
