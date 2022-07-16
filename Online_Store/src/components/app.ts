@@ -7,6 +7,7 @@ import { searchAndRerender } from './search/search';
 import { showChart, hideChart, chartRender, chart, addToChart, updateCardBtn, removeFromChart } from './chart/chart';
 import { applyAllFilters, resetAllFilters } from './filters/filters';
 import { sortBy } from './sorting/sorting';
+import * as noUiSlider from 'nouislider';
 
 function appStart() {
     const header = document.querySelector('.header') as HTMLElement;
@@ -109,6 +110,15 @@ function appStart() {
         main.innerHTML = '';
         main.appendChild(productsListRender(filteredProducts));
     });
+
+    (document.getElementById('slider__price') as noUiSlider.target).noUiSlider?.on(
+        'change',
+        function () {
+            const filteredProducts = applyAllFilters(productsData);
+        main.innerHTML = '';
+        main.appendChild(productsListRender(filteredProducts));
+        }
+    );
 }
 
 export { appStart };

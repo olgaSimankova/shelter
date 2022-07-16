@@ -1,7 +1,8 @@
 import { BookData } from '../../types/types';
 import { sortBy } from '../sorting/sorting';
 // import productsData from '../../assets/scripts/products_data.json';
-import './filters.css';
+import * as noUiSlider from 'nouislider';
+import 'nouislider/dist/nouislider.css';
 
 // Собираем все выбранные чекбоксы в массив
 function getChecked(querySelector: string) {
@@ -62,6 +63,30 @@ function filterType(products: BookData[]) {
     return filteredData;
 }
 
+// noUiSlider
+const sliderPrice = document.getElementById('slider__price') as HTMLElement;
+
+noUiSlider.create(sliderPrice, {
+    start: [1, 38],
+    connect: true,
+    range: {
+        min: 0,
+        max: 39,
+    },
+});
+
+function sliderPriceFilter(data: BookData[]) {
+    const values = (sliderPrice as noUiSlider.target).noUiSlider?.get() as string[];
+    console.log(values);
+    const filteredData: BookData[] = [];
+    data.forEach((elem: BookData) => {
+        if (elem.price >= parseInt(values[0]) && elem.price <= parseInt(values[1])) {
+            filteredData.push(elem);
+        }
+    });
+    return filteredData;
+}
+
 // Кнопка Reset filters (show all)
 
 function resetAllFilters(): void {
@@ -77,6 +102,7 @@ function applyAllFilters(products: BookData[]) {
     let dataFiltered: BookData[] = filterType(products);
     dataFiltered = categoryFilter(dataFiltered);
     dataFiltered = filterPublisher(dataFiltered);
+    dataFiltered = sliderPriceFilter(dataFiltered);
     const sortingOption = (document.getElementById('sorting__select') as HTMLSelectElement).value;
     sortBy(dataFiltered, sortingOption);
     return dataFiltered;
