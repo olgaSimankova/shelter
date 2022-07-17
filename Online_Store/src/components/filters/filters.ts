@@ -3,6 +3,7 @@ import { sortBy } from '../sorting/sorting';
 // import productsData from '../../assets/scripts/products_data.json';
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
+import './filters.css';
 
 // Собираем все выбранные чекбоксы в массив
 function getChecked(querySelector: string) {
@@ -64,6 +65,7 @@ function filterType(products: BookData[]) {
 }
 
 // noUiSlider
+
 const sliderPrice = document.getElementById('slider__price') as HTMLElement;
 
 noUiSlider.create(sliderPrice, {
@@ -77,10 +79,31 @@ noUiSlider.create(sliderPrice, {
 
 function sliderPriceFilter(data: BookData[]) {
     const values = (sliderPrice as noUiSlider.target).noUiSlider?.get() as string[];
-    console.log(values);
     const filteredData: BookData[] = [];
     data.forEach((elem: BookData) => {
         if (elem.price >= parseInt(values[0]) && elem.price <= parseInt(values[1])) {
+            filteredData.push(elem);
+        }
+    });
+    return filteredData;
+}
+
+const sliderPage = document.getElementById('slider__pages') as HTMLElement;
+
+noUiSlider.create(sliderPage, {
+    start: [160, 1395],
+    connect: true,
+    range: {
+        min: 160,
+        max: 1395,
+    },
+});
+
+function sliderPageFilter(data: BookData[]) {
+    const values = (sliderPage as noUiSlider.target).noUiSlider?.get() as string[];
+    const filteredData: BookData[] = [];
+    data.forEach((elem: BookData) => {
+        if (elem.pages >= parseInt(values[0]) && elem.pages <= parseInt(values[1])) {
             filteredData.push(elem);
         }
     });
@@ -96,6 +119,11 @@ function resetAllFilters(): void {
             uncheck[i].checked = false;
         }
     }
+    const sliderPrice = document.querySelector('#slider__price') as noUiSlider.target;
+    sliderPrice.noUiSlider?.set([1, 38]);
+
+    const sliderPage = document.querySelector('#slider__pages') as noUiSlider.target;
+    sliderPage.noUiSlider?.set([160, 1395]);
 }
 
 function applyAllFilters(products: BookData[]) {
@@ -103,6 +131,7 @@ function applyAllFilters(products: BookData[]) {
     dataFiltered = categoryFilter(dataFiltered);
     dataFiltered = filterPublisher(dataFiltered);
     dataFiltered = sliderPriceFilter(dataFiltered);
+    dataFiltered = sliderPageFilter(dataFiltered);
     const sortingOption = (document.getElementById('sorting__select') as HTMLSelectElement).value;
     sortBy(dataFiltered, sortingOption);
     return dataFiltered;

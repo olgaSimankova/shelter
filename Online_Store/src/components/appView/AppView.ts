@@ -18,7 +18,7 @@ function headerRender() {
             <i id="search" class="fas fa-search"></i>
         </div>
         <div class="input"><input id="input" type="text" placeholder="search" autofocus autocomplete="off"></div>
-        <span class="clear" onclick="document.getElementById('input').value=''"></span>
+        <span class="clear"></span>
     </div>
     <div class="chart"><i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="goods_in_chart empty"></span></div>`;
 }

@@ -21,6 +21,7 @@ function appStart() {
     //Implement search
     const searchField = document.querySelector('#input') as HTMLInputElement;
     const searchIcon = document.getElementById('search') as HTMLElement;
+    const searchReset = document.querySelector('.clear') as HTMLElement;
 
     searchIcon.onclick = () => searchAndRerender(searchField.value, productsData, main);
 
@@ -31,6 +32,10 @@ function appStart() {
         if (event.keyCode === 13) searchAndRerender(searchField.value, productsData, main);
     });
 
+    searchReset.onclick = () => {
+        searchAndRerender('', productsData, main);
+        (document.getElementById('input') as HTMLInputElement).value = '';
+    };
     //     !!!!!!!!!!!  Надо еще при клике по крестику сделать так, чтоб все возвращалось, как было
 
     // Implement Chart
@@ -111,14 +116,17 @@ function appStart() {
         main.appendChild(productsListRender(filteredProducts));
     });
 
-    (document.getElementById('slider__price') as noUiSlider.target).noUiSlider?.on(
-        'change',
-        function () {
-            const filteredProducts = applyAllFilters(productsData);
+    (document.getElementById('slider__price') as noUiSlider.target).noUiSlider?.on('change', function () {
+        const filteredProducts = applyAllFilters(productsData);
         main.innerHTML = '';
         main.appendChild(productsListRender(filteredProducts));
-        }
-    );
+    });
+
+    (document.getElementById('slider__pages') as noUiSlider.target).noUiSlider?.on('change', function () {
+        const filteredProducts = applyAllFilters(productsData);
+        main.innerHTML = '';
+        main.appendChild(productsListRender(filteredProducts));
+    });
 }
 
 export { appStart };
