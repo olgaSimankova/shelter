@@ -45,14 +45,10 @@ function contains(where: string[], what: string[]): boolean {
 }
 
 function filterPublisher(products: BookData[]) {
-    // if (localStorage.getItem('publisherFilter')) {
-    //     setChecked('.publish_checkbox__filter', JSON.parse(localStorage.getItem('publisherFilter') as string));
-    // }
     const publishersChecked: string[] = getChecked('.publish_checkbox__filter');
     if (publishersChecked.length === 0) {
         return products;
     }
-    // localStorage.setItem('publisherFilter', JSON.stringify(publishersChecked));
     const filteredData: BookData[] = [];
     products.forEach((elem) => {
         if (publishersChecked.includes(elem.publisher)) {
@@ -63,14 +59,10 @@ function filterPublisher(products: BookData[]) {
 }
 
 function filterType(products: BookData[]) {
-    // if (localStorage.getItem('typeFilter')) {
-    //     setChecked('.type_checkbox__filter', JSON.parse(localStorage.getItem('typeFilter') as string));
-    // }
     const typesChecked: string[] = getChecked('.type_checkbox__filter');
     if (typesChecked.length === 0) {
         return products;
     }
-    // localStorage.setItem('typeFilter', JSON.stringify(typesChecked));
     const filteredData: BookData[] = [];
     products.forEach((elem) => {
         if (typesChecked.includes(elem.type)) {

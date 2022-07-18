@@ -1,5 +1,5 @@
 import { getChecked, setChecked } from '../filters/filters';
-import { addToChart, chart } from '../chart/chart';
+import { addToChart, chart, updateCardBtn } from '../chart/chart';
 import * as noUiSlider from 'nouislider';
 import { BookData } from '../../types/types';
 
@@ -10,12 +10,12 @@ function setLocalStorage() {
     }
 
     const publishersChecked: string[] = getChecked('.publish_checkbox__filter');
-    if (publishersChecked.length === 0) {
+    if (publishersChecked.length !== 0) {
         localStorage.setItem('publisherFilter', JSON.stringify(publishersChecked));
     }
 
     const typesChecked: string[] = getChecked('.type_checkbox__filter');
-    if (typesChecked.length === 0) {
+    if (typesChecked.length !== 0) {
         localStorage.setItem('typeFilter', JSON.stringify(typesChecked));
     }
 
@@ -42,7 +42,7 @@ function setLocalStorage() {
 }
 
 function getLocalStorage() {
-    console.log(localStorage);
+    // console.log(localStorage);
     if (localStorage.getItem('categoryFilter')) {
         setChecked('.categ_checkbox__filter', JSON.parse(localStorage.getItem('categoryFilter') as string));
     }
@@ -72,8 +72,12 @@ function getLocalStorage() {
 
     if (localStorage.getItem('chart')) {
         (JSON.parse(localStorage.getItem('chart') as string) as BookData[]).forEach((item) => {
-            console.log(JSON.parse(localStorage.getItem('chart') as string));
-            addToChart(item, chart);
+            addToChart(item);
+            (document.querySelectorAll('.add-to-chart') as NodeListOf<HTMLButtonElement>).forEach((btn) => {
+                if (btn.id === item.id) {
+                    updateCardBtn(btn);
+                }
+            });
         });
     }
 }
