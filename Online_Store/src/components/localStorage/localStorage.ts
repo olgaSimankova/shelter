@@ -72,6 +72,7 @@ function getLocalStorage() {
 
     if (localStorage.getItem('chart')) {
         (JSON.parse(localStorage.getItem('chart') as string) as BookData[]).forEach((item) => {
+            console.log(JSON.parse(localStorage.getItem('chart') as string));
             addToChart(item, chart);
         });
     }
