@@ -8,6 +8,7 @@ import { showChart, hideChart, chartRender, chart, addToChart, updateCardBtn, re
 import { applyAllFilters, resetAllFilters } from './filters/filters';
 import { sortBy } from './sorting/sorting';
 import * as noUiSlider from 'nouislider';
+import { getLocalStorage, setLocalStorage } from './localStorage/localStorage';
 
 function appStart() {
     const header = document.querySelector('.header') as HTMLElement;
@@ -36,7 +37,6 @@ function appStart() {
         searchAndRerender('', productsData, main);
         (document.getElementById('input') as HTMLInputElement).value = '';
     };
-    //     !!!!!!!!!!!  Надо еще при клике по крестику сделать так, чтоб все возвращалось, как было
 
     // Implement Chart
     const chartIcon = document.querySelector('.chart') as HTMLElement;
@@ -51,7 +51,6 @@ function appStart() {
     // Adding to chart
 
     window.addEventListener('click', function (event: MouseEvent) {
-        // console.log(event.target.hasAttribute('add-to-chart'));
         if ((event.target as Element).classList.contains('add-to-chart')) {
             const card = (event.target as HTMLElement).closest('.book__item') as HTMLElement;
             const btn = (event.target as HTMLElement).closest('.btn') as HTMLElement;
@@ -79,12 +78,9 @@ function appStart() {
     });
 
     // implement category checkbox filter (OMG, it wasn't easy)
-    window.addEventListener('click', (event: MouseEvent) => {
-        const productsOnPage: BookData[] = [...productsData];
-        if (
-            (event.target as HTMLElement).classList.contains('checkbox__label') ||
-            (event.target as HTMLElement).classList.contains('checkbox__filter')
-        ) {
+    (document.querySelectorAll('.checkbox__filter') as NodeListOf<HTMLInputElement>).forEach((item) => {
+        item.addEventListener('change', function () {
+            const productsOnPage: BookData[] = [...productsData];
             const filteredProducts = applyAllFilters(productsOnPage);
             main.innerHTML = '';
             if (filteredProducts.length === 0) {
@@ -95,7 +91,7 @@ function appStart() {
             } else {
                 main.appendChild(productsListRender(filteredProducts));
             }
-        }
+        });
     });
 
     window.addEventListener('click', function (event: MouseEvent) {
@@ -126,6 +122,35 @@ function appStart() {
         const filteredProducts = applyAllFilters(productsData);
         main.innerHTML = '';
         main.appendChild(productsListRender(filteredProducts));
+    });
+
+    window.onbeforeunload = function () {
+        setLocalStorage();
+    };
+
+    window.onload = function () {
+        getLocalStorage();
+        const filteredProducts = applyAllFilters(productsData);
+        main.innerHTML = '';
+        main.appendChild(productsListRender(filteredProducts));
+    };
+
+    // reset all settings (clear local storage)
+    window.addEventListener('click', function (event: MouseEvent) {
+        const productsOnPage: BookData[] = [...productsData];
+        if ((event.target as Element).classList.contains('reset_storage')) {
+            if (this.localStorage.getItem('chart')) {
+                (JSON.parse(this.localStorage.getItem('chart') as string) as BookData[]).forEach((item) => {
+                    removeFromChart(item.id);
+                });
+            }
+            chart as BookData[];
+            resetAllFilters();
+            (document.getElementById('sorting__select') as HTMLSelectElement).value = '';
+            const filteredProducts = applyAllFilters(productsOnPage);
+            main.innerHTML = '';
+            main.appendChild(productsListRender(filteredProducts));
+        }
     });
 }
 

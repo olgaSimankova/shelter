@@ -16,9 +16,5 @@ export function sortBy(products: BookData[], option = '') {
         case 'price_max':
             products.sort((a: BookData, b: BookData) => b.price - a.price);
             break;
-        case 'reset':
-            // products = products.map((item, idx) => (item = productsCopy[idx]));
-            // products.sort((a: BookData, b: BookData) => 0.5 - Math.random());  //Что-то я не соображу, как заставить наш массив отсортироваться обратно
-            break;
     }
 }

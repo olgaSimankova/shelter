@@ -4,6 +4,7 @@ import './appView.css';
 
 import footerRssImg from '../../assets/icons/logo_rs2.svg';
 import headerImg from '../../assets/icons/book_logo.png';
+import { setChecked } from '../filters/filters';
 
 const checkboxType = document.querySelector('.checkbox_type_block') as HTMLElement;
 const checkboxCategory = document.querySelector('.checkbox_category_block') as HTMLElement;
@@ -49,6 +50,9 @@ function categoriesCheckboxRender() {
 }
 
 checkboxCategory.append(categoriesCheckboxRender());
+if (localStorage.getItem('categoryFilter')) {
+    setChecked('.categ_checkbox__filter', JSON.parse(localStorage.getItem('categoryFilter') as string));
+}
 
 function getPublishers() {
     const publishersArr: string[] = [];
@@ -73,6 +77,9 @@ function publishersCheckboxRender() {
 }
 
 checkboxPublisher.append(publishersCheckboxRender());
+if (localStorage.getItem('publisherFilter')) {
+    setChecked('.publish_checkbox__filter', JSON.parse(localStorage.getItem('publisherFilter') as string));
+}
 
 function typeCheckboxRender() {
     const types: string[] = ['Self-Help', 'Fiction', "Сhildren's book"];
@@ -95,7 +102,7 @@ function sortingSelectRender() {
     return `<label>Sort by: </label>
     <div class="select">
     <select id="sorting__select">
-        <option value="reset">Choose an option</option>
+        <option value="">Choose an option</option>
         <option value="name_a">name a-z</option>                        
         <option value="name_z">name z-a</option>                        
         <option value="price_min">price min</option>                        

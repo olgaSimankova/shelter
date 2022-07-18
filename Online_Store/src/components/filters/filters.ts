@@ -13,6 +13,14 @@ function getChecked(querySelector: string) {
     return <string[]>checkedItems.map((item) => (item as HTMLInputElement).value);
 }
 
+function setChecked(querySelector: string, filtersChecked: string[]) {
+    (document.querySelectorAll(`${querySelector}`) as NodeListOf<HTMLInputElement>).forEach((item) => {
+        if (filtersChecked.includes(item.value)) {
+            item.checked = true;
+        }
+    });
+}
+
 function categoryFilter(products: BookData[]) {
     const categoriesChecked: string[] = getChecked('.categ_checkbox__filter');
     if (categoriesChecked.length === 0) {
@@ -37,10 +45,14 @@ function contains(where: string[], what: string[]): boolean {
 }
 
 function filterPublisher(products: BookData[]) {
+    // if (localStorage.getItem('publisherFilter')) {
+    //     setChecked('.publish_checkbox__filter', JSON.parse(localStorage.getItem('publisherFilter') as string));
+    // }
     const publishersChecked: string[] = getChecked('.publish_checkbox__filter');
     if (publishersChecked.length === 0) {
         return products;
     }
+    // localStorage.setItem('publisherFilter', JSON.stringify(publishersChecked));
     const filteredData: BookData[] = [];
     products.forEach((elem) => {
         if (publishersChecked.includes(elem.publisher)) {
@@ -51,10 +63,14 @@ function filterPublisher(products: BookData[]) {
 }
 
 function filterType(products: BookData[]) {
+    // if (localStorage.getItem('typeFilter')) {
+    //     setChecked('.type_checkbox__filter', JSON.parse(localStorage.getItem('typeFilter') as string));
+    // }
     const typesChecked: string[] = getChecked('.type_checkbox__filter');
     if (typesChecked.length === 0) {
         return products;
     }
+    // localStorage.setItem('typeFilter', JSON.stringify(typesChecked));
     const filteredData: BookData[] = [];
     products.forEach((elem) => {
         if (typesChecked.includes(elem.type)) {
@@ -69,10 +85,11 @@ function filterType(products: BookData[]) {
 const sliderPrice = document.getElementById('slider__price') as HTMLElement;
 
 noUiSlider.create(sliderPrice, {
-    start: [1, 38],
+    start: [1, 39],
     connect: true,
+    tooltips: true,
     range: {
-        min: 0,
+        min: 1,
         max: 39,
     },
 });
@@ -93,9 +110,19 @@ const sliderPage = document.getElementById('slider__pages') as HTMLElement;
 noUiSlider.create(sliderPage, {
     start: [160, 1395],
     connect: true,
+    tooltips: true,
+    step: 1,
     range: {
         min: 160,
         max: 1395,
+    },
+    format: {
+        from: function (value) {
+            return parseInt(value);
+        },
+        to: function (value: number) {
+            return value.toFixed(0);
+        },
     },
 });
 
@@ -113,6 +140,7 @@ function sliderPageFilter(data: BookData[]) {
 // Кнопка Reset filters (show all)
 
 function resetAllFilters(): void {
+    localStorage.clear();
     const uncheck: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName('input');
     for (let i = 0; i < uncheck.length; i++) {
         if (uncheck[i].type === 'checkbox') {
@@ -120,7 +148,7 @@ function resetAllFilters(): void {
         }
     }
     const sliderPrice = document.querySelector('#slider__price') as noUiSlider.target;
-    sliderPrice.noUiSlider?.set([1, 38]);
+    sliderPrice.noUiSlider?.set([1, 39]);
 
     const sliderPage = document.querySelector('#slider__pages') as noUiSlider.target;
     sliderPage.noUiSlider?.set([160, 1395]);
@@ -137,4 +165,4 @@ function applyAllFilters(products: BookData[]) {
     return dataFiltered;
 }
 
-export { applyAllFilters, resetAllFilters };
+export { applyAllFilters, resetAllFilters, getChecked, setChecked };
