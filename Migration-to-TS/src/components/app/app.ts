@@ -24,12 +24,14 @@ class App {
     }
 
     start(): void {
-        document
-            .querySelector('.sources')!
-            .addEventListener('click', (e) =>
-                this.controller.getNews(e, (data) => this.view.drawNews(data as SourcesData))
-            );
-        this.controller.getSources((data) => this.view.drawAlphabet(data as SourcesData));
+        (document.querySelector('.sources') as HTMLElement).addEventListener('click', (e: MouseEvent) =>
+            this.controller.getNews(e, (data: SourcesData) => this.view.drawNews(data))
+        );
+        this.controller.getSources((data) => {
+            if (data) {
+                this.view.drawAlphabet(data as SourcesData);
+            }
+        });
 
         setTimeout(() => {
             const alphabetButtons = document.querySelectorAll('.alphabet__char__button');

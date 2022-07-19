@@ -1,19 +1,18 @@
 .alphabet {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
     margin: 2% auto 2%;
 }
 .alphabet__char__button {
-    color: #70d6ff;
-    transition: 0.25s;
-    cursor: pointer;
-    background: none;
     border: none;
+    background: none;
+    color: #70d6ff;
     font: inherit;
     font-size: 1.5rem;
-
+    transition: 0.25s;
+    cursor: pointer;
 }
 
 .alphabet__char__button:hover,

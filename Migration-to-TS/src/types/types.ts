@@ -1,20 +1,5 @@
-// export interface AppTypes {
-//   urlToImage: string;
-//   author: string;
-//   source: { name: string };
-//   url: string;
-//   title: string;
-//   publishedAt: string;
-//   description: string;
-//   id: string;
-//   name: string;
-// }
-
 export interface Article {
-    source: {
-        id: string;
-        name: string;
-    };
+    source: Pick <Source, 'id' | 'name'>;
     author: string;
     title: string;
     description: string;
@@ -41,10 +26,13 @@ export interface Source {
     country: string;
 }
 
+interface LoaderResponceBody {
+    locked: boolean;
+}
+
+
 export interface LoaderResponce {
-    body: {
-        locked: boolean;
-    };
+    body: LoaderResponceBody;
     bodyUsed: boolean;
     ok: boolean;
     redirected: boolean;
@@ -52,4 +40,13 @@ export interface LoaderResponce {
     statusText: string;
     type: string;
     url: string;
+}
+
+export interface options {
+    apiKey?: string;
+    sources?: string;
+}
+
+export interface urlOptions {
+    [index: string]: string;
 }

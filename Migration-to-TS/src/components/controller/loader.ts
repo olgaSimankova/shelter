@@ -1,19 +1,18 @@
-// import Sources from '../view/sources/sources';
-
-import { SourcesData } from '../../types/types';
+import { options, SourcesData, urlOptions } from '../../types/types';
+import { NOTFOUND, UNAUTORIZED } from '../../constants/constants';
 
 class Loader {
     baseLink: string;
-    options: { apiKey: string };
+    options: options;
 
-    constructor(baseLink: string, options: { apiKey: string }) {
+    constructor(baseLink: string, options: options) {
         this.baseLink = baseLink;
         this.options = options;
         this.errorHandler.bind(this);
     }
 
-    getResp(
-        { endpoint, options }: { endpoint: string; options?: { sources: string } },
+    getResponce(
+        { endpoint, options }: { endpoint: string; options?: options },
         callback: (data: SourcesData) => void = () => {
             console.error('No callback for GET response');
         }
@@ -23,15 +22,15 @@ class Loader {
 
     errorHandler(res: Response) {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === UNAUTORIZED || res.status === NOTFOUND)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
         return res;
     }
 
-    makeUrl(options: { sources?: string; apiKey?: string }, endpoint: string): string {
-        const urlOptions: { [index: string]: string } = { ...this.options, ...options };
+    makeUrl(options: options, endpoint: string): string {
+        const urlOptions: urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {

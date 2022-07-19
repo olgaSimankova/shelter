@@ -1,28 +1,29 @@
 import { SourcesData } from '../../types/types';
 import AppLoader from './appLoader';
+import * as endpoints from '../../constants/endpoints';
 
 class AppController extends AppLoader {
     getSources(callback: (data?: SourcesData) => void) {
-        super.getResp(
+        super.getResponce(
             {
-                endpoint: 'sources',
+                endpoint: endpoints.ENDPOINTS.sources,
             },
             callback
         );
     }
 
     getNews(e: Event, callback: (data: SourcesData) => void) {
-        let target = <HTMLElement>e.target || '';
-        const newsContainer = <HTMLElement>e.currentTarget || '';
+        let target = e.target as HTMLElement;
+        const newsContainer = e.currentTarget as HTMLElement;
 
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
-                const sourceId = <string>target.getAttribute('data-source-id') || '';
+                const sourceId = target.getAttribute('data-source-id') as string;
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
-                    super.getResp(
+                    super.getResponce(
                         {
-                            endpoint: 'everything',
+                            endpoint: endpoints.ENDPOINTS.everything,
                             options: {
                                 sources: sourceId,
                             },
@@ -32,7 +33,7 @@ class AppController extends AppLoader {
                 }
                 return;
             }
-            target = <HTMLElement>target.parentNode;
+            target = target.parentNode as HTMLElement;
         }
     }
 }

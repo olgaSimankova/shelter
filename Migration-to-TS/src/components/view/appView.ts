@@ -24,17 +24,17 @@ export class AppView {
     }
 
     drawAlphabet(data: SourcesData) {
-        const values = this.getAlphabet(data?.sources ? data?.sources : []);
+        const values = this.getAlphabet(data?.sources || []);
         this.alphabet.draw(values);
     }
 
     drawNews(data: SourcesData) {
-        const values: Article[] = data?.articles ? data?.articles : [];
+        const values: Article[] = data?.articles || [];
         this.news.draw(values);
     }
 
     drawSources(data: SourcesData, atChar: string) {
-        const values: Source[] = data?.sources ? data?.sources : [];
+        const values: Source[] = data?.sources || [];
         this.sources.draw(values, atChar);
     }
 }

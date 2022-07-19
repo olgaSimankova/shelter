@@ -1,9 +1,9 @@
 import './news.css';
 import { Article } from '../../../types/types';
+import { NOIMG } from '../../../constants/constants';
 
 class News {
     draw(data: Article[]) {
-        ``;
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment: DocumentFragment = document.createDocumentFragment();
@@ -15,8 +15,7 @@ class News {
             if (idx % 2) (newsClone.querySelector('.news__item') as HTMLElement).classList.add('alt');
 
             (newsClone.querySelector('.news__meta-photo') as HTMLElement).style.backgroundImage = `url(${
-                item.urlToImage ||
-                'https://ceramica21.ru/image/cache/catalog/obshyaya/Bella_Casa/eclips/noimg-800x800.png'
+                item.urlToImage || NOIMG
             })`;
             (newsClone.querySelector('.news__meta-author') as HTMLElement).textContent =
                 item.author || item.source.name;

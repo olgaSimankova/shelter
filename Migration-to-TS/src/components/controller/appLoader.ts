@@ -1,9 +1,10 @@
 import Loader from './loader';
+import { MYAPIKEY } from '../../constants/constants';
 
 class AppLoader extends Loader {
     constructor() {
         super('https://nodenews.herokuapp.com/', {
-            apiKey: 'e577515cb83c4b09a7403bae5348d7ef',
+            apiKey: MYAPIKEY,
         });
     }
 }
