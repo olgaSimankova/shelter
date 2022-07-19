@@ -55,6 +55,11 @@
     color: #fff;
 }
 
+.btn:active{
+    transition: 0.9ms;
+    transform: scale(0.9);
+}
+
 .btn__in_chart {
     box-shadow: 0 0 5px #3ca363;
     border: 1px solid #3ca363;

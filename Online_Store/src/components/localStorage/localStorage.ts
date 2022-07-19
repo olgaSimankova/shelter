@@ -69,16 +69,21 @@ function getLocalStorage() {
             'sortingOption'
         ) as string;
     }
-
     if (localStorage.getItem('chart')) {
-        (JSON.parse(localStorage.getItem('chart') as string) as BookData[]).forEach((item) => {
-            addToChart(item);
-            (document.querySelectorAll('.add-to-chart') as NodeListOf<HTMLButtonElement>).forEach((btn) => {
-                if (btn.id === item.id) {
-                    updateCardBtn(btn);
+        const storedChartArr = Array.from(JSON.parse(localStorage.getItem('chart') as string)) as BookData[];
+        const btnArr = Array.from(
+            document.querySelectorAll('.add-to-chart') as NodeListOf<HTMLButtonElement>
+        ) as HTMLButtonElement[];
+
+        setTimeout(() => {
+            for (let i = 0; i < btnArr.length; i++) {
+                for (let j = 0; j < storedChartArr.length; j++) {
+                    if (btnArr[i].id === storedChartArr[j].id) {
+                        btnArr[i].click(); // Хотела эмулировать нажатие на кнопку "добавить в корзину", но увы.. Так не работает
+                    }
                 }
-            });
-        });
+            }
+        }, 2000);
     }
 }
 

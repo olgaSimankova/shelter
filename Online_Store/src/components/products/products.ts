@@ -15,7 +15,7 @@ function productRender(item: BookData) {
     bookInfo.innerHTML = `<p class="book__info-price">$${item.price}</p>
     <h2 class="book__info-title">${item.name}</h2>
     <h3 class="book__info-author">${item.author}</h3>
-    <button class="btn add-to-chart">add to chart</button>`;
+    <button class="btn add-to-chart" id="${item.id}">add to chart</button>`;
 
     bookItem.append(bookCover, bookInfo);
     return bookItem;
