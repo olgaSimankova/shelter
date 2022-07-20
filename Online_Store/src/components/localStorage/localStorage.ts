@@ -2,6 +2,7 @@ import { getChecked, setChecked } from '../filters/filters';
 import { addToChart, chart, updateCardBtn } from '../chart/chart';
 import * as noUiSlider from 'nouislider';
 import { BookData } from '../../types/types';
+import { SLIDERPAGEMAX, SLIDERPAGEMIN, SLIDERPRICEMAX, SLIDERPRICEMIN } from '../constants/constants';
 
 function setLocalStorage() {
     const categoriesChecked: string[] = getChecked('.categ_checkbox__filter');
@@ -21,13 +22,13 @@ function setLocalStorage() {
 
     const sliderPrice = document.getElementById('slider__price') as noUiSlider.target;
     const valuesPrice = (sliderPrice as noUiSlider.target).noUiSlider?.get() as string[];
-    if (parseInt(valuesPrice[0]) !== 1 || parseInt(valuesPrice[1]) !== 39) {
+    if (parseInt(valuesPrice[0]) !== SLIDERPRICEMIN || parseInt(valuesPrice[1]) !== SLIDERPRICEMAX) {
         localStorage.setItem('sliderPrice', JSON.stringify(valuesPrice));
     }
 
     const sliderPage = document.getElementById('slider__pages') as noUiSlider.target;
     const valuesPage = (sliderPage as noUiSlider.target).noUiSlider?.get() as string[];
-    if (parseInt(valuesPage[0]) !== 160 || parseInt(valuesPage[1]) !== 1395) {
+    if (parseInt(valuesPage[0]) !== SLIDERPAGEMIN || parseInt(valuesPage[1]) !== SLIDERPAGEMAX) {
         localStorage.setItem('sliderPage', JSON.stringify(valuesPage));
     }
 
@@ -83,7 +84,7 @@ function getLocalStorage() {
                     }
                 }
             }
-        }, 2000);
+        }, 1000);
     }
 }
 

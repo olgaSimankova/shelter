@@ -4,6 +4,8 @@ import { sortBy } from '../sorting/sorting';
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import './filters.css';
+import { getRelevant, searchAndRerender } from '../search/search';
+import { SLIDERPAGEMAX, SLIDERPAGEMIN, SLIDERPRICEMAX, SLIDERPRICEMIN } from '../constants/constants';
 
 // Собираем все выбранные чекбоксы в массив
 function getChecked(querySelector: string) {
@@ -140,14 +142,18 @@ function resetAllFilters(): void {
         }
     }
     const sliderPrice = document.querySelector('#slider__price') as noUiSlider.target;
-    sliderPrice.noUiSlider?.set([1, 39]);
+    sliderPrice.noUiSlider?.set([SLIDERPRICEMIN, SLIDERPRICEMAX]);
 
     const sliderPage = document.querySelector('#slider__pages') as noUiSlider.target;
-    sliderPage.noUiSlider?.set([160, 1395]);
+    sliderPage.noUiSlider?.set([SLIDERPAGEMIN, SLIDERPAGEMAX]);
 }
 
+const searchField = document.querySelector('#input') as HTMLInputElement;
+const main = document.querySelector('.books__container') as HTMLElement;
+
 function applyAllFilters(products: BookData[]) {
-    let dataFiltered: BookData[] = filterType(products);
+    let dataFiltered: BookData[] = searchAndRerender(searchField.value, products, main);
+    dataFiltered = filterType(products);
     dataFiltered = categoryFilter(dataFiltered);
     dataFiltered = filterPublisher(dataFiltered);
     dataFiltered = sliderPriceFilter(dataFiltered);

@@ -14,6 +14,7 @@ function searchAndRerender(keyword: string, data: BookData[], container: HTMLEle
 
     container.innerHTML = '';
     container.appendChild(productsListRender(relevantProducts));
+    return relevantProducts;
 }
 
 function getRelevant(keyword: string, data: BookData[]): BookData[] {
@@ -32,4 +33,4 @@ function getRelevant(keyword: string, data: BookData[]): BookData[] {
     return results;
 }
 
-export { searchAndRerender };
+export { searchAndRerender, getRelevant };
