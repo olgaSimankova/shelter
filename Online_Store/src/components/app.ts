@@ -3,7 +3,7 @@ import { BookData } from '../types/types';
 import { productsListRender } from './products/products';
 
 import productsData from '../assets/scripts/products_data.json';
-import { searchAndRerender } from './search/search';
+import { search } from './search/search';
 import { showChart, hideChart, chartRender, chart, addToChart, updateCardBtn, removeFromChart } from './chart/chart';
 import { applyAllFilters, resetAllFilters } from './filters/filters';
 import { sortBy } from './sorting/sorting';
@@ -20,22 +20,33 @@ function appStart() {
     footer.innerHTML = footerRender();
 
     //Implement search
-    const searchField = document.querySelector('#input') as HTMLInputElement;
-    const searchIcon = document.getElementById('search') as HTMLElement;
+    const searchField = document.getElementById('searchInput') as HTMLInputElement;
+    const searchIcon = document.querySelector('.searchIcon') as HTMLElement;
     const searchReset = document.querySelector('.clear') as HTMLElement;
 
-    searchIcon.onclick = () => searchAndRerender(searchField.value, productsData, main);
+    searchIcon.onclick = () => {
+        const searchResults = search(searchField.value, productsData);
+        main.innerHTML = '';
+        main.appendChild(productsListRender(searchResults));
+        console.log(searchField.value);
+    };
 
     //This is needed to make the search field work with 'enter' click
     searchField.addEventListener('keyup', function (event: KeyboardEvent) {
         event.preventDefault();
 
-        if (event.keyCode === 13) searchAndRerender(searchField.value, productsData, main);
+        if (event.keyCode === 13) {
+            const searchResults = applyAllFilters(searchField.value, productsData);
+            main.innerHTML = '';
+            main.appendChild(productsListRender(searchResults));
+            // console.log(searchField.value);
+        }
     });
 
     searchReset.onclick = () => {
-        searchAndRerender('', productsData, main);
-        (document.getElementById('input') as HTMLInputElement).value = '';
+        main.innerHTML = '';
+        main.appendChild(productsListRender(applyAllFilters('', productsData)));
+        searchField.value = '';
     };
 
     // Implement Chart
@@ -81,7 +92,7 @@ function appStart() {
     (document.querySelectorAll('.checkbox__filter') as NodeListOf<HTMLInputElement>).forEach((item) => {
         item.addEventListener('change', function () {
             const productsOnPage: BookData[] = [...productsData];
-            const filteredProducts = applyAllFilters(productsOnPage);
+            const filteredProducts = applyAllFilters(searchField.value || '', productsOnPage);
             main.innerHTML = '';
             if (filteredProducts.length === 0) {
                 const noMatches = document.createElement('div');
@@ -98,7 +109,7 @@ function appStart() {
         const productsOnPage: BookData[] = [...productsData];
         if ((event.target as Element).classList.contains('reset_filters')) {
             resetAllFilters();
-            const filteredProducts = applyAllFilters(productsOnPage);
+            const filteredProducts = applyAllFilters(searchField.value || '', productsOnPage);
             main.innerHTML = '';
             main.appendChild(productsListRender(filteredProducts));
         }
@@ -106,20 +117,20 @@ function appStart() {
 
     (document.getElementById('sorting__select') as HTMLSelectElement).addEventListener('change', function () {
         const option = this.value;
-        const filteredProducts = applyAllFilters(productsData);
+        const filteredProducts = applyAllFilters(searchField.value || '', productsData);
         sortBy(filteredProducts, option);
         main.innerHTML = '';
         main.appendChild(productsListRender(filteredProducts));
     });
 
     (document.getElementById('slider__price') as noUiSlider.target).noUiSlider?.on('change', function () {
-        const filteredProducts = applyAllFilters(productsData);
+        const filteredProducts = applyAllFilters(searchField.value || '', productsData);
         main.innerHTML = '';
         main.appendChild(productsListRender(filteredProducts));
     });
 
     (document.getElementById('slider__pages') as noUiSlider.target).noUiSlider?.on('change', function () {
-        const filteredProducts = applyAllFilters(productsData);
+        const filteredProducts = applyAllFilters(searchField.value || '', productsData);
         main.innerHTML = '';
         main.appendChild(productsListRender(filteredProducts));
     });
@@ -130,7 +141,7 @@ function appStart() {
 
     window.onload = function () {
         getLocalStorage();
-        const filteredProducts = applyAllFilters(productsData);
+        const filteredProducts = applyAllFilters(searchField.value || '', productsData);
         main.innerHTML = '';
         main.appendChild(productsListRender(filteredProducts));
     };
@@ -147,7 +158,7 @@ function appStart() {
             chart as BookData[];
             resetAllFilters();
             (document.getElementById('sorting__select') as HTMLSelectElement).value = '';
-            const filteredProducts = applyAllFilters(productsOnPage);
+            const filteredProducts = applyAllFilters(searchField.value || '', productsOnPage);
             main.innerHTML = '';
             main.appendChild(productsListRender(filteredProducts));
         }

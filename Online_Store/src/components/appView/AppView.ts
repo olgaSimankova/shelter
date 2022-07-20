@@ -15,10 +15,10 @@ function headerRender() {
     return `<img src="${headerImg}" alt="BookStore">
     <h1 class="header_title">Book store</h1>
     <div class="search_box">
-        <div class="icon">
-            <i id="search" class="fas fa-search"></i>
+        <div class="searchIcon">
+            <i id="icon" class="fas fa-search"></i>
         </div>
-        <div class="input"><input id="input" type="text" placeholder="search" autofocus autocomplete="off"></div>
+        <div class="input"><input id="searchInput" type="text" placeholder="search" autofocus autocomplete="off"></div>
         <span class="clear"></span>
     </div>
     <div class="chart"><i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="goods_in_chart empty"></span></div>`;

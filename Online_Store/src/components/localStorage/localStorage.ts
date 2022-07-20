@@ -1,5 +1,5 @@
 import { getChecked, setChecked } from '../filters/filters';
-import { addToChart, chart, updateCardBtn } from '../chart/chart';
+import { chart } from '../chart/chart';
 import * as noUiSlider from 'nouislider';
 import { BookData } from '../../types/types';
 import { SLIDERPAGEMAX, SLIDERPAGEMIN, SLIDERPRICEMAX, SLIDERPRICEMIN } from '../constants/constants';
@@ -72,11 +72,11 @@ function getLocalStorage() {
     }
     if (localStorage.getItem('chart')) {
         const storedChartArr = Array.from(JSON.parse(localStorage.getItem('chart') as string)) as BookData[];
-        const btnArr = Array.from(
-            document.querySelectorAll('.add-to-chart') as NodeListOf<HTMLButtonElement>
-        ) as HTMLButtonElement[];
 
         setTimeout(() => {
+            const btnArr = Array.from(
+                document.querySelectorAll('.add-to-chart') as NodeListOf<HTMLButtonElement>
+            ) as HTMLButtonElement[];
             for (let i = 0; i < btnArr.length; i++) {
                 for (let j = 0; j < storedChartArr.length; j++) {
                     if (btnArr[i].id === storedChartArr[j].id) {
