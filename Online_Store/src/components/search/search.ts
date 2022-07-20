@@ -1,4 +1,6 @@
 import { BookData } from '../../types/types';
+import { applyAllFilters } from '../filters/filters';
+import { productsListRender } from '../products/products';
 import './search.css';
 
 function search(keyword: string, data: BookData[]): BookData[] {
@@ -22,4 +24,13 @@ function search(keyword: string, data: BookData[]): BookData[] {
     }
 }
 
-export { search };
+function resetSearch(data: BookData[]): void {
+    const main = document.querySelector('.books__container') as HTMLElement;
+    const searchField = document.getElementById('searchInput') as HTMLInputElement;
+
+    main.innerHTML = '';
+    main.appendChild(productsListRender(applyAllFilters('', data)));
+    searchField.value = '';
+}
+
+export { search, resetSearch };

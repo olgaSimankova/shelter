@@ -14,39 +14,47 @@
 display: flex;
 flex-direction: column;
 gap: 5px;
+
 font: small-caps bold 15px sans-serif;
 }
 
 select {
-    appearance: none;
-    background-color: transparent;
-  border: none;
+  appearance: none;
+  position: relative;
+
+  width: 100%;
   padding: 0 1em 0 0;
   margin: 0;
-  width: 100%;
+  background-color: transparent;
+  border: none;
+
   font-family: inherit;
   font-size: inherit;
-  cursor: inherit;
   line-height: inherit;
+
+  cursor: inherit;
   outline: none;
-  position: relative;
 }
 
 .select {
-    width: 100%;
-    min-width: 15ch;
-    max-width: 30ch;
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+
+  min-width: 15ch;
+  max-width: 30ch;
+  width: 100%;
+  padding: 0.25em 0.5em;
+
     border: 1px solid var(--select-border);
     border-radius: 0.25em;
-    padding: 0.25em 0.5em;
+
     font: small-caps bold 0.9rem sans-serif;
-    cursor: pointer;
     line-height: 1.1;
+
     background-color: #fff;
     background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-    display: grid;
-    grid-template-areas: "select";
-    align-items: center;
+    cursor: pointer;
   }
 
 select:focus + .focus {

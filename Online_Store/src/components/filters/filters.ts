@@ -148,7 +148,6 @@ function resetAllFilters(): void {
     sliderPage.noUiSlider?.set([SLIDERPAGEMIN, SLIDERPAGEMAX]);
 }
 
-// const searchField = document.querySelector('#input') as HTMLInputElement;
 // const main = document.querySelector('.books__container') as HTMLElement;
 
 function applyAllFilters(searchKeyword: string, products: BookData[]) {

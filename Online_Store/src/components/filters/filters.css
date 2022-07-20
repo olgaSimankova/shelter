@@ -9,8 +9,8 @@ ul {
 }
 
 .filter_type {
-    font: small-caps bold 15px sans-serif;
     border: none;
+    font: small-caps bold 15px sans-serif;
 }
 
 .checkbox__label {
@@ -55,8 +55,8 @@ ul {
 }
 
 .noUi-tooltip {
-    border: none;
     top: 20px;
-    font: small-caps bold 10px sans-serif;
+    border: none;
     background: #fff;
+    font: small-caps bold 10px sans-serif;
 }

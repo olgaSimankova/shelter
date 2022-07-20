@@ -1,33 +1,42 @@
 .search_box {
     position: relative;
+
     width: 360px;
     height: 30px;
     border-radius: 5px;
+    margin-right: 20px;
+
     background: #fff;
     box-shadow: 0 0 0 2px #3c7ea3;
+    
     overflow: hidden;
-    margin-right: 20px;
   }
 
   .search_box .input {
     position: relative;
-    width: 300px;
-    height: 30px;
     left:60px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 300px;
+    height: 30px;
+
     overflow-x: hidden;
   }
   
   .search_box .input input {
     width: 98%;
     height: 100%;
-    font-size: 1.1rem;
-    border-radius: 25px;
-    outline: none;
-    border:none;
     padding-left: 2px;
+
+    border:none;
+    border-radius: 25px;
+
+    font-size: 1.1rem;
+    
+    outline: none;
     overflow-x: hidden;
   }
   
@@ -38,19 +47,22 @@
   
 .search_box .searchIcon {
     position: absolute;
-    background: #fff;
-    color: black;
-    cursor: pointer;
     top: 0;
     left: 0;
-    transition: 1s;
-    width: 30px;
-    height: 30px;
-    border-radius: 50px;
+    z-index: 10;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50px;
+    background: #fff;
+    color: black;
+    
+    cursor: pointer;
+    transition: 1s;
 }
 .search_box .fas {
     position: absolute;
@@ -64,33 +76,41 @@
   
   .clear{
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 30px;
-      height: 30px;
       right: 15px;
       top: 15px;
-      background: #fff;
-      cursor: pointer;
+      
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 30px;
+      height: 30px;
+      
+      background: #fff;
+      
+      cursor: pointer;
+      transform: translateY(-50%);
   }
   
   .clear::before{
       position: relative;
       content: '';
+
       width: 1.5px;
       height: 25px;
+
       background: #999;
+
       transform: rotate(45deg);
   }
   
   .clear::after{
       position: relative;
       content: '';
+
       width: 1.5px;
       height: 25px;
+
       background: #999;
+      
       transform: rotate(-45deg);
   }

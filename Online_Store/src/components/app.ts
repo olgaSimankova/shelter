@@ -3,7 +3,7 @@ import { BookData } from '../types/types';
 import { productsListRender } from './products/products';
 
 import productsData from '../assets/scripts/products_data.json';
-import { search } from './search/search';
+import { resetSearch, search } from './search/search';
 import { showChart, hideChart, chartRender, chart, addToChart, updateCardBtn, removeFromChart } from './chart/chart';
 import { applyAllFilters, resetAllFilters } from './filters/filters';
 import { sortBy } from './sorting/sorting';
@@ -44,9 +44,7 @@ function appStart() {
     });
 
     searchReset.onclick = () => {
-        main.innerHTML = '';
-        main.appendChild(productsListRender(applyAllFilters('', productsData)));
-        searchField.value = '';
+        resetSearch(productsData);
     };
 
     // Implement Chart

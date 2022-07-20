@@ -1,17 +1,20 @@
 .book__item {
-    height: 300px;
-    width: 170px;
-    padding: 0 10px 10px;
-    border: #8d8d8d solid 1px ;
-    border-radius: 4px;
-    overflow: hidden;
-    background-color: #fafafaf0;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     gap: 15px;
+
+    height: 300px;
+    width: 170px;
+    padding: 0 10px 10px;
+    border: #8d8d8d solid 1px ;
+    border-radius: 4px;
+
+    background-color: #fafafaf0;
+
     cursor: pointer;
+    overflow: hidden;
 }
 
 .book__cover {
@@ -21,9 +24,10 @@
 .book__info {
     display: flex;
     flex-direction: column;
+    gap: 3px;
+
     height: 43%;
     width: 100%;
-    gap: 3px;
 }
 
 .book__info-price {
@@ -42,17 +46,21 @@
 }
 
 .btn {
-    cursor: pointer;
-    width: 90px;
-    height: 30px;
-    border-radius: 3px;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 5px #3c7ea3;
+
+    width: 90px;
+    height: 30px;
     border: 1px solid #3c7ea3;
+    border-radius: 3px;
+    
     background-color: rgb(0, 159, 201);
+    box-shadow: 0 0 5px #3c7ea3;
+
     font: small-caps bold 12px/1 sans-serif;
     color: #fff;
+    
+    cursor: pointer;
 }
 
 .btn:active{
