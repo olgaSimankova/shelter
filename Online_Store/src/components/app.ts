@@ -157,7 +157,7 @@ function appStart() {
                     removeFromChart(item.id);
                 });
             }
-            chart as BookData[];
+            chart.splice(0, chart.length);
             resetAllFilters();
             (document.getElementById('sorting__select') as HTMLSelectElement).value = '';
             const filteredProducts = applyAllFilters(searchField.value || '', productsOnPage);
