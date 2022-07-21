@@ -65,8 +65,12 @@ function appStart() {
             const btn = (event.target as HTMLElement).closest('.btn') as HTMLElement;
             const cardInfo = productsData.find((object: BookData) => object.id === card.dataset.id) as BookData;
 
-            addToChart(cardInfo);
-            updateCardBtn(btn);
+            if (chart.length < 20) {
+                addToChart(cardInfo);
+                updateCardBtn(btn);
+            } else {
+                alert('Сорян, согласно ТЗ данного задания, вы не можете добавить в корзину более 20 товаров.');
+            }
         }
     });
 

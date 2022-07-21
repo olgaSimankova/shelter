@@ -1,6 +1,5 @@
 import { BookData } from '../../types/types';
 import { sortBy } from '../sorting/sorting';
-// import productsData from '../../assets/scripts/products_data.json';
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import './filters.css';
@@ -12,10 +11,10 @@ function getChecked(querySelector: string) {
     const checkedItems = <HTMLInputElement[]>(
         Array.from(document.querySelectorAll(`${querySelector}`)).filter((item) => (item as HTMLInputElement).checked)
     );
-    return <string[]>checkedItems.map((item) => (item as HTMLInputElement).value);
+    return checkedItems.map((item) => (item as HTMLInputElement).value) as string[];
 }
 
-function setChecked(querySelector: string, filtersChecked: string[]) {
+function setChecked(querySelector: string, filtersChecked: string[]): void {
     (document.querySelectorAll(`${querySelector}`) as NodeListOf<HTMLInputElement>).forEach((item) => {
         if (filtersChecked.includes(item.value)) {
             item.checked = true;
@@ -77,16 +76,17 @@ function filterType(products: BookData[]) {
 // noUiSlider
 
 const sliderPrice = document.getElementById('slider__price') as HTMLElement;
-
-noUiSlider.create(sliderPrice, {
-    start: [1, 39],
-    connect: true,
-    tooltips: true,
-    range: {
-        min: 1,
-        max: 39,
-    },
-});
+if (sliderPrice && noUiSlider) {
+    noUiSlider.create(sliderPrice, {
+        start: [1, 39],
+        connect: true,
+        tooltips: true,
+        range: {
+            min: 1,
+            max: 39,
+        },
+    });
+}
 
 function sliderPriceFilter(data: BookData[]) {
     const values = (sliderPrice as noUiSlider.target).noUiSlider?.get() as string[];
@@ -100,25 +100,26 @@ function sliderPriceFilter(data: BookData[]) {
 }
 
 const sliderPage = document.getElementById('slider__pages') as HTMLElement;
-
-noUiSlider.create(sliderPage, {
-    start: [160, 1395],
-    connect: true,
-    tooltips: true,
-    step: 1,
-    range: {
-        min: 160,
-        max: 1395,
-    },
-    format: {
-        from: function (value) {
-            return parseInt(value);
+if (sliderPage && noUiSlider) {
+    noUiSlider.create(sliderPage, {
+        start: [160, 1395],
+        connect: true,
+        tooltips: true,
+        step: 1,
+        range: {
+            min: 160,
+            max: 1395,
         },
-        to: function (value: number) {
-            return value.toFixed(0);
+        format: {
+            from: function (value) {
+                return parseInt(value);
+            },
+            to: function (value: number) {
+                return value.toFixed(0);
+            },
         },
-    },
-});
+    });
+}
 
 function sliderPageFilter(data: BookData[]) {
     const values = (sliderPage as noUiSlider.target).noUiSlider?.get() as string[];
@@ -162,4 +163,4 @@ function applyAllFilters(searchKeyword: string, products: BookData[]) {
     return dataFiltered;
 }
 
-export { applyAllFilters, resetAllFilters, getChecked, setChecked };
+export { applyAllFilters, resetAllFilters, getChecked, setChecked, contains };

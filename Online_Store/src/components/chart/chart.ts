@@ -76,18 +76,14 @@ function chartRender(chartData: BookData[]) {
 }
 
 function addToChart(item: BookData, chartData: BookData[] = chart) {
-    if (chartData.length < 20) {
-        if (item.inChart) {
-            item.qtyInChart++;
-        } else {
-            chartData.push(item);
-            item.inChart = true;
-            item.qtyInChart = 1;
-            updateChart(chartData);
-            updateChartIco();
-        }
+    if (item.inChart) {
+        item.qtyInChart++;
     } else {
-        alert('Сорян, согласно ТЗ данного задания, вы не можете добавить в корзину более 20 товаров.');
+        chartData.push(item);
+        item.inChart = true;
+        item.qtyInChart = 1;
+        updateChart(chartData);
+        updateChartIco();
     }
 }
 
