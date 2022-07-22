@@ -1,4 +1,4 @@
-import { options, SourcesData, urlOptions } from '../../types/types';
+import { GetRespObject, options, SourcesData, urlOptions } from '../../types/types';
 import { NOTFOUND, UNAUTORIZED } from '../../constants/constants';
 
 class Loader {
@@ -12,7 +12,7 @@ class Loader {
     }
 
     getResponce(
-        { endpoint, options }: { endpoint: string; options?: options },
+        { endpoint, options }: GetRespObject,
         callback: (data: SourcesData) => void = () => {
             console.error('No callback for GET response');
         }

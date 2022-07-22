@@ -15,7 +15,7 @@ class App {
         const target = event.target as HTMLElement;
         const sourceButtons = document.querySelectorAll('.source__item');
         sourceButtons.forEach((btn) => {
-            if (btn.innerHTML[0] == target.innerHTML) {
+            if (btn.innerHTML[0] === target.innerHTML) {
                 (btn as HTMLElement).style.display = 'inline-block';
             } else {
                 (btn as HTMLElement).style.display = 'none';
@@ -29,7 +29,7 @@ class App {
         );
         this.controller.getSources((data) => {
             if (data) {
-                this.view.drawAlphabet(data as SourcesData);
+                this.view.drawAlphabet(data);
             }
         });
 

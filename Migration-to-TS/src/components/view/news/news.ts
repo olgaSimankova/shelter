@@ -1,6 +1,6 @@
 import './news.css';
 import { Article } from '../../../types/types';
-import { NOIMG } from '../../../constants/constants';
+import { DATE_LENGTH, NOIMG } from '../../../constants/constants';
 
 class News {
     draw(data: Article[]) {
@@ -20,7 +20,7 @@ class News {
             (newsClone.querySelector('.news__meta-author') as HTMLElement).textContent =
                 item.author || item.source.name;
             (newsClone.querySelector('.news__meta-date') as HTMLElement).textContent = item.publishedAt
-                .slice(0, 10)
+                .slice(0, DATE_LENGTH)
                 .split('-')
                 .reverse()
                 .join('-');

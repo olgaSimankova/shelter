@@ -1,5 +1,5 @@
 export interface Article {
-    source: Pick <Source, 'id' | 'name'>;
+    source: Pick<Source, 'id' | 'name'>;
     author: string;
     title: string;
     description: string;
@@ -30,7 +30,6 @@ interface LoaderResponceBody {
     locked: boolean;
 }
 
-
 export interface LoaderResponce {
     body: LoaderResponceBody;
     bodyUsed: boolean;
@@ -49,4 +48,9 @@ export interface options {
 
 export interface urlOptions {
     [index: string]: string;
+}
+
+export interface GetRespObject {
+    endpoint: string;
+    options?: options;
 }
