@@ -7,6 +7,6 @@ module.exports = {
   verbose: true,
   testEnvironment: 'jsdom',
   moduleNameMapper: {
-    ".(css|less)$": "<rootDir>/tests/mocks/styleMock.ts"
+    "^.*[.](jpg|JPG|gif|GIF|png|PNG|svg|LESS|css|CSS)$": "<rootDir>/tests/mocks/emptyModule.ts"
   }
 }

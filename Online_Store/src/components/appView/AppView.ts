@@ -1,10 +1,9 @@
-// import { BookData } from '../../types/types';
 import productsData from '../../assets/scripts/products_data.json';
 import './appView.css';
-
 import footerRssImg from '../../assets/icons/logo_rs2.svg';
 import headerImg from '../../assets/icons/book_logo.png';
 import { setChecked } from '../filters/filters';
+import { BookData } from '../../types/types';
 
 const checkboxType = document.querySelector('.checkbox_type_block') as HTMLElement;
 const checkboxCategory = document.querySelector('.checkbox_category_block') as HTMLElement;
@@ -27,9 +26,9 @@ function headerRender() {
 // Наша база данных меняется, категории могут появиться новые, поэтому рендерим их динамически
 
 // -------------------------------------------- DRY принцип? -------------------------------------------------------
-function getCategories() {
+function getCategories(productsData?: BookData[]) {
     const categoriesArr: string[][] = [];
-    productsData.forEach((item) => {
+    productsData?.forEach((item) => {
         categoriesArr.push(item.category as string[]);
     });
     const categories = new Set(categoriesArr.flat());
@@ -49,7 +48,7 @@ function categoriesCheckboxRender() {
     return ul;
 }
 
-checkboxCategory.append(categoriesCheckboxRender());
+checkboxCategory?.append(categoriesCheckboxRender());
 if (localStorage.getItem('categoryFilter')) {
     setChecked('.categ_checkbox__filter', JSON.parse(localStorage.getItem('categoryFilter') as string));
 }
@@ -76,7 +75,7 @@ function publishersCheckboxRender() {
     return ul;
 }
 
-checkboxPublisher.append(publishersCheckboxRender());
+checkboxPublisher?.append(publishersCheckboxRender());
 if (localStorage.getItem('publisherFilter')) {
     setChecked('.publish_checkbox__filter', JSON.parse(localStorage.getItem('publisherFilter') as string));
 }
@@ -94,7 +93,7 @@ function typeCheckboxRender() {
     return ul;
 }
 
-checkboxType.append(typeCheckboxRender());
+checkboxType?.append(typeCheckboxRender());
 // -------------------------------------------- DRY принцип? -------------------------------------------------------
 // ------------------------------------------- не, не слышала ------------------------------------------------------
 
@@ -111,7 +110,9 @@ function sortingSelectRender() {
     </div>`;
 }
 
-sortingContainer.innerHTML = sortingSelectRender();
+if (sortingContainer) {
+    sortingContainer.innerHTML = sortingSelectRender();
+}
 
 function footerRender() {
     return `<a class="footer__github" href="https://github.com/olgaSimankova?tab=repositories">Visit my GitHub</a>
@@ -119,4 +120,4 @@ function footerRender() {
     <a class="footer__rss" href="https://rs.school/js/"><img src="${footerRssImg}" alt="RSS icon"></a>`;
 }
 
-export { footerRender, headerRender };
+export { footerRender, headerRender, getCategories };

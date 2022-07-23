@@ -19,7 +19,6 @@ function search(keyword: string, data: BookData[]): BookData[] {
         if (results.length === 0) {
             alert('No search results');
         }
-        console.log(results);
         return results;
     }
 }

@@ -163,4 +163,4 @@ function applyAllFilters(searchKeyword: string, products: BookData[]) {
     return dataFiltered;
 }
 
-export { applyAllFilters, resetAllFilters, getChecked, setChecked, contains };
+export { applyAllFilters, resetAllFilters, getChecked, setChecked, contains, categoryFilter };

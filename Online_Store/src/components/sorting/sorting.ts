@@ -2,7 +2,6 @@ import { BookData } from '../../types/types';
 import './sorting.css';
 
 export function sortBy(products: BookData[], option = '') {
-    // const productsCopy = [...products];
     switch (option) {
         case 'name_a':
             products.sort((a: BookData, b: BookData) => a.name.localeCompare(b.name));
