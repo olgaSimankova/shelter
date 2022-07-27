@@ -3,7 +3,7 @@ import productsData from '../../assets/scripts/products_data.json';
 import './chart.css';
 import { MAXCHARTLENGTH } from '../constants/constants';
 
-const chart: BookData[] = []; //Массив корзины
+const chart: BookData[] = [];
 
 function showChart() {
     document.querySelector('.chart__wrapper')?.classList.add('open');
@@ -30,8 +30,8 @@ function updateChartIco() {
 }
 
 function updateCardBtn(btn: HTMLElement) {
-    btn.classList.add('btn__in_chart');
-    btn.innerText = 'in chart';
+    btn.classList.toggle('btn__in_chart');
+    btn.innerText = btn.classList.contains('btn__in_chart') ? 'in chart' : 'add to chart';
 }
 
 function chartRender(chartData: BookData[]) {
@@ -82,7 +82,7 @@ function addToChart(event: MouseEvent) {
             const card = (event.target as HTMLElement).closest('.book__item') as HTMLElement;
             const btn = (event.target as HTMLElement).closest('.btn') as HTMLElement;
             const productInfo = productsData.find((object: BookData) => object.id === card.dataset.id) as BookData;
-    
+
             if (productInfo.inChart) {
                 productInfo.qtyInChart++;
             } else {
@@ -94,29 +94,38 @@ function addToChart(event: MouseEvent) {
                 updateCardBtn(btn);
             }
         } else {
-        alert('Сорян, согласно ТЗ данного задания, вы не можете добавить в корзину более 20 товаров.');
+            alert('Сорян, согласно ТЗ данного задания, вы не можете добавить в корзину более 20 товаров.');
+        }
     }
 }
-}
 
-function removeFromChart(id: string) {
-    new Promise<number>((resolve, reject) => {
-        resolve(productsData.findIndex((item: BookData) => item.id === id));
-        reject(new Error('Something awful happened'));
-    })
-        .then((idx) => {
-            productsData[idx].inChart = false;
-            productsData[idx].qtyInChart = 0;
+function removeFromChart(event: MouseEvent) {
+    if ((event.target as HTMLElement).classList.contains('fa-trash')) {
+        const cardToBeRemovedId = ((event.target as HTMLElement).closest('.product_in_chart') as HTMLElement).dataset
+            .id as string;
+
+        document.querySelectorAll<HTMLButtonElement>('.add-to-chart').forEach((btn) => {
+            if ((btn.parentNode as HTMLDivElement).dataset.id === cardToBeRemovedId) updateCardBtn(btn);
+        });
+
+        new Promise<number>((resolve, reject) => {
+            resolve(productsData.findIndex((item: BookData) => item.id === cardToBeRemovedId));
+            reject(new Error('Something awful happened'));
         })
-        .catch((err) => console.log('favorite error: ' + err));
+            .then((idx) => {
+                productsData[idx].inChart = false;
+                productsData[idx].qtyInChart = 0;
+            })
+            .catch((err) => console.log('favorite error: ' + err));
 
-    new Promise<number>((resolve, reject) => {
-        resolve(chart.findIndex((item: BookData) => item.id === id));
-        reject(new Error('Something awful happened'));
-    })
-        .then((idx) => chart.splice(idx, 1))
-        .then(() => updateChart(chart))
-        .then(updateChartIco);
+        new Promise<number>((resolve, reject) => {
+            resolve(chart.findIndex((item: BookData) => item.id === cardToBeRemovedId));
+            reject(new Error('Something awful happened'));
+        })
+            .then((idx) => chart.splice(idx, 1))
+            .then(() => updateChart(chart))
+            .then(updateChartIco);
+    }
 }
 
 export { showChart, hideChart, addToChart, chartRender, chart, updateCardBtn, removeFromChart };

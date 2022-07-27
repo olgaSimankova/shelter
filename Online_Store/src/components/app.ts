@@ -54,20 +54,7 @@ function appStart() {
 
     window.addEventListener('click', (event: MouseEvent) => addToChart(event));
 
-    window.addEventListener('click', function (event: MouseEvent) {
-        if ((event.target as Element).classList.contains('fa-trash')) {
-            const cardToRemoveId = ((event.target as HTMLElement).closest('.product_in_chart') as HTMLElement).dataset
-                .id as string;
-            removeFromChart(cardToRemoveId);
-
-            document.querySelectorAll<HTMLButtonElement>('.add-to-chart').forEach((btn: HTMLButtonElement) => {
-                if ((btn.parentNode as HTMLDivElement).dataset.id === cardToRemoveId) {
-                    btn.classList.remove('btn__in_chart');
-                    btn.innerText = 'add to chart';
-                }
-            });
-        }
-    });
+    window.addEventListener('click', (event: MouseEvent) => removeFromChart(event));
 
     (document.querySelectorAll('.checkbox__filter') as NodeListOf<HTMLInputElement>).forEach((item) => {
         item.addEventListener('change', function () {
@@ -127,22 +114,22 @@ function appStart() {
     };
 
     // reset all settings (clear local storage)
-    window.addEventListener('click', function (event: MouseEvent) {
-        const productsOnPage: BookData[] = [...productsData];
-        if ((event.target as Element).classList.contains('reset_storage')) {
-            if (this.localStorage.getItem('chart')) {
-                (JSON.parse(this.localStorage.getItem('chart') as string) as BookData[]).forEach((item) => {
-                    removeFromChart(item.id);
-                });
-            }
-            chart.splice(0, chart.length);
-            resetAllFilters();
-            (document.getElementById('sorting__select') as HTMLSelectElement).value = '';
-            const filteredProducts = applyAllFilters(searchField.value || '', productsOnPage);
-            main.innerHTML = '';
-            main.appendChild(productsListRender(filteredProducts));
-        }
-    });
+    // window.addEventListener('click', function (event: MouseEvent) {
+    //     const productsOnPage: BookData[] = [...productsData];
+    //     if ((event.target as Element).classList.contains('reset_storage')) {
+    //         if (this.localStorage.getItem('chart')) {
+    //             (JSON.parse(this.localStorage.getItem('chart') as string) as BookData[]).forEach((item) => {
+    //                 removeFromChart(item.id);
+    //             });
+    //         }
+    //         chart.splice(0, chart.length);
+    //         resetAllFilters();
+    //         (document.getElementById('sorting__select') as HTMLSelectElement).value = '';
+    //         const filteredProducts = applyAllFilters(searchField.value || '', productsOnPage);
+    //         main.innerHTML = '';
+    //         main.appendChild(productsListRender(filteredProducts));
+    //     }
+    // });
 }
 
 export { appStart };
