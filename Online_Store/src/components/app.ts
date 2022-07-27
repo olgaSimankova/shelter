@@ -4,7 +4,7 @@ import { productsListRender } from './products/products';
 
 import productsData from '../assets/scripts/products_data.json';
 import { resetSearch, search } from './search/search';
-import { showChart, hideChart, chartRender, chart, addToChart, updateCardBtn, removeFromChart } from './chart/chart';
+import { showChart, hideChart, chartRender, chart, addToChart, removeFromChart } from './chart/chart';
 import { applyAllFilters, resetAllFilters } from './filters/filters';
 import { sortBy } from './sorting/sorting';
 import * as noUiSlider from 'nouislider';
@@ -19,7 +19,6 @@ function appStart() {
     main.appendChild(productsListRender(productsData as BookData[]));
     footer.innerHTML = footerRender();
 
-    //Implement search
     const searchField = document.getElementById('searchInput') as HTMLInputElement;
     const searchIcon = document.querySelector('.searchIcon') as HTMLElement;
     const searchReset = document.querySelector('.clear') as HTMLElement;
@@ -28,18 +27,15 @@ function appStart() {
         const searchResults = search(searchField.value, productsData);
         main.innerHTML = '';
         main.appendChild(productsListRender(searchResults));
-        console.log(searchField.value);
     };
 
-    //This is needed to make the search field work with 'enter' click
-    searchField.addEventListener('keyup', function (event: KeyboardEvent) {
-        event.preventDefault();
+    searchField.addEventListener('keyup', function (KeyboardEvent) {
+        KeyboardEvent.preventDefault();
 
-        if (event.keyCode === 13) {
+        if (KeyboardEvent.key === 'Enter') {
             const searchResults = applyAllFilters(searchField.value, productsData);
             main.innerHTML = '';
             main.appendChild(productsListRender(searchResults));
-            // console.log(searchField.value);
         }
     });
 
@@ -47,7 +43,6 @@ function appStart() {
         resetSearch(productsData);
     };
 
-    // Implement Chart
     const chartIcon = document.querySelector('.chart') as HTMLElement;
     chartIcon.onclick = () => showChart();
 
@@ -57,24 +52,8 @@ function appStart() {
     const closeChart = document.querySelector('.close') as HTMLElement;
     closeChart.onclick = () => hideChart();
 
-    // Adding to chart
+    window.addEventListener('click', (event: MouseEvent) => addToChart(event));
 
-    window.addEventListener('click', function (event: MouseEvent) {
-        if ((event.target as Element).classList.contains('add-to-chart')) {
-            const card = (event.target as HTMLElement).closest('.book__item') as HTMLElement;
-            const btn = (event.target as HTMLElement).closest('.btn') as HTMLElement;
-            const cardInfo = productsData.find((object: BookData) => object.id === card.dataset.id) as BookData;
-
-            if (chart.length < 20) {
-                addToChart(cardInfo);
-                updateCardBtn(btn);
-            } else {
-                alert('Сорян, согласно ТЗ данного задания, вы не можете добавить в корзину более 20 товаров.');
-            }
-        }
-    });
-
-    // Removing from chart
     window.addEventListener('click', function (event: MouseEvent) {
         if ((event.target as Element).classList.contains('fa-trash')) {
             const cardToRemoveId = ((event.target as HTMLElement).closest('.product_in_chart') as HTMLElement).dataset
@@ -90,13 +69,12 @@ function appStart() {
         }
     });
 
-    // implement category checkbox filter (OMG, it wasn't easy)
     (document.querySelectorAll('.checkbox__filter') as NodeListOf<HTMLInputElement>).forEach((item) => {
         item.addEventListener('change', function () {
             const productsOnPage: BookData[] = [...productsData];
             const filteredProducts = applyAllFilters(searchField.value || '', productsOnPage);
             main.innerHTML = '';
-            if (filteredProducts.length === 0) {
+            if (!filteredProducts.length) {
                 const noMatches = document.createElement('div');
                 noMatches.className = 'no_matches';
                 noMatches.innerText = 'Sorry, no matches found';

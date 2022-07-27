@@ -31,18 +31,17 @@ function getCategories(productsData?: BookData[]) {
     productsData?.forEach((item) => {
         categoriesArr.push(item.category as string[]);
     });
-    const categories = new Set(categoriesArr.flat());
-    return categories;
+    return new Set(categoriesArr.flat());
 }
 
 function categoriesCheckboxRender() {
     const categories: Set<string> = getCategories();
     const ul: HTMLElement = document.createElement('ul');
     ul.className = 'category-filter-content';
-    categories.forEach((categ) => {
+    categories.forEach((category) => {
         const li: HTMLElement = document.createElement('li');
-        li.innerHTML = `<input class="categ_checkbox__filter checkbox__filter" value="${categ}" type="checkbox" id="${categ}">
-        <label class="categ_checkbox__label checkbox__label" for="${categ}">${categ}</label>`;
+        li.innerHTML = `<input class="category_checkbox__filter checkbox__filter" value="${category}" type="checkbox" id="${category}">
+        <label class="categ_checkbox__label checkbox__label" for="${category}">${category}</label>`;
         ul.append(li);
     });
     return ul;
@@ -50,7 +49,7 @@ function categoriesCheckboxRender() {
 
 checkboxCategory?.append(categoriesCheckboxRender());
 if (localStorage.getItem('categoryFilter')) {
-    setChecked('.categ_checkbox__filter', JSON.parse(localStorage.getItem('categoryFilter') as string));
+    setChecked('.category_checkbox__filter', JSON.parse(localStorage.getItem('categoryFilter') as string));
 }
 
 function getPublishers() {
@@ -58,8 +57,7 @@ function getPublishers() {
     productsData.forEach((item) => {
         publishersArr.push(item.publisher as string);
     });
-    const publishers = new Set(publishersArr.flat());
-    return publishers;
+    return new Set(publishersArr.flat());
 }
 
 function publishersCheckboxRender() {
@@ -77,7 +75,7 @@ function publishersCheckboxRender() {
 
 checkboxPublisher?.append(publishersCheckboxRender());
 if (localStorage.getItem('publisherFilter')) {
-    setChecked('.publish_checkbox__filter', JSON.parse(localStorage.getItem('publisherFilter') as string));
+    setChecked('.publisher_checkbox__filter', JSON.parse(localStorage.getItem('publisherFilter') as string));
 }
 
 function typeCheckboxRender() {

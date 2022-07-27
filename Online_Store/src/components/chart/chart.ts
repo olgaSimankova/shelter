@@ -1,6 +1,7 @@
 import { BookData } from '../../types/types';
 import productsData from '../../assets/scripts/products_data.json';
 import './chart.css';
+import { MAXCHARTLENGTH } from '../constants/constants';
 
 const chart: BookData[] = []; //Массив корзины
 
@@ -75,16 +76,27 @@ function chartRender(chartData: BookData[]) {
     return fragment;
 }
 
-function addToChart(item: BookData, chartData: BookData[] = chart) {
-    if (item.inChart) {
-        item.qtyInChart++;
-    } else {
-        chartData.push(item);
-        item.inChart = true;
-        item.qtyInChart = 1;
-        updateChart(chartData);
-        updateChartIco();
+function addToChart(event: MouseEvent) {
+    if ((event.target as Element).classList.contains('add-to-chart')) {
+        if (chart.length < MAXCHARTLENGTH) {
+            const card = (event.target as HTMLElement).closest('.book__item') as HTMLElement;
+            const btn = (event.target as HTMLElement).closest('.btn') as HTMLElement;
+            const productInfo = productsData.find((object: BookData) => object.id === card.dataset.id) as BookData;
+    
+            if (productInfo.inChart) {
+                productInfo.qtyInChart++;
+            } else {
+                chart.push(productInfo);
+                productInfo.inChart = true;
+                productInfo.qtyInChart = 1;
+                updateChart(chart);
+                updateChartIco();
+                updateCardBtn(btn);
+            }
+        } else {
+        alert('Сорян, согласно ТЗ данного задания, вы не можете добавить в корзину более 20 товаров.');
     }
+}
 }
 
 function removeFromChart(id: string) {
@@ -105,8 +117,6 @@ function removeFromChart(id: string) {
         .then((idx) => chart.splice(idx, 1))
         .then(() => updateChart(chart))
         .then(updateChartIco);
-
-    //Полагаю, код работал бы и без промисов, но полезно было с ними разобраться
 }
 
 export { showChart, hideChart, addToChart, chartRender, chart, updateCardBtn, removeFromChart };
