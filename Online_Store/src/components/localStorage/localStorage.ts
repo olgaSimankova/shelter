@@ -14,7 +14,6 @@ import productsData from '../../assets/scripts/products_data.json';
 
 function setLocalStorage() {
     const checkboxesChecked = getAllChecked();
-    console.log(checkboxesChecked);
     if (checkboxesChecked.length) {
         localStorage.setItem('checkboxFilters', JSON.stringify(checkboxesChecked));
     }
@@ -62,15 +61,16 @@ function getLocalStorage() {
     }
     if (localStorage.getItem('chart')) {
         const storedChartArr = Array.from(JSON.parse(localStorage.getItem('chart') as string)) as BookData[];
+        // console.log(storedChartArr);
 
         setTimeout(() => {
             const btnArr = Array.from(
                 document.querySelectorAll('.add-to-chart') as NodeListOf<HTMLButtonElement>
             ) as HTMLButtonElement[];
-            for (let i = 0; i < btnArr.length; i++) {
-                for (let j = 0; j < storedChartArr.length; j++) {
-                    if (btnArr[i].id === storedChartArr[j].id) {
-                        btnArr[i].click();
+            for (let i = 0; i < storedChartArr.length; i++) {
+                for (let j = 0; j < btnArr.length; j++) {
+                    if (btnArr[j].id === storedChartArr[i].id) {
+                        btnArr[j].click();
                     }
                 }
             }
