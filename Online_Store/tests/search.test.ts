@@ -117,20 +117,20 @@ const expectedResult = [
 
 describe('search function normal search', () => {
     test('should return relevant objects', () => {
-        expect(search('Moby', data)).toStrictEqual(expectedResult);
+        expect(search(data, 'moby')).toStrictEqual(expectedResult);
     });
 });
 
 describe('search function: search with "     "', () => {
     test('should return all data with empty search', () => {
-        expect(search('     ', data)).toStrictEqual(data);
+        expect(search(data, '     ')).toStrictEqual(data);
     });
 });
 
 describe('search function: alert with "no search results"', () => {
     test('should call alert with "no search results"', () => {
         window.alert = jest.fn().mockReturnValue('No search results');
-        search('qwerty', data);
+        search(data, 'qwerty');
         expect(window.alert).toBeCalledWith('No search results');
     });
 });

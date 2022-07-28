@@ -129,20 +129,18 @@ function removeFromChart(event: MouseEvent) {
 }
 
 function emptyChart() {
-    if (localStorage.getItem('chart')) {
-        (JSON.parse(localStorage.getItem('chart') as string) as BookData[]).forEach((item) => {
-            (productsData.find((element) => element.id === item.id) as BookData).inChart = false;
-            (productsData.find((element) => element.id === item.id) as BookData).qtyInChart = 0;
-        });
+    chart.forEach((item) => {
+        (productsData.find((element) => element.id === item.id) as BookData).inChart = false;
+        (productsData.find((element) => element.id === item.id) as BookData).qtyInChart = 0;
+    });
 
-        document.querySelectorAll<HTMLButtonElement>('.add-to-chart').forEach((btn) => {
-            if (btn.classList.contains('btn__in_chart')) updateCardBtn(btn);
-        });
+    document.querySelectorAll<HTMLButtonElement>('.add-to-chart').forEach((btn) => {
+        if (btn.classList.contains('btn__in_chart')) updateCardBtn(btn);
+    });
 
-        chart.splice(0, chart.length);
-        updateChart(chart);
-        updateChartIcon();
-    }
+    chart.splice(0, chart.length);
+    updateChart(chart);
+    updateChartIcon();
 }
 
 export { showChart, hideChart, addToChart, chartRender, chart, updateCardBtn, removeFromChart, emptyChart };

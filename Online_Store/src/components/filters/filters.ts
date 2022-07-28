@@ -4,9 +4,16 @@ import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import './filters.css';
 import { search } from '../search/search';
-import { SLIDERPAGEMAX, SLIDERPAGEMIN, SLIDERPRICEMAX, SLIDERPRICEMIN } from '../constants/constants';
+import productsData from '../../assets/scripts/products_data.json';
+import {
+    MAINPRODUCTSCONTAINER,
+    SLIDERPAGEMAX,
+    SLIDERPAGEMIN,
+    SLIDERPRICEMAX,
+    SLIDERPRICEMIN,
+} from '../constants/constants';
+import { productsListRender } from '../products/products';
 
-// Собираем все выбранные чекбоксы в массив
 function getChecked(querySelector: string) {
     const checkedItems = <HTMLInputElement[]>(
         Array.from(document.querySelectorAll(`${querySelector}`)).filter((item) => (item as HTMLInputElement).checked)
@@ -16,7 +23,7 @@ function getChecked(querySelector: string) {
 
 function setChecked(querySelector: string, filtersChecked: string[]): void {
     (document.querySelectorAll(`${querySelector}`) as NodeListOf<HTMLInputElement>).forEach((item) => {
-            item.checked = filtersChecked.includes(item.value);
+        item.checked = filtersChecked.includes(item.value);
     });
 }
 
@@ -35,7 +42,6 @@ function categoryFilter(products: BookData[]) {
     return filteredData;
 }
 
-// Это нужно для того, чтобы сравнить, содержится ли хоть одна из категорий данного продукта в массиве выбранных чекбоксов
 function contains(where: string[], what: string[]): boolean {
     for (let i = 0; i < what.length; i++) {
         if (where.indexOf(what[i]) !== -1) return true;
@@ -70,8 +76,6 @@ function filterType(products: BookData[]) {
     });
     return filteredData;
 }
-
-// noUiSlider
 
 const sliderPrice = document.getElementById('slider__price') as HTMLElement;
 if (sliderPrice && noUiSlider) {
@@ -130,35 +134,51 @@ function sliderPageFilter(data: BookData[]) {
     return filteredData;
 }
 
-// Кнопка Reset filters (show all)
-
-function resetAllFilters(): void {
-    localStorage.clear();
-    const uncheck: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName('input');
-    for (let i = 0; i < uncheck.length; i++) {
-        if (uncheck[i].type === 'checkbox') {
-            uncheck[i].checked = false;
+function resetAllFilters(e: MouseEvent): void {
+    if ((e.target as Element).classList.contains('reset_filters')) {
+        localStorage.clear();
+        const uncheck: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName('input');
+        for (let i = 0; i < uncheck.length; i++) {
+            if (uncheck[i].type === 'checkbox') {
+                uncheck[i].checked = false;
+            }
         }
-    }
-    const sliderPrice = document.querySelector('#slider__price') as noUiSlider.target;
-    sliderPrice.noUiSlider?.set([SLIDERPRICEMIN, SLIDERPRICEMAX]);
+        const sliderPrice = document.querySelector('#slider__price') as noUiSlider.target;
+        sliderPrice.noUiSlider?.set([SLIDERPRICEMIN, SLIDERPRICEMAX]);
 
-    const sliderPage = document.querySelector('#slider__pages') as noUiSlider.target;
-    sliderPage.noUiSlider?.set([SLIDERPAGEMIN, SLIDERPAGEMAX]);
+        const sliderPage = document.querySelector('#slider__pages') as noUiSlider.target;
+        sliderPage.noUiSlider?.set([SLIDERPAGEMIN, SLIDERPAGEMAX]);
+
+        const filteredProducts = applyAllFilters(productsData);
+        MAINPRODUCTSCONTAINER.innerHTML = '';
+        MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
+    }
 }
 
-// const main = document.querySelector('.books__container') as HTMLElement;
-
-function applyAllFilters(searchKeyword: string, products: BookData[]) {
-    let dataFiltered: BookData[] = search(searchKeyword, products);
-    dataFiltered = filterType(dataFiltered);
+function applyAllFilters(products: BookData[]) {
+    let dataFiltered: BookData[] = filterType(products);
     dataFiltered = categoryFilter(dataFiltered);
     dataFiltered = filterPublisher(dataFiltered);
     dataFiltered = sliderPriceFilter(dataFiltered);
     dataFiltered = sliderPageFilter(dataFiltered);
+    dataFiltered = search(dataFiltered);
     const sortingOption = (document.getElementById('sorting__select') as HTMLSelectElement).value;
     sortBy(dataFiltered, sortingOption);
     return dataFiltered;
 }
 
-export { applyAllFilters, resetAllFilters, getChecked, setChecked, contains, categoryFilter };
+function applyFilterOnChange() {
+    const productsOnPage: BookData[] = [...productsData];
+    const filteredProducts = applyAllFilters(productsOnPage);
+    MAINPRODUCTSCONTAINER.innerHTML = '';
+    if (!filteredProducts.length) {
+        const noMatches = document.createElement('div');
+        noMatches.className = 'no_matches';
+        noMatches.innerText = 'Sorry, no matches found';
+        MAINPRODUCTSCONTAINER.appendChild(noMatches);
+    } else {
+        MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
+    }
+}
+
+export { applyAllFilters, resetAllFilters, getChecked, setChecked, contains, categoryFilter, applyFilterOnChange };

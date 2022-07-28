@@ -81,7 +81,7 @@ function getLocalStorage() {
             for (let i = 0; i < btnArr.length; i++) {
                 for (let j = 0; j < storedChartArr.length; j++) {
                     if (btnArr[i].id === storedChartArr[j].id) {
-                        btnArr[i].click(); // Хотела эмулировать нажатие на кнопку "добавить в корзину", но увы.. Так не работает
+                        btnArr[i].click();
                     }
                 }
             }
@@ -94,7 +94,7 @@ const main = document.querySelector('.books__container') as HTMLElement;
 function clearLocalStorage(event: MouseEvent) {
     if ((event.target as Element).classList.contains('reset_storage')) {
         emptyChart();
-        resetAllFilters();
+        resetAllFilters(event);
         (document.getElementById('sorting__select') as HTMLSelectElement).value = '';
         (document.getElementById('searchInput') as HTMLInputElement).value = '';
         main.innerHTML = '';
