@@ -1,6 +1,6 @@
 import { getCategories } from '../src/components/appView/AppView';
 
-const progucts = [
+const products = [
     {
         id: '3',
         name: 'The Three Musketeers',
@@ -59,7 +59,7 @@ const progucts = [
 
 describe('get categories test', () => {
     test('should return aray of existing categories', () => {
-        expect(getCategories(progucts)).toEqual(
+        expect(getCategories(products)).toEqual(
             new Set<string>(['Novel', 'Adventures', 'Inspiration', 'Friendship'])
         );
     });

@@ -16,12 +16,12 @@ function hideChart() {
 function updateChart(chartData: BookData[]) {
     (document.querySelector('.chart__container') as HTMLElement).innerHTML = '';
     (document.querySelector('.chart__container') as HTMLElement).append(chartRender(chartData));
-    updateChartIco();
+    updateChartIcon();
 }
 
-function updateChartIco() {
+function updateChartIcon() {
     const chartCounter = document.querySelector('.goods_in_chart') as HTMLElement;
-    if (chart.length === 0 && !chartCounter.classList.contains('empty')) {
+    if (!chart.length && !chartCounter.classList.contains('empty')) {
         chartCounter.classList.add('empty');
     } else {
         chartCounter.innerText = `${chart.length}`;
@@ -37,7 +37,7 @@ function updateCardBtn(btn: HTMLElement) {
 function chartRender(chartData: BookData[]) {
     const fragment: DocumentFragment = document.createDocumentFragment();
     let total = 0;
-    if (chartData.length !== 0) {
+    if (chartData.length) {
         for (let i = 0; i < chartData.length; i++) {
             const productInChart: HTMLDivElement = document.createElement('div');
             productInChart.className = 'product_in_chart';
@@ -90,7 +90,7 @@ function addToChart(event: MouseEvent) {
                 productInfo.inChart = true;
                 productInfo.qtyInChart = 1;
                 updateChart(chart);
-                updateChartIco();
+                updateChartIcon();
                 updateCardBtn(btn);
             }
         } else {
@@ -124,8 +124,25 @@ function removeFromChart(event: MouseEvent) {
         })
             .then((idx) => chart.splice(idx, 1))
             .then(() => updateChart(chart))
-            .then(updateChartIco);
+            .then(updateChartIcon);
     }
 }
 
-export { showChart, hideChart, addToChart, chartRender, chart, updateCardBtn, removeFromChart };
+function emptyChart() {
+    if (localStorage.getItem('chart')) {
+        (JSON.parse(localStorage.getItem('chart') as string) as BookData[]).forEach((item) => {
+            (productsData.find((element) => element.id === item.id) as BookData).inChart = false;
+            (productsData.find((element) => element.id === item.id) as BookData).qtyInChart = 0;
+        });
+
+        document.querySelectorAll<HTMLButtonElement>('.add-to-chart').forEach((btn) => {
+            if (btn.classList.contains('btn__in_chart')) updateCardBtn(btn);
+        });
+
+        chart.splice(0, chart.length);
+        updateChart(chart);
+        updateChartIcon();
+    }
+}
+
+export { showChart, hideChart, addToChart, chartRender, chart, updateCardBtn, removeFromChart, emptyChart };

@@ -1,22 +1,24 @@
-import { getChecked, setChecked } from '../filters/filters';
-import { chart } from '../chart/chart';
+import { getChecked, resetAllFilters, setChecked } from '../filters/filters';
+import { chart, emptyChart } from '../chart/chart';
 import * as noUiSlider from 'nouislider';
 import { BookData } from '../../types/types';
 import { SLIDERPAGEMAX, SLIDERPAGEMIN, SLIDERPRICEMAX, SLIDERPRICEMIN } from '../constants/constants';
+import { productsListRender } from '../products/products';
+import productsData from '../../assets/scripts/products_data.json';
 
 function setLocalStorage() {
     const categoriesChecked: string[] = getChecked('.categ_checkbox__filter');
-    if (categoriesChecked.length !== 0) {
+    if (categoriesChecked.length) {
         localStorage.setItem('categoryFilter', JSON.stringify(categoriesChecked));
     }
 
     const publishersChecked: string[] = getChecked('.publish_checkbox__filter');
-    if (publishersChecked.length !== 0) {
+    if (publishersChecked.length) {
         localStorage.setItem('publisherFilter', JSON.stringify(publishersChecked));
     }
 
     const typesChecked: string[] = getChecked('.type_checkbox__filter');
-    if (typesChecked.length !== 0) {
+    if (typesChecked.length) {
         localStorage.setItem('typeFilter', JSON.stringify(typesChecked));
     }
 
@@ -33,17 +35,16 @@ function setLocalStorage() {
     }
 
     const sortingOption = (document.getElementById('sorting__select') as HTMLSelectElement).value;
-    if (sortingOption !== '') {
+    if (sortingOption) {
         localStorage.setItem('sortingOption', sortingOption);
     }
 
-    if (chart.length !== 0) {
+    if (chart.length) {
         localStorage.setItem('chart', JSON.stringify(chart));
     }
 }
 
 function getLocalStorage() {
-    // console.log(localStorage);
     if (localStorage.getItem('categoryFilter')) {
         setChecked('.categ_checkbox__filter', JSON.parse(localStorage.getItem('categoryFilter') as string));
     }
@@ -88,4 +89,17 @@ function getLocalStorage() {
     }
 }
 
-export { setLocalStorage, getLocalStorage };
+const main = document.querySelector('.books__container') as HTMLElement;
+
+function clearLocalStorage(event: MouseEvent) {
+    if ((event.target as Element).classList.contains('reset_storage')) {
+        emptyChart();
+        resetAllFilters();
+        (document.getElementById('sorting__select') as HTMLSelectElement).value = '';
+        (document.getElementById('searchInput') as HTMLInputElement).value = '';
+        main.innerHTML = '';
+        main.appendChild(productsListRender(productsData));
+    }
+}
+
+export { setLocalStorage, getLocalStorage, clearLocalStorage };

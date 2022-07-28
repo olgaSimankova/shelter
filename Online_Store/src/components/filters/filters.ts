@@ -16,15 +16,13 @@ function getChecked(querySelector: string) {
 
 function setChecked(querySelector: string, filtersChecked: string[]): void {
     (document.querySelectorAll(`${querySelector}`) as NodeListOf<HTMLInputElement>).forEach((item) => {
-        if (filtersChecked.includes(item.value)) {
-            item.checked = true;
-        }
+            item.checked = filtersChecked.includes(item.value);
     });
 }
 
 function categoryFilter(products: BookData[]) {
     const categoriesChecked: string[] = getChecked('.categ_checkbox__filter');
-    if (categoriesChecked.length === 0) {
+    if (!categoriesChecked.length) {
         return products;
     }
     const filteredData: BookData[] = [];
@@ -47,7 +45,7 @@ function contains(where: string[], what: string[]): boolean {
 
 function filterPublisher(products: BookData[]) {
     const publishersChecked: string[] = getChecked('.publish_checkbox__filter');
-    if (publishersChecked.length === 0) {
+    if (!publishersChecked.length) {
         return products;
     }
     const filteredData: BookData[] = [];
@@ -61,7 +59,7 @@ function filterPublisher(products: BookData[]) {
 
 function filterType(products: BookData[]) {
     const typesChecked: string[] = getChecked('.type_checkbox__filter');
-    if (typesChecked.length === 0) {
+    if (!typesChecked.length) {
         return products;
     }
     const filteredData: BookData[] = [];

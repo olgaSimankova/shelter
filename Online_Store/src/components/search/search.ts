@@ -1,11 +1,24 @@
 import { BookData } from '../../types/types';
 import { applyAllFilters } from '../filters/filters';
 import { productsListRender } from '../products/products';
+import productsData from '../../assets/scripts/products_data.json';
 import './search.css';
+
+const main = document.querySelector('.books__container') as HTMLElement;
+
+function searchResultsRender(mouseEvent?: MouseEvent, KeyboardEvent?: KeyboardEvent) {
+    const searchField = document.getElementById('searchInput') as HTMLInputElement;
+    if (KeyboardEvent) KeyboardEvent.preventDefault();
+    if (mouseEvent || KeyboardEvent?.key === 'Enter') {
+        const searchResults = search(searchField.value, productsData);
+        main.innerHTML = '';
+        main.appendChild(productsListRender(searchResults));
+    }
+}
 
 function search(keyword: string, data: BookData[]): BookData[] {
     const results = [];
-    if (keyword.trim().length === 0) {
+    if (!keyword.trim().length) {
         return data;
     } else {
         for (let i = 0; i < data.length; i++) {
@@ -16,7 +29,7 @@ function search(keyword: string, data: BookData[]): BookData[] {
                 results.push(data[i]);
             }
         }
-        if (results.length === 0) {
+        if (!results.length) {
             alert('No search results');
         }
         return results;
@@ -24,7 +37,6 @@ function search(keyword: string, data: BookData[]): BookData[] {
 }
 
 function resetSearch(data: BookData[]): void {
-    const main = document.querySelector('.books__container') as HTMLElement;
     const searchField = document.getElementById('searchInput') as HTMLInputElement;
 
     main.innerHTML = '';
@@ -32,4 +44,4 @@ function resetSearch(data: BookData[]): void {
     searchField.value = '';
 }
 
-export { search, resetSearch };
+export { search, resetSearch, searchResultsRender };
