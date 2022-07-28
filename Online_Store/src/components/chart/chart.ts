@@ -1,7 +1,7 @@
 import { BookData } from '../../types/types';
 import productsData from '../../assets/scripts/products_data.json';
 import './chart.css';
-import { MAXCHARTLENGTH } from '../constants/constants';
+import { MAXCHARTLENGTH, MINPRODUCTSQTYINCHART } from '../constants/constants';
 
 const chart: BookData[] = [];
 
@@ -46,7 +46,7 @@ function chartRender(chartData: BookData[]) {
             <span class="book__info-price">$${chartData[i].price * (chartData[i].qtyInChart || 1)}</span>
             <span class="quantity">              ${chartData[i].qtyInChart || 1}</span>
             <span class="remove_from_chart"><i class="fa fa-trash" aria-hidden="true"></i></span>`;
-            total += chartData[i].price * (chartData[i].qtyInChart || 1);
+            total += chartData[i].price * (chartData[i].qtyInChart || MINPRODUCTSQTYINCHART);
             fragment.append(productInChart);
         }
     } else {
@@ -60,7 +60,7 @@ function chartRender(chartData: BookData[]) {
 
     const sumTotal: HTMLDivElement = document.createElement('div');
     sumTotal.className = 'sum__total';
-    sumTotal.textContent = `Total: $${total}`;
+    sumTotal.textContent = `Total: $${total.toFixed(2)}`;
 
     const btnMakeOrder: HTMLButtonElement = document.createElement('button');
     btnMakeOrder.className = 'btn btn-mk-order';

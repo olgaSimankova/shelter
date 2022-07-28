@@ -19,3 +19,5 @@ export const CHECKBOXCONTAINERSELECTORS = [
 export const CHECKBOXTYPE = 0;
 export const CHECKBOXCATEGORY = 1;
 export const CHECKBOXPUBLISHER = 2;
+
+export const MINPRODUCTSQTYINCHART = 1;

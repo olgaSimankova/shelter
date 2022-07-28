@@ -90,9 +90,19 @@
 
 .chart__container {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.chart__container .book__info-title {
+width: 70%;
 }
 .product_in_chart {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90%;
 }
 .remove_from_chart {
     position: relative;
