@@ -2,8 +2,8 @@ import productsData from '../../assets/scripts/products_data.json';
 import './appView.css';
 import footerRssImg from '../../assets/icons/logo_rs2.svg';
 import headerImg from '../../assets/icons/book_logo.png';
-import { setChecked } from '../filters/filters';
 import { BookData } from '../../types/types';
+import { BOOKTYPES } from '../constants/constants';
 
 const checkboxType = document.querySelector('.checkbox_type_block') as HTMLElement;
 const checkboxCategory = document.querySelector('.checkbox_category_block') as HTMLElement;
@@ -23,9 +23,6 @@ function headerRender() {
     <div class="chart"><i class="fa fa-shopping-basket" aria-hidden="true"></i><span class="goods_in_chart empty"></span></div>`;
 }
 
-// Наша база данных меняется, категории могут появиться новые, поэтому рендерим их динамически
-
-// -------------------------------------------- DRY принцип? -------------------------------------------------------
 function getCategories(productsData?: BookData[]) {
     const categoriesArr: string[][] = [];
     productsData?.forEach((item) => {
@@ -35,22 +32,19 @@ function getCategories(productsData?: BookData[]) {
 }
 
 function categoriesCheckboxRender() {
-    const categories: Set<string> = getCategories();
+    const categories: Set<string> = getCategories(productsData);
     const ul: HTMLElement = document.createElement('ul');
     ul.className = 'category-filter-content';
     categories.forEach((category) => {
         const li: HTMLElement = document.createElement('li');
         li.innerHTML = `<input class="category_checkbox__filter checkbox__filter" value="${category}" type="checkbox" id="${category}">
-        <label class="categ_checkbox__label checkbox__label" for="${category}">${category}</label>`;
+        <label class="category_checkbox__label checkbox__label" for="${category}">${category}</label>`;
         ul.append(li);
     });
     return ul;
 }
 
-checkboxCategory?.append(categoriesCheckboxRender());
-if (localStorage.getItem('categoryFilter')) {
-    setChecked('.category_checkbox__filter', JSON.parse(localStorage.getItem('categoryFilter') as string));
-}
+checkboxCategory.append(categoriesCheckboxRender());
 
 function getPublishers() {
     const publishersArr: string[] = [];
@@ -74,14 +68,11 @@ function publishersCheckboxRender() {
 }
 
 checkboxPublisher?.append(publishersCheckboxRender());
-if (localStorage.getItem('publisherFilter')) {
-    setChecked('.publisher_checkbox__filter', JSON.parse(localStorage.getItem('publisherFilter') as string));
-}
 
 function typeCheckboxRender() {
-    const types: string[] = ['Self-Help', 'Fiction', "Сhildren's book"];
+    const types: string[] = BOOKTYPES;
     const ul: HTMLElement = document.createElement('ul');
-    ul.className = 'publisher-filter-content';
+    ul.className = 'type-filter-content';
     types.forEach((type) => {
         const li: HTMLElement = document.createElement('li');
         li.innerHTML = `<input class="type_checkbox__filter checkbox__filter" value="${type}" type="checkbox" id="${type}">
@@ -91,9 +82,7 @@ function typeCheckboxRender() {
     return ul;
 }
 
-checkboxType?.append(typeCheckboxRender());
-// -------------------------------------------- DRY принцип? -------------------------------------------------------
-// ------------------------------------------- не, не слышала ------------------------------------------------------
+checkboxType.append(typeCheckboxRender());
 
 function sortingSelectRender() {
     return `<label>Sort by: </label>

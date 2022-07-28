@@ -68,9 +68,7 @@ function appStart() {
 
     window.onload = function () {
         getLocalStorage();
-        const filteredProducts = applyAllFilters(productsData);
-        MAINPRODUCTSCONTAINER.innerHTML = '';
-        MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
+        applyFilterOnChange();
     };
 
     window.addEventListener('click', (event: MouseEvent) => clearLocalStorage(event));

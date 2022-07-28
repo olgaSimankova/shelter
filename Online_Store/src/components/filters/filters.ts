@@ -6,6 +6,10 @@ import './filters.css';
 import { search } from '../search/search';
 import productsData from '../../assets/scripts/products_data.json';
 import {
+    CHECKBOXCATEGORY,
+    CHECKBOXCONTAINERSELECTORS,
+    CHECKBOXPUBLISHER,
+    CHECKBOXTYPE,
     MAINPRODUCTSCONTAINER,
     SLIDERPAGEMAX,
     SLIDERPAGEMIN,
@@ -14,32 +18,36 @@ import {
 } from '../constants/constants';
 import { productsListRender } from '../products/products';
 
-function getChecked(querySelector: string) {
-    const checkedItems = <HTMLInputElement[]>(
-        Array.from(document.querySelectorAll(`${querySelector}`)).filter((item) => (item as HTMLInputElement).checked)
+function getCheckedByContainer(selector: string): string[] {
+    const checkboxContainer = document.querySelector(`${selector}`) as HTMLElement;
+    let checkedItems = <HTMLInputElement[]>(
+        Array.from(checkboxContainer.querySelectorAll('input[type=checkbox]:checked'))
     );
+    if (!checkedItems.length)
+        checkedItems = <HTMLInputElement[]>Array.from(checkboxContainer.querySelectorAll('input[type=checkbox]'));
     return checkedItems.map((item) => (item as HTMLInputElement).value) as string[];
 }
 
-function setChecked(querySelector: string, filtersChecked: string[]): void {
-    (document.querySelectorAll(`${querySelector}`) as NodeListOf<HTMLInputElement>).forEach((item) => {
-        item.checked = filtersChecked.includes(item.value);
+function getAllChecked(): string[] {
+    const checkedItems = <HTMLInputElement[]>Array.from(document.querySelectorAll('input[type=checkbox]:checked'));
+    return checkedItems.map((item) => (item as HTMLInputElement).value) as string[];
+}
+
+function setChecked(filtersChecked: string[]): void {
+    console.log('setChecked');
+    (document.querySelectorAll('input[type=checkbox]') as NodeListOf<HTMLInputElement>).forEach((item) => {
+        item.checked = filtersChecked?.includes(item.value);
     });
 }
 
-function categoryFilter(products: BookData[]) {
-    const categoriesChecked: string[] = getChecked('.categ_checkbox__filter');
-    if (!categoriesChecked.length) {
-        return products;
-    }
-    const filteredData: BookData[] = [];
-    products.forEach((elem) => {
-        if (contains(categoriesChecked, elem.category)) {
-            filteredData.push(elem);
-        }
-    });
+function filterByCheckbox(products: BookData[]) {
+    const checkboxes: string[][] = [];
+    CHECKBOXCONTAINERSELECTORS.forEach((cur) => checkboxes.push(getCheckedByContainer(cur as string)));
 
-    return filteredData;
+    return products
+        .filter((elem) => contains(checkboxes[CHECKBOXCATEGORY], elem.category))
+        .filter((elem) => checkboxes[CHECKBOXPUBLISHER].includes(elem.publisher))
+        .filter((elem) => checkboxes[CHECKBOXTYPE].includes(elem.type));
 }
 
 function contains(where: string[], what: string[]): boolean {
@@ -47,34 +55,6 @@ function contains(where: string[], what: string[]): boolean {
         if (where.indexOf(what[i]) !== -1) return true;
     }
     return false;
-}
-
-function filterPublisher(products: BookData[]) {
-    const publishersChecked: string[] = getChecked('.publish_checkbox__filter');
-    if (!publishersChecked.length) {
-        return products;
-    }
-    const filteredData: BookData[] = [];
-    products.forEach((elem) => {
-        if (publishersChecked.includes(elem.publisher)) {
-            filteredData.push(elem);
-        }
-    });
-    return filteredData;
-}
-
-function filterType(products: BookData[]) {
-    const typesChecked: string[] = getChecked('.type_checkbox__filter');
-    if (!typesChecked.length) {
-        return products;
-    }
-    const filteredData: BookData[] = [];
-    products.forEach((elem) => {
-        if (typesChecked.includes(elem.type)) {
-            filteredData.push(elem);
-        }
-    });
-    return filteredData;
 }
 
 const sliderPrice = document.getElementById('slider__price') as HTMLElement;
@@ -137,34 +117,32 @@ function sliderPageFilter(data: BookData[]) {
 function resetAllFilters(e: MouseEvent): void {
     if ((e.target as Element).classList.contains('reset_filters')) {
         localStorage.clear();
-        const uncheck: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName('input');
-        for (let i = 0; i < uncheck.length; i++) {
-            if (uncheck[i].type === 'checkbox') {
-                uncheck[i].checked = false;
+        const uncheck: HTMLInputElement[] = Array.from(document.getElementsByTagName('input'));
+        uncheck.forEach((element) => {
+            if (element.type === 'checkbox') {
+                element.checked = false;
             }
-        }
-        const sliderPrice = document.querySelector('#slider__price') as noUiSlider.target;
-        sliderPrice.noUiSlider?.set([SLIDERPRICEMIN, SLIDERPRICEMAX]);
-
-        const sliderPage = document.querySelector('#slider__pages') as noUiSlider.target;
-        sliderPage.noUiSlider?.set([SLIDERPAGEMIN, SLIDERPAGEMAX]);
-
-        const filteredProducts = applyAllFilters(productsData);
-        MAINPRODUCTSCONTAINER.innerHTML = '';
-        MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
+        });
     }
+    const sliderPrice = document.querySelector('#slider__price') as noUiSlider.target;
+    sliderPrice.noUiSlider?.set([SLIDERPRICEMIN, SLIDERPRICEMAX]);
+
+    const sliderPage = document.querySelector('#slider__pages') as noUiSlider.target;
+    sliderPage.noUiSlider?.set([SLIDERPAGEMIN, SLIDERPAGEMAX]);
+
+    const filteredProducts = applyAllFilters(productsData);
+    MAINPRODUCTSCONTAINER.innerHTML = '';
+    MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
 }
 
 function applyAllFilters(products: BookData[]) {
-    let dataFiltered: BookData[] = filterType(products);
-    dataFiltered = categoryFilter(dataFiltered);
-    dataFiltered = filterPublisher(dataFiltered);
+    let dataFiltered: BookData[] = filterByCheckbox(products);
     dataFiltered = sliderPriceFilter(dataFiltered);
     dataFiltered = sliderPageFilter(dataFiltered);
     dataFiltered = search(dataFiltered);
     const sortingOption = (document.getElementById('sorting__select') as HTMLSelectElement).value;
     sortBy(dataFiltered, sortingOption);
-    return dataFiltered;
+    return Array.from(new Set(dataFiltered));
 }
 
 function applyFilterOnChange() {
@@ -181,4 +159,12 @@ function applyFilterOnChange() {
     }
 }
 
-export { applyAllFilters, resetAllFilters, getChecked, setChecked, contains, categoryFilter, applyFilterOnChange };
+export {
+    applyAllFilters,
+    resetAllFilters,
+    getCheckedByContainer,
+    setChecked,
+    contains,
+    applyFilterOnChange,
+    getAllChecked,
+};

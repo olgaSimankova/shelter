@@ -1,25 +1,22 @@
-import { getChecked, resetAllFilters, setChecked } from '../filters/filters';
+import { getAllChecked, resetAllFilters, setChecked } from '../filters/filters';
 import { chart, emptyChart } from '../chart/chart';
 import * as noUiSlider from 'nouislider';
 import { BookData } from '../../types/types';
-import { SLIDERPAGEMAX, SLIDERPAGEMIN, SLIDERPRICEMAX, SLIDERPRICEMIN } from '../constants/constants';
+import {
+    MAINPRODUCTSCONTAINER,
+    SLIDERPAGEMAX,
+    SLIDERPAGEMIN,
+    SLIDERPRICEMAX,
+    SLIDERPRICEMIN,
+} from '../constants/constants';
 import { productsListRender } from '../products/products';
 import productsData from '../../assets/scripts/products_data.json';
 
 function setLocalStorage() {
-    const categoriesChecked: string[] = getChecked('.categ_checkbox__filter');
-    if (categoriesChecked.length) {
-        localStorage.setItem('categoryFilter', JSON.stringify(categoriesChecked));
-    }
-
-    const publishersChecked: string[] = getChecked('.publish_checkbox__filter');
-    if (publishersChecked.length) {
-        localStorage.setItem('publisherFilter', JSON.stringify(publishersChecked));
-    }
-
-    const typesChecked: string[] = getChecked('.type_checkbox__filter');
-    if (typesChecked.length) {
-        localStorage.setItem('typeFilter', JSON.stringify(typesChecked));
+    const checkboxesChecked = getAllChecked();
+    console.log(checkboxesChecked);
+    if (checkboxesChecked.length) {
+        localStorage.setItem('checkboxFilters', JSON.stringify(checkboxesChecked));
     }
 
     const sliderPrice = document.getElementById('slider__price') as noUiSlider.target;
@@ -45,16 +42,8 @@ function setLocalStorage() {
 }
 
 function getLocalStorage() {
-    if (localStorage.getItem('categoryFilter')) {
-        setChecked('.categ_checkbox__filter', JSON.parse(localStorage.getItem('categoryFilter') as string));
-    }
-
-    if (localStorage.getItem('publisherFilter')) {
-        setChecked('.publish_checkbox__filter', JSON.parse(localStorage.getItem('publisherFilter') as string));
-    }
-
-    if (localStorage.getItem('typeFilter')) {
-        setChecked('.type_checkbox__filter', JSON.parse(localStorage.getItem('typeFilter') as string));
+    if (localStorage.getItem('checkboxFilters')) {
+        setChecked(JSON.parse(localStorage.getItem('checkboxFilters') as string));
     }
 
     if (localStorage.getItem('sliderPrice')) {
@@ -89,16 +78,21 @@ function getLocalStorage() {
     }
 }
 
-const main = document.querySelector('.books__container') as HTMLElement;
-
 function clearLocalStorage(event: MouseEvent) {
     if ((event.target as Element).classList.contains('reset_storage')) {
+        localStorage.clear();
         emptyChart();
         resetAllFilters(event);
+        const uncheck: HTMLInputElement[] = Array.from(document.getElementsByTagName('input'));
+        uncheck.forEach((element) => {
+            if (element.type === 'checkbox') {
+                element.checked = false;
+            }
+        });
         (document.getElementById('sorting__select') as HTMLSelectElement).value = '';
         (document.getElementById('searchInput') as HTMLInputElement).value = '';
-        main.innerHTML = '';
-        main.appendChild(productsListRender(productsData));
+        MAINPRODUCTSCONTAINER.innerHTML = '';
+        MAINPRODUCTSCONTAINER.appendChild(productsListRender(productsData));
     }
 }
 
