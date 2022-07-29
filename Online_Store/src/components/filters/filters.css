@@ -17,6 +17,12 @@ ul {
     font: arial 13px sans-serif;
 }
 
+.noUi-target {
+    touch-action: none;
+    user-select: none;
+    box-sizing: border-box;
+}
+
 .noUi-horizontal .noUi-handle {
     width: 25px;
     height: 20px;

@@ -34,7 +34,6 @@ function getAllChecked(): string[] {
 }
 
 function setChecked(filtersChecked: string[]): void {
-    console.log('setChecked');
     (document.querySelectorAll('input[type=checkbox]') as NodeListOf<HTMLInputElement>).forEach((item) => {
         item.checked = filtersChecked?.includes(item.value);
     });
@@ -58,16 +57,26 @@ function contains(where: string[], what: string[]): boolean {
 }
 
 const sliderPrice = document.getElementById('slider__price') as HTMLElement;
-if (sliderPrice && noUiSlider) {
-    noUiSlider.create(sliderPrice, {
-        start: [1, 39],
-        connect: true,
-        tooltips: true,
-        range: {
-            min: 1,
-            max: 39,
-        },
+noUiSlider.create(sliderPrice, {
+    start: [1, 39],
+    connect: true,
+    behaviour: 'tap',
+    tooltips: true,
+    range: {
+        min: 1,
+        max: 39,
+    },
+});
+
+function sliderPriceFilter(data: BookData[]) {
+    const values = (sliderPrice as noUiSlider.target).noUiSlider?.get() as string[];
+    const filteredData: BookData[] = [];
+    data.forEach((elem: BookData) => {
+        if (elem.price >= parseInt(values[0]) && elem.price <= parseInt(values[1])) {
+            filteredData.push(elem);
+        }
     });
+    return filteredData;
 }
 
 const sliderPage = document.getElementById('slider__pages') as HTMLElement;
@@ -75,6 +84,7 @@ if (sliderPage && noUiSlider) {
     noUiSlider.create(sliderPage, {
         start: [160, 1395],
         connect: true,
+        behaviour: 'drag',
         tooltips: true,
         step: 1,
         range: {
@@ -92,11 +102,11 @@ if (sliderPage && noUiSlider) {
     });
 }
 
-function sliderFilter(data: BookData[], slider: HTMLElement) {
-    const values = (slider as noUiSlider.target).noUiSlider?.get() as string[];
+function sliderPageFilter(data: BookData[]) {
+    const values = (sliderPage as noUiSlider.target).noUiSlider?.get() as string[];
     const filteredData: BookData[] = [];
     data.forEach((elem: BookData) => {
-        if (elem.price >= parseInt(values[0]) && elem.price <= parseInt(values[1])) {
+        if (elem.pages >= parseInt(values[0]) && elem.pages <= parseInt(values[1])) {
             filteredData.push(elem);
         }
     });
@@ -104,7 +114,7 @@ function sliderFilter(data: BookData[], slider: HTMLElement) {
 }
 
 function resetAllFilters(e: MouseEvent): void {
-    if ((e.target as Element).classList.contains('reset_filters')) {
+    if ((e.target as Element).classList.contains('reset_filters') || (e.target as Element).classList.contains('reset_storage')) {
         localStorage.clear();
         const uncheck: HTMLInputElement[] = Array.from(document.getElementsByTagName('input'));
         uncheck.forEach((element) => {
@@ -112,22 +122,23 @@ function resetAllFilters(e: MouseEvent): void {
                 element.checked = false;
             }
         });
+        const sliderPrice = document.querySelector('#slider__price') as noUiSlider.target;
+        sliderPrice.noUiSlider?.set([SLIDERPRICEMIN, SLIDERPRICEMAX]);
+        console.log('reset slider');
+
+        const sliderPage = document.querySelector('#slider__pages') as noUiSlider.target;
+        sliderPage.noUiSlider?.set([SLIDERPAGEMIN, SLIDERPAGEMAX]);
+
+        const filteredProducts = applyAllFilters(productsData);
+        MAINPRODUCTSCONTAINER.innerHTML = '';
+        MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
     }
-    const sliderPrice = document.querySelector('#slider__price') as noUiSlider.target;
-    sliderPrice.noUiSlider?.set([SLIDERPRICEMIN, SLIDERPRICEMAX]);
-
-    const sliderPage = document.querySelector('#slider__pages') as noUiSlider.target;
-    sliderPage.noUiSlider?.set([SLIDERPAGEMIN, SLIDERPAGEMAX]);
-
-    const filteredProducts = applyAllFilters(productsData);
-    MAINPRODUCTSCONTAINER.innerHTML = '';
-    MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
 }
 
 function applyAllFilters(products: BookData[]) {
     let dataFiltered: BookData[] = filterByCheckbox(products);
-    dataFiltered = sliderFilter(dataFiltered, sliderPage);
-    dataFiltered = sliderFilter(dataFiltered, sliderPrice);
+    dataFiltered = sliderPriceFilter(dataFiltered);
+    dataFiltered = sliderPageFilter(dataFiltered);
     dataFiltered = search(dataFiltered);
     const sortingOption = (document.getElementById('sorting__select') as HTMLSelectElement).value;
     sortBy(dataFiltered, sortingOption);

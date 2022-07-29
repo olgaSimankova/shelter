@@ -61,7 +61,6 @@ function getLocalStorage() {
     }
     if (localStorage.getItem('chart')) {
         const storedChartArr = Array.from(JSON.parse(localStorage.getItem('chart') as string)) as BookData[];
-        // console.log(storedChartArr);
 
         setTimeout(() => {
             const btnArr = Array.from(

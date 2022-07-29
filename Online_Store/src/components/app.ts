@@ -52,17 +52,13 @@ function appStart() {
         MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
     });
 
-    (document.getElementById('slider__price') as noUiSlider.target).noUiSlider?.on('change', function () {
-        const filteredProducts = applyAllFilters(productsData);
-        MAINPRODUCTSCONTAINER.innerHTML = '';
-        MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
-    });
+    (document.getElementById('slider__price') as noUiSlider.target).noUiSlider?.on('change', () =>
+        applyFilterOnChange()
+    );
 
-    (document.getElementById('slider__pages') as noUiSlider.target).noUiSlider?.on('change', function () {
-        const filteredProducts = applyAllFilters(productsData);
-        MAINPRODUCTSCONTAINER.innerHTML = '';
-        MAINPRODUCTSCONTAINER.appendChild(productsListRender(filteredProducts));
-    });
+    (document.getElementById('slider__pages') as noUiSlider.target).noUiSlider?.on('change', () =>
+        applyFilterOnChange()
+    );
 
     window.onbeforeunload = () => setLocalStorage();
 
