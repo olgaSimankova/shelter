@@ -1,12 +1,21 @@
 @import url('./buttons.css');
 @import url('./reset.css');
+@import url('./garage.css');
+@import url('./winners.css');
 
 body {
     background-color: rgb(2, 39, 56);
 }
 
 .header {
+    margin: 0;
     color: whitesmoke;
+
+}
+
+.header h1 {
+    margin: 0;
+    text-align: center;
 }
 
 .footer {

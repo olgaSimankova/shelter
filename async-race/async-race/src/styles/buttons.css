@@ -1,3 +1,7 @@
+.main_buttons_container {
+  display: flex;
+}
+
 .main_btn {
     position: relative;
   display: inline-block;
@@ -27,4 +31,28 @@
    0 0 1px rgba(0,0,0,.5) inset,
    0 2px 3px rgba(0,0,0,.5) inset,
    0 1px 1px rgba(255,255,255,.1);
+}
+
+.btn {
+  height: 25px;
+  width: 83px;
+  margin: 3px;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  color: whitesmoke;
+  background: linear-gradient(rgb(40, 40, 104), rgb(73, 93, 181)) rgb(56, 56, 127);
+  cursor: pointer;
+}
+
+.btn:active {
+  top: 1px;
+  box-shadow:
+   0 0 1px rgba(1, 32, 59, 0.5) inset,
+   0 2px 3px rgba(1, 21, 43, 0.682) inset,
+   0 1px 1px rgba(40, 111, 211, 0.1);
+   transform: scale(0.95);
+}
+
+.btn_wide {
+  width: 135px;
 }

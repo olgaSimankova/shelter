@@ -1,0 +1,17 @@
+.winners_section {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: calc(90% - 90px);
+    top: 82px;
+    background-color: rgb(2, 39, 56);
+}
+
+.winners_section.active {
+    display: block;
+}
+
+.winners_section .section_title {
+    margin: 10px 0 10px;
+}
