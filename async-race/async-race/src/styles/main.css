@@ -2,6 +2,7 @@
 @import url('./reset.css');
 @import url('./garage.css');
 @import url('./winners.css');
+@import url('./car-container.css');
 
 body {
     background-color: rgb(2, 39, 56);

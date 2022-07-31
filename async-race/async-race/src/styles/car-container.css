@@ -1,0 +1,73 @@
+/* <div class="car_container">
+                        <div class="car_buttons">
+                            <button class="btn btn_car_select">select</button>
+                            <button class="btn btn_car_remove">remove</button>
+                            <span class="car_name">Tesla</span>
+                        </div>
+                        <div class="road">
+                            <a href="#" class="car_btn_a">A</a>
+                            <a href="#" class="car_btn_b">B</a>
+                            <img src="./assets//img/cars/car-clipart-7.png" alt="car img" class="car">
+                            <img src="./assets/img/flag.png" alt="Flag" class="flag">
+                        </div> */
+
+.car_name {
+    color: white;
+    font-size: 15px;
+}
+
+.road {
+    position: relative;
+    display: flex;
+    border-bottom: 2px solid white;
+    height: 43px;
+}
+
+.road_buttons {
+display: flex;
+flex-direction: column;
+gap: 3px;
+padding-bottom: 3px;
+}
+
+.car_btn_a, 
+.car_btn_b {
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    line-height: 15px;
+    text-align: center;
+    border: 1px solid rgb(94, 109, 119);
+    color: rgb(94, 109, 119);
+}
+
+.car_btn_a.active{
+    border: 1px solid rgb(79, 217, 123);
+    color: rgb(79, 217, 123);
+}
+
+.car_btn_b.active {
+    border: 1px solid rgb(217, 134, 79);
+    color: rgb(217, 134, 79);
+}
+
+.car {
+    position: absolute;
+    bottom: 2px;
+    left: 23px;
+    display: inline-block;
+    height: 30px;
+    width: 50px;
+    color:rgb(79, 217, 123);
+}
+
+.flag {
+    position: absolute;
+    bottom: 2px;
+    right: 53px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+}
