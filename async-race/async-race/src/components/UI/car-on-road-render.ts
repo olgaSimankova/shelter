@@ -9,7 +9,7 @@ function getCarImg(color: string): HTMLSpanElement {
     return img;
 }
 
-function getroadButtons() {
+function getRoadButtons() {
     const roadBtns: HTMLElement = document.createElement('div');
     roadBtns.setAttribute('class', 'road_buttons');
     roadBtns.innerHTML = `<a href="#" class="car_btn_a active">A</a>
@@ -27,17 +27,17 @@ function getFlagImg(): HTMLImageElement {
 function renderCarOnroad(color: string): HTMLElement {
     const road: HTMLElement = document.createElement('div');
     road.setAttribute('class', 'road');
-    road.append(getroadButtons());
+    road.append(getRoadButtons());
     road.append(getCarImg(color), getFlagImg());
 
     return road;
 }
 
-function getCarBtnsAndName(carName: string): HTMLElement {
+function getCarBtnsAndName(carName: string, carID?: string): HTMLElement {
     const carBtns = document.createElement('div');
     carBtns.setAttribute('class', 'car_buttons');
-    carBtns.innerHTML = `<button class="btn btn_car_select">select</button>
-                        <button class="btn btn_car_remove">remove</button>
+    carBtns.innerHTML = `<button class="btn btn_car_select" id="${carID}">select</button>
+                        <button class="btn btn_car_remove" id="${carID}">remove</button>
                         <span class="car_name">${carName}</span>`;
     return carBtns;
 }
@@ -45,7 +45,7 @@ function getCarBtnsAndName(carName: string): HTMLElement {
 function getCarItemContainer(carData: INewCar): HTMLElement {
     const carContainer = document.createElement('div');
     carContainer.setAttribute('class', 'car_container');
-    carContainer.append(getCarBtnsAndName(carData.name), renderCarOnroad(carData.color));
+    carContainer.append(getCarBtnsAndName(carData.name, carData.id), renderCarOnroad(carData.color));
     return carContainer;
 }
 

@@ -4,25 +4,18 @@ import { getCarItemContainer } from '../car-on-road-render';
 function getGarageSection(): HTMLDivElement {
     const garageSection = document.createElement('div');
     garageSection.setAttribute('class', 'garage_section');
-    garageSection.append(getGarageTitle());
+    garageSection.prepend(getGarageTitle());
     garageSection.append(getGarageControllersContainer('create'));
     garageSection.append(getGarageControllersContainer('update'));
     garageSection.append(getGarageRaceButtons(), getGarageContainer());
     return garageSection;
 }
 
-function getGarageTitle(): DocumentFragment {
-    const fragment = document.createDocumentFragment();
-
-    const title = document.createElement('h2');
-    title.setAttribute('class', 'section_title');
-    title.setAttribute('innerText', 'Garage');
-
-    const titleCounter = document.createElement('span');
-    title.setAttribute('class', 'garage_counter');
-
-    fragment.append(title, titleCounter);
-    return fragment;
+function getGarageTitle(): HTMLElement {
+    const garageTitleContainer = document.createElement('div');
+    garageTitleContainer.innerHTML = `<h2 class="section_title">Garage</h2>
+    <span class="garage_counter"></span>`;
+    return garageTitleContainer;
 }
 
 function getGarageControllersContainer(todo: string): HTMLDivElement {
@@ -47,6 +40,7 @@ function getGarageRaceButtons() {
 async function renderCarsContainer(): Promise<void> {
     const { items, count } = await getCars('1');
     const carsContainer = document.querySelector('.cars_container') as HTMLElement;
+    carsContainer.innerHTML = '';
     const carsCounterElement = document.querySelector('.garage_counter') as HTMLElement;
     carsCounterElement.innerText = `(${count})`;
 

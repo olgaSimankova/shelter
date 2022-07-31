@@ -15,15 +15,20 @@ const getCars = async (page: string, limit = 10) => {
     };
 };
 
-const createCar = async (body: INewCar) =>
-    (
-        await fetch(garage, {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-    ).json();
+const createCar = async (body: INewCar) => {
+    const responce = await fetch(garage, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 
-export { getCars, createCar };
+    return {
+        item: (await responce.json()) as INewCar,
+    };
+};
+
+const removeCar = async (id: number) => await (await fetch(`${garage}/${id}`, { method: 'DELETE' })).json();
+
+export { getCars, createCar, removeCar };
