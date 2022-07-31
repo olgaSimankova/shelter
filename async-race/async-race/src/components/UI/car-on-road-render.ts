@@ -1,4 +1,5 @@
 import flagImg from '../../assets/img/finish.png';
+import { INewCar } from '../../types/types';
 import { carSVGImage } from './create-car-svg';
 
 function getCarImg(color: string): HTMLSpanElement {
@@ -23,7 +24,7 @@ function getFlagImg(): HTMLImageElement {
     return flag;
 }
 
-function renderRoad(color: string): HTMLElement {
+function renderCarOnroad(color: string): HTMLElement {
     const road: HTMLElement = document.createElement('div');
     road.setAttribute('class', 'road');
     road.append(getroadButtons());
@@ -41,11 +42,11 @@ function getCarBtnsAndName(carName: string): HTMLElement {
     return carBtns;
 }
 
-function getCarContainer(carName: string, carColor: string): HTMLElement {
+function getCarItemContainer(carData: INewCar): HTMLElement {
     const carContainer = document.createElement('div');
     carContainer.setAttribute('class', 'car_container');
-    carContainer.append(getCarBtnsAndName(carName), renderRoad(carColor));
+    carContainer.append(getCarBtnsAndName(carData.name), renderCarOnroad(carData.color));
     return carContainer;
 }
 
-export { getCarContainer };
+export { getCarItemContainer };

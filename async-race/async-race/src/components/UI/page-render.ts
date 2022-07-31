@@ -1,26 +1,19 @@
 import RSSImg from '../../assets/img/logo_rs2.svg';
 import GHImg from '../../assets/img/github_icon.svg';
 import { mainButtonsContainer } from './main-buttons';
-import { getCarContainer } from './car-on-road-render';
+import { getGarageSection } from './garage/garage-section';
 
 const mainContainer = document.querySelector('.main_container') as HTMLElement;
 
 function pageRender() {
     (document.querySelector('.header') as HTMLElement).innerHTML = headerRender();
     mainContainer.prepend(mainButtonsContainer);
-    mainContainer.append(getGarageContainer());
+    mainContainer.append(getGarageSection());
     (document.querySelector('.footer') as HTMLElement).innerHTML = footerRender();
 }
 
 function headerRender(): string {
     return `<h1>Async Race</h1>`;
-}
-
-function getGarageContainer(): HTMLElement {
-    const garageCarsContainer = document.createElement('div');
-    garageCarsContainer.setAttribute('class', 'roads_container');
-    garageCarsContainer.append(getCarContainer('Tesla', '#4fd97b'));
-    return garageCarsContainer;
 }
 
 function footerRender(): string {

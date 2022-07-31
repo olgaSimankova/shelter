@@ -18,4 +18,4 @@ function createMainButtons(): HTMLElement {
     return container;
 }
 
-export { mainButtonsContainer };
+export { createButton, mainButtonsContainer };
