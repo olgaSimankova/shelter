@@ -1,9 +1,9 @@
-import { listenCar } from './UI/garage/listen-garage';
+import { listenGarage } from './UI/garage/listen-garage';
 import { pageRender } from './UI/page-render';
 
 function appStart() {
     pageRender();
-    listenCar();
+    listenGarage();
 }
 
 export { appStart };
