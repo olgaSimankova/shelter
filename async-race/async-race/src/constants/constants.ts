@@ -2,3 +2,6 @@ export const TODO = {
     create: 'create',
     update: 'update',
 };
+
+export const CARS_ON_Page = 7;
+export const NEW_CARS_QTY = 100;

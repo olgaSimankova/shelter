@@ -2,33 +2,33 @@ import flagImg from '../../assets/img/finish.png';
 import { INewCar } from '../../types/types';
 import { carSVGImage } from './create-car-svg';
 
-function getCarImg(color: string): HTMLSpanElement {
+function getCarImg(color: string, id: string): HTMLSpanElement {
     const img: HTMLElement = document.createElement('span');
-    img.setAttribute('class', 'car');
+    img.setAttribute('class', `car_${id}`);
     img.innerHTML = carSVGImage(color);
     return img;
 }
 
-function getRoadButtons() {
+function getRoadButtons(carID: string) {
     const roadBtns: HTMLElement = document.createElement('div');
     roadBtns.setAttribute('class', 'road_buttons');
-    roadBtns.innerHTML = `<a href="#" class="car_btn_a active">A</a>
-    <a href="#" class="car_btn_b">B</a>`;
+    roadBtns.innerHTML = `<button class="car_btn_start active" id="car_start_${carID}">A</button>
+    <button class="car_btn_stop" id="car_stop_${carID}" disabled=true>B</button>`;
     return roadBtns;
 }
 
-function getFlagImg(): HTMLImageElement {
+function getFlagImg(id: string): HTMLImageElement {
     const flag: HTMLImageElement = document.createElement('img');
-    flag.setAttribute('class', 'flag');
+    flag.setAttribute('class', `flag_${id}`);
     flag.setAttribute('src', `${flagImg}`);
     return flag;
 }
 
-function renderCarOnroad(color: string): HTMLElement {
+function renderCarOnRoad(color: string, carID: string): HTMLElement {
     const road: HTMLElement = document.createElement('div');
     road.setAttribute('class', 'road');
-    road.append(getRoadButtons());
-    road.append(getCarImg(color), getFlagImg());
+    road.append(getRoadButtons(carID));
+    road.append(getCarImg(color, carID), getFlagImg(carID));
 
     return road;
 }
@@ -45,7 +45,7 @@ function getCarBtnsAndName(carName: string, carID?: string): HTMLElement {
 function getCarItemContainer(carData: INewCar): HTMLElement {
     const carContainer = document.createElement('div');
     carContainer.setAttribute('class', 'car_container');
-    carContainer.append(getCarBtnsAndName(carData.name, carData.id), renderCarOnroad(carData.color));
+    carContainer.append(getCarBtnsAndName(carData.name, carData.id), renderCarOnRoad(carData.color, carData.id));
     return carContainer;
 }
 

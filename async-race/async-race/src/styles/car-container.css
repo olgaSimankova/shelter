@@ -1,15 +1,4 @@
-/* <div class="car_container">
-                        <div class="car_buttons">
-                            <button class="btn btn_car_select">select</button>
-                            <button class="btn btn_car_remove">remove</button>
-                            <span class="car_name">Tesla</span>
-                        </div>
-                        <div class="road">
-                            <a href="#" class="car_btn_a">A</a>
-                            <a href="#" class="car_btn_b">B</a>
-                            <img src="./assets//img/cars/car-clipart-7.png" alt="car img" class="car">
-                            <img src="./assets/img/flag.png" alt="Flag" class="flag">
-                        </div> */
+@import './car-animation.css';
 
 .car_name {
     color: white;
@@ -60,7 +49,6 @@ padding-bottom: 3px;
     display: inline-block;
     height: 30px;
     width: 50px;
-    color:rgb(79, 217, 123);
 }
 
 .flag {
