@@ -24,27 +24,19 @@ export const generateCars = (length = NEW_CARS_QTY) => {
     return cars;
 };
 
-// function animation(car: HTMLElement, distance: number, AnimationTime: number) {
-//     let start: number = 0;
-//     const state: IAnimationState = {id: () => {}};
+export const fillCarUpdateField = (carName: string, carColor: string) => {
+    const name = document.querySelector('.car_update_name') as HTMLInputElement;
+    name.value = carName;
+    const color = document.querySelector('.car_update_color') as HTMLInputElement;
+    color.value = carColor;
+};
 
-//     function move(timestamp: number) {
-//         if (!start) start = timestamp;
-//         const time = timestamp - start;
-//         const passed = Math.round(time * ( distance / AnimationTime))
-
-//         car.style.transform = `translateX(${Math.min(passed, distance)}px)`;
-
-//         if (passed < distance) {
-//             state.id = window.requestAnimationFrame(move)
-//         }
-//     }
-//     state.id = window.requestAnimationFrame(move);
-
-//     return state;
-// }
-
-export function getAnimation(car: HTMLElement, animationTime: number) {
-    car.style.animation = `drive ${animationTime} ease 0s`;
-}
-// object.style.animation = "name duration timingFunction delay iterationCount direction fillMode playState"
+export const toggleDisableUpdateForm = () => {
+    const name = document.querySelector('.car_update_name') as HTMLInputElement;
+    name.disabled = name.disabled ? false : true;
+    const color = document.querySelector('.car_update_color') as HTMLInputElement;
+    color.disabled = color.disabled ? false : true;
+    const btn = document.querySelector('.car_update_btn') as HTMLInputElement;
+    btn.disabled = btn.disabled ? false : true;
+    btn.classList.toggle('disabled');
+};

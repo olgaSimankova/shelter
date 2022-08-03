@@ -56,3 +56,14 @@
 .btn_wide {
   width: 135px;
 }
+
+.btn.disabled {
+  cursor: auto;
+  background: linear-gradient(rgb(110,112,120), rgb(81,81,86)) rgb(110,112,120);
+}
+
+.btn.disabled:active {
+  top: 0;
+  box-shadow:none;
+   transform: none;
+}

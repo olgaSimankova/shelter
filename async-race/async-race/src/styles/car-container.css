@@ -19,25 +19,26 @@ gap: 3px;
 padding-bottom: 3px;
 }
 
-.car_btn_a, 
-.car_btn_b {
+.car_btn_start, 
+.car_btn_stop {
     display: inline-block;
     height: 18px;
     width: 18px;
-    text-decoration: none;
+    padding: 0;
     border-radius: 5px;
     line-height: 15px;
     text-align: center;
+    background: transparent;
     border: 1px solid rgb(94, 109, 119);
     color: rgb(94, 109, 119);
 }
 
-.car_btn_a.active{
+.car_btn_start.active{
     border: 1px solid rgb(79, 217, 123);
     color: rgb(79, 217, 123);
 }
 
-.car_btn_b.active {
+.car_btn_stop.active {
     border: 1px solid rgb(217, 134, 79);
     color: rgb(217, 134, 79);
 }

@@ -19,7 +19,7 @@ function getRoadButtons(carID: string) {
 
 function getFlagImg(id: string): HTMLImageElement {
     const flag: HTMLImageElement = document.createElement('img');
-    flag.setAttribute('class', `flag_${id}`);
+    flag.setAttribute('class', `flag flag_${id}`);
     flag.setAttribute('src', `${flagImg}`);
     return flag;
 }
@@ -38,7 +38,7 @@ function getCarBtnsAndName(carName: string, carID?: string): HTMLElement {
     carBtns.setAttribute('class', 'car_buttons');
     carBtns.innerHTML = `<button class="btn btn_car_select" id="${carID}">select</button>
                         <button class="btn btn_car_remove" id="${carID}">remove</button>
-                        <span class="car_name">${carName}</span>`;
+                        <span class="car_name" id="car_name_${carID}">${carName}</span>`;
     return carBtns;
 }
 

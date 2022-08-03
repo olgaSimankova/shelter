@@ -6,13 +6,17 @@ const garage = `${base}/garage`;
 const engine = `${base}/engine`;
 // const winners = `${base}/winners`;
 
-const getCars = async (page: string, limit = 100) => {
+const getCars = async (page: number, limit = 100) => {
     const responce = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
 
     return {
         items: (await responce.json()) as INewCar[],
         count: responce.headers.get('X-Total-Count') as string,
     };
+};
+
+const getCar = async (id: string) => {
+    return { car: await (await fetch(`${garage}/${id}`, { method: 'GET' })).json() };
 };
 
 const createCar = async (body: INewCar) => {
@@ -42,14 +46,14 @@ const updateCar = async (id: number, newCarData: INewCar) =>
         })
     ).json();
 
-const startEngine = async (id: number) =>
+const startEngine = async (id: string) =>
     (await fetch(`${engine}?id=${id}&status=started`, { method: 'PATCH' })).json();
 
-const stopEngine = async (id: number) => (await fetch(`${engine}?id=${id}&status=stopped`, { method: 'PATCH' })).json();
+const stopEngine = async (id: string) => (await fetch(`${engine}?id=${id}&status=stopped`, { method: 'PATCH' })).json();
 
-const drive = async (id: number) => {
+const drive = async (id: string): Promise<{ success: boolean }> => {
     const result = await fetch(`${engine}?id=${id}&status=drive`, { method: 'PATCH' }).catch();
     return result.status !== 200 ? { success: false } : { ...(await result.json()) };
 };
 
-export { getCars, createCar, removeCar, updateCar, startEngine, stopEngine, drive };
+export { getCars, getCar, createCar, removeCar, updateCar, startEngine, stopEngine, drive };

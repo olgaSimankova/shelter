@@ -1,4 +1,5 @@
 import { getCars } from '../../API/api';
+import state from '../../state/state';
 import { getCarItemContainer } from '../car-on-road-render';
 
 function getGarageSection(): HTMLDivElement {
@@ -6,7 +7,8 @@ function getGarageSection(): HTMLDivElement {
     garageSection.setAttribute('class', 'garage_section');
     garageSection.prepend(getGarageTitle());
     garageSection.append(getGarageControllersContainer('create'));
-    garageSection.append(getGarageControllersContainer('update'));
+    garageSection.append(getGarageControllersContainer('update') as HTMLElement);
+
     garageSection.append(getGarageRaceButtons(), getGarageContainer());
     return garageSection;
 }
@@ -21,10 +23,11 @@ function getGarageTitle(): HTMLElement {
 function getGarageControllersContainer(todo: string): HTMLDivElement {
     const carCreateSection = document.createElement('div');
     carCreateSection.setAttribute('class', `car_${todo}`);
+    const disable = todo === 'update' ? 'disabled' : '';
     carCreateSection.innerHTML = `
-    <input type="text" class="car_${todo}_name">
-    <input type="color" class="car_${todo}_color" id="${todo}" name="${todo}" value="#ffffff">
-    <button class="btn garage_btn car_${todo}_btn">${todo}</button>`;
+    <input type="text" class="car_${todo}_name ${disable}" ${disable}>
+    <input type="color" class="car_${todo}_color ${disable}" id="${todo}" name="${todo}" value="#ffffff" ${disable}>
+    <button class="btn garage_btn car_${todo}_btn ${disable}" ${disable}>${todo}</button>`;
     return carCreateSection;
 }
 
@@ -38,16 +41,16 @@ function getGarageRaceButtons() {
 }
 
 async function renderCarsContainer(): Promise<void> {
-    const { items, count } = await getCars('1');
+    const { items, count } = await getCars(state.carsPage);
     const carsContainer = document.querySelector('.cars_container') as HTMLElement;
     carsContainer.innerHTML = '';
-    const carsCounterElement = document.querySelector('.garage_counter') as HTMLElement;
-    carsCounterElement.innerText = `(${count})`;
 
-    for (let i = 1; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
         const carItem: HTMLElement = getCarItemContainer(items[i]);
         carsContainer.append(carItem);
     }
+    const carsCounterElement = document.querySelector('.garage_counter') as HTMLElement;
+    carsCounterElement.innerText = `(${count})`;
 }
 
 function getGarageContainer(): HTMLElement {
@@ -63,4 +66,16 @@ function getGarageContainer(): HTMLElement {
     return garageCarsContainer;
 }
 
-export { getGarageSection, renderCarsContainer };
+async function updateCarsContainer() {
+    const { items, count } = await getCars(state.carsPage);
+    const carsContainer = document.querySelector('.cars_container') as HTMLElement;
+    carsContainer.innerHTML = '';
+    for (let i = 0; i < items.length; i++) {
+        const carItem: HTMLElement = getCarItemContainer(items[i]);
+        carsContainer.append(carItem);
+    }
+    const carsCounterElement = document.querySelector('.garage_counter') as HTMLElement;
+    carsCounterElement.innerText = `(${count})`;
+}
+
+export { getGarageSection, updateCarsContainer };

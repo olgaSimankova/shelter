@@ -3,3 +3,9 @@ export interface INewCar {
     color: string;
     id: string;
 }
+
+export interface IRacePromise {
+    id: string;
+    time: number;
+    success?: boolean;
+}
