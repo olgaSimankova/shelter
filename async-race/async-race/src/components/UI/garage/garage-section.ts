@@ -1,6 +1,7 @@
 import { getCars } from '../../API/api';
 import state from '../../state/state';
 import { getCarItemContainer } from '../car-on-road-render';
+import { renderWinnerModal } from './show-winner';
 
 function getGarageSection(): HTMLDivElement {
     const garageSection = document.createElement('div');
@@ -10,6 +11,7 @@ function getGarageSection(): HTMLDivElement {
     garageSection.append(getGarageControllersContainer('update') as HTMLElement);
 
     garageSection.append(getGarageRaceButtons(), getGarageContainer());
+    garageSection.append(renderWinnerModal());
     return garageSection;
 }
 
@@ -56,12 +58,16 @@ async function renderCarsContainer(): Promise<void> {
 function getGarageContainer(): HTMLElement {
     const garageCarsContainer = document.createElement('div');
     garageCarsContainer.setAttribute('class', 'garage_container');
-    const garagePageTitle = document.createElement('h3');
-    garageCarsContainer.setAttribute('class', 'page_title');
-    garageCarsContainer.setAttribute('innerText', 'Page #1');
+    const garagePagination = document.createElement('div');
+    garagePagination.setAttribute('class', 'pagination');
+    garagePagination.innerHTML = `<h3 class="page_title">Page</h3><span class="page_number">${state.carsPage}</span>
+    <div class='pagination_btns'>
+    <button class="prev_page btn disabled">prev</button>
+    <button class="next_page btn">next</button>
+    </div>`;
     const carsContainer = document.createElement('div');
-    carsContainer.setAttribute('class', 'cars_container garage_slide slide');
-    garageCarsContainer.append(garagePageTitle, carsContainer);
+    carsContainer.setAttribute('class', 'cars_container');
+    garageCarsContainer.append(garagePagination, carsContainer);
     renderCarsContainer();
     return garageCarsContainer;
 }
@@ -69,6 +75,7 @@ function getGarageContainer(): HTMLElement {
 async function updateCarsContainer() {
     const { items, count } = await getCars(state.carsPage);
     const carsContainer = document.querySelector('.cars_container') as HTMLElement;
+    (document.querySelector('.page_number') as HTMLElement).innerText = `${state.carsPage}`;
     carsContainer.innerHTML = '';
     for (let i = 0; i < items.length; i++) {
         const carItem: HTMLElement = getCarItemContainer(items[i]);

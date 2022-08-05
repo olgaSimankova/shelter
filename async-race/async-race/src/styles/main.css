@@ -3,6 +3,7 @@
 @import url('./garage.css');
 @import url('./winners.css');
 @import url('./car-container.css');
+@import url('./show-winner.css');
 
 body {
     background-color: rgb(2, 39, 56);
@@ -11,7 +12,6 @@ body {
 .header {
     margin: 0;
     color: whitesmoke;
-
 }
 
 .header h1 {
@@ -20,7 +20,7 @@ body {
 }
 
 .footer {
-    position: absolute;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-around;

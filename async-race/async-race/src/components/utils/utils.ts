@@ -31,12 +31,10 @@ export const fillCarUpdateField = (carName: string, carColor: string) => {
     color.value = carColor;
 };
 
-export const toggleDisableUpdateForm = () => {
-    const name = document.querySelector('.car_update_name') as HTMLInputElement;
-    name.disabled = name.disabled ? false : true;
-    const color = document.querySelector('.car_update_color') as HTMLInputElement;
-    color.disabled = color.disabled ? false : true;
+export const toggleUpdateFormDisability = (bool: boolean) => {
+    (document.querySelector('.car_update_name') as HTMLInputElement).disabled = bool;
+    (document.querySelector('.car_update_color') as HTMLInputElement).disabled = bool;
     const btn = document.querySelector('.car_update_btn') as HTMLInputElement;
-    btn.disabled = btn.disabled ? false : true;
-    btn.classList.toggle('disabled');
+    btn.disabled = bool;
+    btn.classList.toggle('disabled', bool);
 };

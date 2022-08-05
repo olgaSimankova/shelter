@@ -1,8 +1,8 @@
-function showWinners() {
+function showWinners(): void {
     (document.querySelector('.winners_section') as HTMLElement).classList.add('active');
 }
 
-function showGarage() {
+function showGarage(): void {
     (document.querySelector('.winners_section') as HTMLElement).classList.remove('active');
 }
 

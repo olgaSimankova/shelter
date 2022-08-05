@@ -2,10 +2,12 @@ import { TODO } from '../../../constants/constants';
 import { INewCar } from '../../../types/types';
 import { createCar, getCar, removeCar, updateCar } from '../../API/api';
 import { driveCar, stopDriving } from '../../controllers/drive-car';
-import { race, getWinner, resetAll } from '../../controllers/race-all';
+import { race, resetAll } from '../../controllers/race-all';
 import { getNewCarData } from '../../controllers/garage-car-loader';
-import { fillCarUpdateField, generateCars, toggleDisableUpdateForm } from '../../utils/utils';
+import { fillCarUpdateField, generateCars, toggleUpdateFormDisability } from '../../utils/utils';
 import { updateCarsContainer } from './garage-section';
+import { showWinner } from './show-winner';
+import state from '../../state/state';
 
 export const listenGarage = (): void => {
     const garage = document.querySelector('.garage_section');
@@ -27,15 +29,15 @@ export const listenGarage = (): void => {
         }
         if ((event.target as HTMLElement).classList.contains('btn_car_select')) {
             selectedCarId = (event.target as HTMLElement).id;
-            const { car } = await getCar(selectedCarId);
-            toggleDisableUpdateForm();
+            const car = await getCar(selectedCarId);
+            toggleUpdateFormDisability(false);
             fillCarUpdateField(car.name, car.color);
         }
         if ((event.target as HTMLElement).classList.contains('car_update_btn')) {
             if (selectedCarId) {
                 const newCarData = getNewCarData(TODO.update);
                 await updateCar(+selectedCarId, newCarData);
-                toggleDisableUpdateForm();
+                toggleUpdateFormDisability(true);
                 await updateCarsContainer();
             }
         }
@@ -61,11 +63,26 @@ export const listenCars = (): void => {
         }
         if ((event.target as HTMLElement).id === 'race') {
             const { id, time } = await race();
-            const winner = getWinner(id);
-            console.log(winner, time);
+            const car: INewCar = await getCar(id);
+            console.log(car, time);
+            showWinner(car, time);
         }
         if ((event.target as HTMLElement).id === 'race-reset') {
             resetAll();
+        }
+    });
+};
+
+export const listenPagination = () => {
+    (document.querySelector('.pagination_btns') as HTMLElement).addEventListener('click', async (event: Event) => {
+        if ((event.target as HTMLElement).classList.contains('next_page')) {
+            state.carsPage += 1;
+            console.log(state.carsPage);
+            await updateCarsContainer();
+        }
+        if ((event.target as HTMLElement).classList.contains('prev_page')) {
+            state.carsPage -= 1;
+            await updateCarsContainer();
         }
     });
 };

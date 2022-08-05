@@ -1,12 +1,10 @@
-import { INewCar, IRacePromise } from '../../types/types';
+import { IRacePromise } from '../../types/types';
 import { getCars } from '../API/api';
 import state from '../state/state';
 import { driveCar, stopDriving } from './drive-car';
 
 const raceAll = async (promises: Promise<IRacePromise>[], ids: string[]): Promise<IRacePromise> => {
-    const { success, id, time } = await Promise.race(promises);
-    // const { items } = await getCars('1');
-    // const carWinner: INewCar = items.find((car: INewCar) => car.id === id);
+    const { success, id, time } = await Promise.any(promises);
 
     if (!success) {
         const failedIndex = ids.findIndex((index) => index === id);
@@ -18,8 +16,8 @@ const raceAll = async (promises: Promise<IRacePromise>[], ids: string[]): Promis
     return { id: id, time: +(time / 1000).toFixed(2) };
 };
 
-export const race = async () => {
-    const { items } = await getCars(1);
+export const race = async (): Promise<IRacePromise> => {
+    const { items } = await getCars(state.carsPage);
     const promises = items.map(({ id }) => driveCar(id));
     const winner = raceAll(
         promises,
@@ -28,12 +26,7 @@ export const race = async () => {
     return winner;
 };
 
-export const getWinner = async (id: string) => {
-    const carWinner = await getCars(1).then((items) => items.items.find((car: INewCar) => car.id === id));
-    return carWinner;
-};
-
-export const resetAll = async () => {
+export const resetAll = async (): Promise<void> => {
     const { items } = await getCars(state.carsPage);
     items.forEach(({ id }) => stopDriving(id));
 };

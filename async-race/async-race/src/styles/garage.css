@@ -38,3 +38,30 @@
     font-size: 20px;
     font-family: Tahoma;
 }
+
+.cars_container {
+    height: auto;
+    
+}
+
+.page_title {
+    color: whitesmoke;
+    font-size: 15px;
+    font-family: Tahoma;
+    padding-right: 10px;
+    margin: 2px;
+}
+
+.page_number {
+    color: whitesmoke;
+    font-size: 15px;
+    font-family: Tahoma;
+    margin-right: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0;
+}

@@ -1,0 +1,56 @@
+.background_container {
+    display: none;
+}
+.background_container.active {
+    display:block;
+    background: #000;
+      height: 100%;
+      opacity: 0.9;
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+      top: 0;
+      left: 0;
+}
+
+#popup {
+  background-color: #00f;
+  height: 200px;
+  top: 100px;
+  left: 40%;
+  width: 300px;
+}
+
+.winner_container {
+    margin: calc(50vh - 100px) auto;
+    background: transparent;
+    text-align: center;
+    height: 100px;
+    padding: 60px 20px;
+}
+
+.winner_container .winner {
+    display: block;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 50px;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    animation: 2s neon-2 alternate-reverse infinite;
+}
+@keyframes neon-2 {
+    from {
+        text-shadow: 0 0 5px #FFF,
+        0 0 10px #FFF,
+        0 0 15px #FFF,
+        0 0 20px #BFE2FF;
+    }
+    to {
+        text-shadow: 0 0 20px #BFE2FF,
+        0 0 35px #BFE2FF,
+        0 0 40px #BFE2FF,
+        0 0 50px #BFE2FF,
+        0 0 800px #BFE2FF;
+    }
+}    

@@ -1,3 +1,4 @@
+import { CARS_ON_Page } from '../../constants/constants';
 import { INewCar } from '../../types/types';
 
 const base = 'http://127.0.0.1:3000';
@@ -6,7 +7,7 @@ const garage = `${base}/garage`;
 const engine = `${base}/engine`;
 // const winners = `${base}/winners`;
 
-const getCars = async (page: number, limit = 100) => {
+const getCars = async (page: number, limit = CARS_ON_Page) => {
     const responce = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
 
     return {
@@ -15,8 +16,9 @@ const getCars = async (page: number, limit = 100) => {
     };
 };
 
-const getCar = async (id: string) => {
-    return { car: await (await fetch(`${garage}/${id}`, { method: 'GET' })).json() };
+const getCar = async (id: string): Promise<INewCar> => {
+    const car = (await fetch(`${garage}/${id}`, { method: 'GET' })).json();
+    return car;
 };
 
 const createCar = async (body: INewCar) => {

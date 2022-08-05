@@ -2,6 +2,7 @@ import RSSImg from '../../assets/img/logo_rs2.svg';
 import GHImg from '../../assets/img/github_icon.svg';
 import { mainButtonsContainer } from './main-buttons';
 import { getGarageSection } from './garage/garage-section';
+import { renderWinnerModal } from './garage/show-winner';
 
 const mainContainer = document.querySelector('.main_container') as HTMLElement;
 
@@ -9,6 +10,7 @@ function pageRender() {
     (document.querySelector('.header') as HTMLElement).innerHTML = headerRender();
     mainContainer.prepend(mainButtonsContainer);
     mainContainer.append(getGarageSection());
+    mainContainer.append(renderWinnerModal());
     (document.querySelector('.footer') as HTMLElement).innerHTML = footerRender();
 }
 

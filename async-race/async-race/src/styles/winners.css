@@ -3,7 +3,7 @@
     position: absolute;
     z-index: 10;
     width: 99%;
-    height: calc(90% - 90px);
+    height: calc(112% - 90px);
     top: 82px;
     background-color: rgb(2, 39, 56);
 }
@@ -15,3 +15,4 @@
 .winners_section .section_title {
     margin: 10px 0 10px;
 }
+
