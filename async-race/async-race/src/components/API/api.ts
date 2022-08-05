@@ -58,4 +58,14 @@ const drive = async (id: string): Promise<{ success: boolean }> => {
     return result.status !== 200 ? { success: false } : { ...(await result.json()) };
 };
 
-export { getCars, getCar, createCar, removeCar, updateCar, startEngine, stopEngine, drive };
+const getSorting = (sort: string, order: string) => {
+    if (sort && order) return `&_sort=${sort}&_order=${order}`;
+    return '';
+};
+
+// const getWinners = async (page: string, limit = 10, sort: string, order: string) => {
+//     const responce = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSorting(page, order)}`);
+//     const items = await responce.json();
+// };
+
+export { getCars, getCar, createCar, removeCar, updateCar, startEngine, stopEngine, drive, getSorting };
