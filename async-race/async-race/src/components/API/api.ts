@@ -1,11 +1,11 @@
 import { CARS_ON_Page } from '../../constants/constants';
-import { INewCar } from '../../types/types';
+import { INewCar, IWinner } from '../../types/types';
 
 const base = 'http://127.0.0.1:3000';
 
 const garage = `${base}/garage`;
 const engine = `${base}/engine`;
-// const winners = `${base}/winners`;
+const winners = `${base}/winners`;
 
 const getCars = async (page: number, limit = CARS_ON_Page) => {
     const responce = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
@@ -63,9 +63,89 @@ const getSorting = (sort: string, order: string) => {
     return '';
 };
 
-// const getWinners = async (page: string, limit = 10, sort: string, order: string) => {
-//     const responce = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSorting(page, order)}`);
-//     const items = await responce.json();
-// };
+const getWinners = async (page: number, limit = 10, sort: string, order: string) => {
+    const responce = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSorting(sort, order)}`);
+    const items = (await responce.json()) as IWinner[];
 
-export { getCars, getCar, createCar, removeCar, updateCar, startEngine, stopEngine, drive, getSorting };
+    return {
+        items: await Promise.all(items.map(async (winner) => ({ ...winner, car: await getCar(winner.id) }))),
+        count: responce.headers.get('X-Total-Count'),
+    };
+};
+
+const getWinner = async (id: string): Promise<IWinner> => (await fetch(`${winners}/${id}`)).json();
+
+const updateWinnerInfo = async (id: string, newCarData: INewCar) => {
+    const winner = await getWinner(id);
+    const newWinnerData = Object.assign(winner, newCarData);
+    (
+        await fetch(`${winners}/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(newWinnerData),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+    ).json();
+};
+
+const getWinnerStatus = async (id: string) => (await fetch(`${winners}/${id}`)).status;
+
+const removeWinner = async (id: string) => (await fetch(`${winners}/${id}`, { method: 'DELETE' })).json();
+
+const createWinner = async (body: IWinner) =>
+    (
+        await fetch(winners, {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+    ).json();
+
+const updateWinner = async (id: string, body: IWinner) =>
+    (
+        await fetch(`${winners}/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+    ).json();
+
+const setWinner = async (id: string, time: number) => {
+    const winnerStatus = await getWinnerStatus(id);
+
+    if (winnerStatus === 404) {
+        await createWinner({
+            id,
+            wins: 1,
+            time,
+        });
+    } else {
+        const winner = await getWinner(id);
+        await updateWinner(id, {
+            id,
+            wins: winner.wins + 1,
+            time: time < winner.time ? time : winner.time,
+        });
+    }
+};
+
+export {
+    getCars,
+    getCar,
+    createCar,
+    removeCar,
+    updateCar,
+    startEngine,
+    stopEngine,
+    drive,
+    getSorting,
+    getWinners,
+    removeWinner,
+    setWinner,
+    updateWinnerInfo,
+};

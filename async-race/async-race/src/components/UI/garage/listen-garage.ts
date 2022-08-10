@@ -1,6 +1,6 @@
-import { TODO } from '../../../constants/constants';
+import { CARS_ON_Page, TODO } from '../../../constants/constants';
 import { INewCar } from '../../../types/types';
-import { createCar, getCar, removeCar, updateCar } from '../../API/api';
+import { createCar, getCar, removeCar, removeWinner, setWinner, updateCar, updateWinnerInfo } from '../../API/api';
 import { driveCar, stopDriving } from '../../controllers/drive-car';
 import { race, resetAll } from '../../controllers/race-all';
 import { getNewCarData } from '../../controllers/garage-car-loader';
@@ -8,6 +8,7 @@ import { fillCarUpdateField, generateCars, toggleUpdateFormDisability } from '..
 import { updateCarsContainer } from './garage-section';
 import { showWinner } from './show-winner';
 import state from '../../state/state';
+import { updateWinnersContainer } from '../winners/winners-section';
 
 export const listenGarage = (): void => {
     const garage = document.querySelector('.garage_section');
@@ -25,6 +26,7 @@ export const listenGarage = (): void => {
         if ((event.target as HTMLElement).classList.contains('btn_car_remove')) {
             const id = (event.target as HTMLElement).id;
             await removeCar(+id);
+            await removeWinner(id);
             updateCarsContainer();
         }
         if ((event.target as HTMLElement).classList.contains('btn_car_select')) {
@@ -39,13 +41,9 @@ export const listenGarage = (): void => {
                 await updateCar(+selectedCarId, newCarData);
                 toggleUpdateFormDisability(true);
                 await updateCarsContainer();
+                await updateWinnerInfo(selectedCarId, newCarData);
+                await updateWinnersContainer();
             }
-        }
-        if ((event.target as HTMLElement).id === 'generate') {
-            const carsArray: INewCar[] = generateCars();
-            console.log(carsArray);
-            carsArray.forEach(async (carData) => await createCar(carData));
-            updateCarsContainer();
         }
     });
 };
@@ -64,11 +62,17 @@ export const listenCars = (): void => {
         if ((event.target as HTMLElement).id === 'race') {
             const { id, time } = await race();
             const car: INewCar = await getCar(id);
-            console.log(car, time);
+            await setWinner(car.id, time);
+            await updateWinnersContainer();
             showWinner(car, time);
         }
         if ((event.target as HTMLElement).id === 'race-reset') {
             resetAll();
+        }
+        if ((event.target as HTMLElement).id === 'generate') {
+            const carsArray: INewCar[] = generateCars();
+            carsArray.forEach(async (carData) => await createCar(carData));
+            updateCarsContainer();
         }
     });
 };
@@ -76,13 +80,16 @@ export const listenCars = (): void => {
 export const listenPagination = () => {
     (document.querySelector('.pagination_btns') as HTMLElement).addEventListener('click', async (event: Event) => {
         if ((event.target as HTMLElement).classList.contains('next_page')) {
-            state.carsPage += 1;
-            console.log(state.carsPage);
-            await updateCarsContainer();
+            if (state.carsQuantity / CARS_ON_Page >= state.carsPage) {
+                state.carsPage += 1;
+                await updateCarsContainer();
+            }
         }
         if ((event.target as HTMLElement).classList.contains('prev_page')) {
-            state.carsPage -= 1;
-            await updateCarsContainer();
+            if (state.carsPage > 1) {
+                state.carsPage -= 1;
+                await updateCarsContainer();
+            }
         }
     });
 };

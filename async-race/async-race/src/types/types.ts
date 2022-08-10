@@ -9,3 +9,9 @@ export interface IRacePromise {
     time: number;
     success?: boolean;
 }
+
+export interface IWinner {
+    id: string;
+    wins: number;
+    time: number;
+}

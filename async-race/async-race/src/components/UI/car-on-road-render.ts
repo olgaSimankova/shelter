@@ -49,4 +49,4 @@ function getCarItemContainer(carData: INewCar): HTMLElement {
     return carContainer;
 }
 
-export { getCarItemContainer };
+export { getCarItemContainer, getCarImg };

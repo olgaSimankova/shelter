@@ -18,7 +18,7 @@ function getGarageSection(): HTMLDivElement {
 function getGarageTitle(): HTMLElement {
     const garageTitleContainer = document.createElement('div');
     garageTitleContainer.innerHTML = `<h2 class="section_title">Garage</h2>
-    <span class="garage_counter"></span>`;
+    <span class="section_counter garage_counter"></span>`;
     return garageTitleContainer;
 }
 
@@ -44,6 +44,7 @@ function getGarageRaceButtons() {
 
 async function renderCarsContainer(): Promise<void> {
     const { items, count } = await getCars(state.carsPage);
+    state.carsQuantity = +count;
     const carsContainer = document.querySelector('.cars_container') as HTMLElement;
     carsContainer.innerHTML = '';
 
@@ -51,7 +52,7 @@ async function renderCarsContainer(): Promise<void> {
         const carItem: HTMLElement = getCarItemContainer(items[i]);
         carsContainer.append(carItem);
     }
-    const carsCounterElement = document.querySelector('.garage_counter') as HTMLElement;
+    const carsCounterElement = document.querySelector('.section_counter') as HTMLElement;
     carsCounterElement.innerText = `(${count})`;
 }
 
@@ -62,7 +63,7 @@ function getGarageContainer(): HTMLElement {
     garagePagination.setAttribute('class', 'pagination');
     garagePagination.innerHTML = `<h3 class="page_title">Page</h3><span class="page_number">${state.carsPage}</span>
     <div class='pagination_btns'>
-    <button class="prev_page btn disabled">prev</button>
+    <button class="prev_page btn">prev</button>
     <button class="next_page btn">next</button>
     </div>`;
     const carsContainer = document.createElement('div');
@@ -74,6 +75,7 @@ function getGarageContainer(): HTMLElement {
 
 async function updateCarsContainer() {
     const { items, count } = await getCars(state.carsPage);
+    state.carsQuantity = +count;
     const carsContainer = document.querySelector('.cars_container') as HTMLElement;
     (document.querySelector('.page_number') as HTMLElement).innerText = `${state.carsPage}`;
     carsContainer.innerHTML = '';

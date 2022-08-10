@@ -3,13 +3,15 @@ import GHImg from '../../assets/img/github_icon.svg';
 import { mainButtonsContainer } from './main-buttons';
 import { getGarageSection } from './garage/garage-section';
 import { renderWinnerModal } from './garage/show-winner';
+import { getWinnersContainer } from './winners/winners-section';
 
 const mainContainer = document.querySelector('.main_container') as HTMLElement;
 
-function pageRender() {
+async function pageRender() {
     (document.querySelector('.header') as HTMLElement).innerHTML = headerRender();
     mainContainer.prepend(mainButtonsContainer);
     mainContainer.append(getGarageSection());
+    mainContainer.append(await getWinnersContainer());
     mainContainer.append(renderWinnerModal());
     (document.querySelector('.footer') as HTMLElement).innerHTML = footerRender();
 }

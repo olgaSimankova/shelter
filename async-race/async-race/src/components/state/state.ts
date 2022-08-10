@@ -1,4 +1,6 @@
 export default {
     carsPage: 1,
-    view: 'garage',
+    carsQuantity: 0,
+    winnersPage: 1,
+    winnersQuantity: 0,
 };
