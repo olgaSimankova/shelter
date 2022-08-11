@@ -10,7 +10,7 @@ import { showWinner } from './show-winner';
 import state from '../../state/state';
 import { updateWinnersContainer } from '../winners/winners-section';
 
-export const listenGarage = (): void => {
+const listenGarageContainer = (): void => {
     const garage = document.querySelector('.garage_section');
     let selectedCarId = '';
     garage?.addEventListener('click', async (event: Event) => {
@@ -48,7 +48,7 @@ export const listenGarage = (): void => {
     });
 };
 
-export const listenCars = (): void => {
+const listenCars = (): void => {
     const carsContainer = document.querySelector('.garage_section') as HTMLElement;
     carsContainer.addEventListener('click', async (event: Event) => {
         if ((event.target as HTMLElement).classList.contains('car_btn_start')) {
@@ -62,7 +62,11 @@ export const listenCars = (): void => {
         if ((event.target as HTMLElement).id === 'race') {
             const { id, time } = await race();
             const car: INewCar = await getCar(id);
-            await setWinner(car.id, time);
+            try {
+                await setWinner(car.id, time);
+            } catch {
+                () => console.log('Это не баг!');
+            }
             await updateWinnersContainer();
             showWinner(car, time);
         }
@@ -77,7 +81,7 @@ export const listenCars = (): void => {
     });
 };
 
-export const listenPagination = () => {
+const listenPagination = () => {
     (document.querySelector('.pagination_btns') as HTMLElement).addEventListener('click', async (event: Event) => {
         if ((event.target as HTMLElement).classList.contains('next_page')) {
             if (state.carsQuantity / CARS_ON_Page >= state.carsPage) {
@@ -92,4 +96,10 @@ export const listenPagination = () => {
             }
         }
     });
+};
+
+export const listenGarage = () => {
+    listenPagination();
+    listenCars();
+    listenGarageContainer();
 };

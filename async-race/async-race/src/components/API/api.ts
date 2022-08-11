@@ -64,7 +64,7 @@ const getSorting = (sort: string, order: string) => {
 };
 
 const getWinners = async (page: number, limit = 10, sort: string, order: string) => {
-    const responce = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSorting(sort, order)}`);
+    const responce = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSorting(sort, order)}`).catch();
     const items = (await responce.json()) as IWinner[];
 
     return {
@@ -73,7 +73,14 @@ const getWinners = async (page: number, limit = 10, sort: string, order: string)
     };
 };
 
-const getWinner = async (id: string): Promise<IWinner> => (await fetch(`${winners}/${id}`)).json();
+const getWinner = async (id: string) => {
+    try {
+        const responce = await fetch(`${winners}/${id}`);
+        return responce.json();
+    } catch {
+        (e: Error) => console.log(e);
+    }
+};
 
 const updateWinnerInfo = async (id: string, newCarData: INewCar) => {
     const winner = await getWinner(id);

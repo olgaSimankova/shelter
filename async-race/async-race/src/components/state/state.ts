@@ -3,4 +3,6 @@ export default {
     carsQuantity: 0,
     winnersPage: 1,
     winnersQuantity: 0,
+    sortBy: '',
+    sortOrder: '',
 };

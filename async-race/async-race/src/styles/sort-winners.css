@@ -1,0 +1,43 @@
+select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+  }
+
+select::-ms-expand {
+display: none;
+}
+
+:root {
+    --select-border: rgb(52, 142, 181);
+    --select-focus: rgb(143, 164, 206);
+    --select-arrow: var(--select-border);
+  }
+
+label {
+    color: whitesmoke;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+}
+.select {
+width: 100%;
+min-width: 15ch;
+max-width: 30ch;
+border: 1px solid var(--select-border);
+border-radius: 0.25em;
+padding: 0.25em 0.5em;
+margin: 5px 0;
+font-size: 1.05rem;
+cursor: pointer;
+line-height: 1.1;
+background-color: rgba(228, 235, 249, 0.953);
+}
+

@@ -4,6 +4,7 @@
 @import url('./winners.css');
 @import url('./car-container.css');
 @import url('./show-winner.css');
+@import url('./sort-winners.css');
 
 body {
     background-color: rgb(2, 39, 56);
