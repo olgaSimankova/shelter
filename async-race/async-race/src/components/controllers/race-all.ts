@@ -22,7 +22,7 @@ export const race = async (): Promise<IRacePromise> => {
     const winner = raceAll(
         promises,
         items.map((car) => car.id)
-    );
+    ).catch();
     return winner;
 };
 

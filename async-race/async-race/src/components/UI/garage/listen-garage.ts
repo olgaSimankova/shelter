@@ -60,18 +60,14 @@ const listenCars = (): void => {
             stopDriving(carId);
         }
         if ((event.target as HTMLElement).id === 'race') {
-            const { id, time } = await race();
+            const { id, time } = await race().catch();
             const car: INewCar = await getCar(id);
-            try {
-                await setWinner(car.id, time);
-            } catch {
-                () => console.log('Это не баг!');
-            }
+            await setWinner(car.id, time).catch((e: Error) => console.log(e));
             await updateWinnersContainer();
             showWinner(car, time);
         }
         if ((event.target as HTMLElement).id === 'race-reset') {
-            resetAll();
+            resetAll().catch();
         }
         if ((event.target as HTMLElement).id === 'generate') {
             const carsArray: INewCar[] = generateCars();

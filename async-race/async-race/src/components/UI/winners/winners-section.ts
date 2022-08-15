@@ -32,12 +32,9 @@ async function getWinnersContainer(): Promise<HTMLElement> {
     let innerTable = '<table><tr><th>No</th><th>IMG</th><th>Name</th><th>Wins</th><th>Time</th></tr>';
     for (let i = 0; i < items.length; i++) {
         const img = getCarImg(items[i].car.color, items[i].id);
-        innerTable += `<tr><td>${i + 1}</td><td>${img.innerHTML}</td><td>${items[i].car.name}</td><td>${
-            items[i].wins
-        }</td><td>${items[i].time}</td></tr>`;
+        innerTable += `<tr><td>${items[i].id}</td><td>${img.innerHTML}</td><td>${items[i].car.name}</td><td>${items[i].wins}</td><td>${items[i].time}</td></tr>`;
     }
     innerTable += '</table>';
-    // winnersTable.innerHTML = innerTable;
     section.innerHTML += winnersSorting.innerHTML;
     section.innerHTML += innerTable;
     return section;
@@ -53,9 +50,7 @@ async function updateWinnersContainer() {
     let innerTable = '<table><tr><th>No</th><th>IMG</th><th>Name</th><th>Wins</th><th>Time</th></tr>';
     for (let i = 0; i < items.length; i++) {
         const img = getCarImg(items[i].car.color, items[i].id);
-        innerTable += `<tr><td>${i + 1}</td><td>${img.innerHTML}</td><td>${items[i].car.name}</td><td>${
-            items[i].wins
-        }</td><td>${items[i].time}</td></tr>`;
+        innerTable += `<tr><td>${items[i].id}</td><td>${img.innerHTML}</td><td>${items[i].car.name}</td><td>${items[i].wins}</td><td>${items[i].time}</td></tr>`;
     }
     innerTable += '</table>';
     (table as HTMLElement).innerHTML = innerTable;

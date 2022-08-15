@@ -20,7 +20,7 @@ export const driveCar = async (id: string): Promise<{ success: boolean; id: stri
     car.style.animationFillMode = `forwards`;
     car.style.animationPlayState = 'running';
     const response = await drive(id);
-    const { success } = await response;
+    const { success } = response;
     if (!success) {
         car.style.animationPlayState = 'paused';
     }

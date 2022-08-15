@@ -122,24 +122,28 @@ const updateWinner = async (id: string, body: IWinner) =>
         })
     ).json();
 
-const setWinner = async (id: string, time: number) => {
-    const winnerStatus = await getWinnerStatus(id);
+async function setWinner(id: string, time: number): Promise<void> {
+    try {
+        const winnerStatus = await getWinnerStatus(id);
 
-    if (winnerStatus === 404) {
-        await createWinner({
-            id,
-            wins: 1,
-            time,
-        });
-    } else {
-        const winner = await getWinner(id);
-        await updateWinner(id, {
-            id,
-            wins: winner.wins + 1,
-            time: time < winner.time ? time : winner.time,
-        });
+        if (winnerStatus === 404) {
+            await createWinner({
+                id,
+                wins: 1,
+                time,
+            });
+        } else {
+            const winner = await getWinner(id);
+            await updateWinner(id, {
+                id,
+                wins: winner.wins + 1,
+                time: time < winner.time ? time : winner.time,
+            });
+        }
+    } catch {
+        console.log('404 - это не ошибка');
     }
-};
+}
 
 export {
     getCars,
