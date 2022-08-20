@@ -10,8 +10,9 @@ const getRandomName = (): string => {
 const getRandomColor = (): string => {
     const colorPossibleChars = '0123456789ABCDEF';
     let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += colorPossibleChars[Math.floor(Math.random() * 16)];
+    const colorLength = 6;
+    for (let i = 0; i < colorLength; i++) {
+        color += colorPossibleChars[Math.floor(Math.random() * colorPossibleChars.length)];
     }
     return color;
 };
@@ -38,3 +39,5 @@ export const toggleUpdateFormDisability = (bool: boolean) => {
     btn.disabled = bool;
     btn.classList.toggle('disabled', bool);
 };
+
+export const getSorting = (sort: string, order: string) => (sort && order ? `&_sort=${sort}&_order=${order}` : '');

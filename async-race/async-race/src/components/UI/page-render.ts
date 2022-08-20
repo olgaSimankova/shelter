@@ -10,8 +10,9 @@ const mainContainer = document.querySelector('.main_container') as HTMLElement;
 async function pageRender() {
     (document.querySelector('.header') as HTMLElement).innerHTML = headerRender();
     mainContainer.prepend(mainButtonsContainer);
-    mainContainer.append(getGarageSection());
-    mainContainer.append(await getWinnersContainer());
+    await getGarageSection().then((result: HTMLElement) => mainContainer.append(result));
+
+    await getWinnersContainer().then((result: HTMLElement) => mainContainer.append(result));
     mainContainer.append(renderWinnerModal());
     (document.querySelector('.footer') as HTMLElement).innerHTML = footerRender();
 }

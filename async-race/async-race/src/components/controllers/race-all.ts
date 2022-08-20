@@ -19,11 +19,10 @@ const raceAll = async (promises: Promise<IRacePromise>[], ids: string[]): Promis
 export const race = async (): Promise<IRacePromise> => {
     const { items } = await getCars(state.carsPage);
     const promises = items.map(({ id }) => driveCar(id));
-    const winner = raceAll(
+    return raceAll(
         promises,
         items.map((car) => car.id)
     ).catch();
-    return winner;
 };
 
 export const resetAll = async (): Promise<void> => {

@@ -20,14 +20,14 @@ const listenGarageContainer = (): void => {
                 alert('Please, enter new car name');
             } else {
                 await createCar(newCarData);
-                updateCarsContainer();
+                await updateCarsContainer();
             }
         }
         if ((event.target as HTMLElement).classList.contains('btn_car_remove')) {
             const id = (event.target as HTMLElement).id;
             await removeCar(+id);
             await removeWinner(id);
-            updateCarsContainer();
+            await updateCarsContainer();
         }
         if ((event.target as HTMLElement).classList.contains('btn_car_select')) {
             selectedCarId = (event.target as HTMLElement).id;
@@ -53,11 +53,11 @@ const listenCars = (): void => {
     carsContainer.addEventListener('click', async (event: Event) => {
         if ((event.target as HTMLElement).classList.contains('car_btn_start')) {
             const carId = (event.target as HTMLElement).id.split('car_start_')[1];
-            driveCar(carId);
+            await driveCar(carId);
         }
         if ((event.target as HTMLElement).classList.contains('car_btn_stop')) {
             const carId = (event.target as HTMLElement).id.split('car_stop_')[1];
-            stopDriving(carId);
+            await stopDriving(carId);
         }
         if ((event.target as HTMLElement).id === 'race') {
             const { id, time } = await race().catch();
@@ -67,12 +67,12 @@ const listenCars = (): void => {
             showWinner(car, time);
         }
         if ((event.target as HTMLElement).id === 'race-reset') {
-            resetAll().catch();
+            await resetAll().catch();
         }
         if ((event.target as HTMLElement).id === 'generate') {
             const carsArray: INewCar[] = generateCars();
             carsArray.forEach(async (carData) => await createCar(carData));
-            updateCarsContainer();
+            await updateCarsContainer();
         }
     });
 };
@@ -95,7 +95,7 @@ const listenPagination = () => {
 };
 
 export const listenGarage = () => {
-    listenPagination();
-    listenCars();
     listenGarageContainer();
+    listenCars();
+    listenPagination();
 };

@@ -16,8 +16,8 @@ export const showWinner = (car: INewCar, time: number): void => {
     winnerText.innerText = `WINNER: ${car.name} with time: ${time}`;
     const winnercontainer = document.querySelector('.background_container') as HTMLDivElement;
     winnercontainer.classList.toggle('active', true);
-    winnercontainer.addEventListener('click', () => {
+    winnercontainer.addEventListener('click', async () => {
         winnercontainer.classList.toggle('active', false);
-        resetAll();
+        await resetAll();
     });
 };

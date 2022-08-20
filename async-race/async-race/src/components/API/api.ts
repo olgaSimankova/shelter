@@ -1,5 +1,6 @@
-import { CARS_ON_Page } from '../../constants/constants';
+import { CARS_ON_Page, NOT_FOUND } from '../../constants/constants';
 import { INewCar, IWinner } from '../../types/types';
+import { getSorting } from '../utils/utils';
 
 const base = 'http://127.0.0.1:3000';
 
@@ -16,10 +17,7 @@ const getCars = async (page: number, limit = CARS_ON_Page) => {
     };
 };
 
-const getCar = async (id: string): Promise<INewCar> => {
-    const car = (await fetch(`${garage}/${id}`, { method: 'GET' })).json();
-    return car;
-};
+const getCar = async (id: string): Promise<INewCar> => (await fetch(`${garage}/${id}`, { method: 'GET' })).json();
 
 const createCar = async (body: INewCar) => {
     const responce = await fetch(garage, {
@@ -58,11 +56,6 @@ const drive = async (id: string): Promise<{ success: boolean }> => {
     return result.status !== 200 ? { success: false } : { ...(await result.json()) };
 };
 
-const getSorting = (sort: string, order: string) => {
-    if (sort && order) return `&_sort=${sort}&_order=${order}`;
-    return '';
-};
-
 const getWinners = async (page: number, limit = 10, sort: string, order: string) => {
     const responce = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSorting(sort, order)}`).catch();
     const items = (await responce.json()) as IWinner[];
@@ -74,12 +67,8 @@ const getWinners = async (page: number, limit = 10, sort: string, order: string)
 };
 
 const getWinner = async (id: string) => {
-    try {
-        const responce = await fetch(`${winners}/${id}`);
-        return responce.json();
-    } catch {
-        (e: Error) => console.log(e);
-    }
+    const responce = await fetch(`${winners}/${id}`);
+    return responce.json();
 };
 
 const updateWinnerInfo = async (id: string, newCarData: INewCar) => {
@@ -126,7 +115,7 @@ async function setWinner(id: string, time: number): Promise<void> {
     try {
         const winnerStatus = await getWinnerStatus(id);
 
-        if (winnerStatus === 404) {
+        if (winnerStatus === NOT_FOUND) {
             await createWinner({
                 id,
                 wins: 1,

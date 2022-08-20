@@ -3,15 +3,17 @@ import state from '../../state/state';
 import { getCarItemContainer } from '../car-on-road-render';
 import { renderWinnerModal } from './show-winner';
 
-function getGarageSection(): HTMLDivElement {
+async function getGarageSection(): Promise<HTMLDivElement> {
     const garageSection = document.createElement('div');
     garageSection.setAttribute('class', 'garage_section');
     garageSection.prepend(getGarageTitle());
     garageSection.append(getGarageControllersContainer('create'));
     garageSection.append(getGarageControllersContainer('update') as HTMLElement);
-
-    garageSection.append(getGarageRaceButtons(), getGarageContainer());
-    garageSection.append(renderWinnerModal());
+    await getGarageContainer()
+        .then((result: HTMLElement) => {
+            garageSection.append(getGarageRaceButtons(), result);
+        })
+        .then(() => garageSection.append(renderWinnerModal()));
     return garageSection;
 }
 
@@ -33,7 +35,7 @@ function getGarageControllersContainer(todo: string): HTMLDivElement {
     return carCreateSection;
 }
 
-function getGarageRaceButtons() {
+function getGarageRaceButtons(): HTMLDivElement {
     const raceBtns = document.createElement('div');
     raceBtns.setAttribute('class', `garage_buttons_container`);
     raceBtns.innerHTML = `<button class="btn garage_btn" id="race">RACE</button>
@@ -56,7 +58,7 @@ async function renderCarsContainer(): Promise<void> {
     carsCounterElement.innerText = `(${count})`;
 }
 
-function getGarageContainer(): HTMLElement {
+async function getGarageContainer(): Promise<HTMLElement> {
     const garageCarsContainer = document.createElement('div');
     garageCarsContainer.setAttribute('class', 'garage_container');
     const garagePagination = document.createElement('div');
@@ -68,8 +70,8 @@ function getGarageContainer(): HTMLElement {
     </div>`;
     const carsContainer = document.createElement('div');
     carsContainer.setAttribute('class', 'cars_container');
-    garageCarsContainer.append(garagePagination, carsContainer);
     renderCarsContainer();
+    garageCarsContainer.append(garagePagination, carsContainer);
     return garageCarsContainer;
 }
 

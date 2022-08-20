@@ -1,9 +1,9 @@
 import { listenWinners } from '../UI/winners/listen-winners';
 import { updateWinnersContainer } from '../UI/winners/winners-section';
 
-function showWinners(): void {
+async function showWinners(): Promise<void> {
     (document.querySelector('.winners_section') as HTMLElement).classList.add('active');
-    updateWinnersContainer();
+    await updateWinnersContainer();
     listenWinners();
 }
 
