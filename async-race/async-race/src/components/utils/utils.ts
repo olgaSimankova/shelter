@@ -1,5 +1,5 @@
 import { carBrand, carModel } from '../../assets/scripts/cars-data';
-import { NEW_CARS_QTY } from '../../constants/constants';
+import { HEX_COLOR_LENGTH, NEW_CARS_QTY } from '../../constants/constants';
 
 const getRandomName = (): string => {
     const brand: string = carBrand[Math.round(Math.random() * carBrand.length)];
@@ -10,8 +10,7 @@ const getRandomName = (): string => {
 const getRandomColor = (): string => {
     const colorPossibleChars = '0123456789ABCDEF';
     let color = '#';
-    const colorLength = 6;
-    for (let i = 0; i < colorLength; i++) {
+    for (let i = 0; i < HEX_COLOR_LENGTH; i++) {
         color += colorPossibleChars[Math.floor(Math.random() * colorPossibleChars.length)];
     }
     return color;
